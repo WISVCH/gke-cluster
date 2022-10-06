@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: areafiftylan
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./areafiftylan
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    domains:
+      - areafiftylan.nl
+    image:
+      repository: ghcr.io/areafiftylan/areafiftylan
+      tag: 1664580740-745ea76
