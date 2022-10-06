@@ -1,0 +1,21 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: wisvch
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    push:
+      branch: main
+    commit:
+      messageTemplate: "{{range .Updated.Images}}{{println .}}{{end}}"
+      author:
+        email: beheer@ch.tudelft.nl
+        name: "W.I.S.V. 'Christiaan Huygens'"

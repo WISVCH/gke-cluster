@@ -20,4 +20,4 @@ spec:
       - areafiftylan.nl
     image:
       repository: ghcr.io/areafiftylan/areafiftylan
-      tag: 1664580740-745ea76
+      tag: 1664580740-745ea76 # {"$imagepolicy": "flux-system:areafiftylan:tag"}
