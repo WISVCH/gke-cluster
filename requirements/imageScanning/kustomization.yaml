@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - automation.yaml
   - areafiftylan.yaml
+  - hackdelft.yaml
