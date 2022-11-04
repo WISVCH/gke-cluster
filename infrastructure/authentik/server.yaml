@@ -1,0 +1,34 @@
+apiVersion: ak.dany.dev/v1
+kind: Authentik
+metadata:
+  name: auth
+spec:
+  image:
+    repository: "ghcr.io/goauthentik/server"
+    tag: "2022.10.1"
+    pullPolicy: "IfNotPresent"
+  avatars: "none"
+  footerLinks:
+    - name: "W.I.S.V. 'Christiaan Huygens'"
+      href: "https://wisv.ch/"
+  ingress:
+    className: nginx
+    rules:
+      - host: login.wisv.ch
+        paths:
+          - path: "/"
+            pathType: "Prefix"
+  postgres:
+    host: authentik-postgres
+    database: authentik
+    username: authentik
+    passwordSecret: authentik.authentik-postgres.credentials.postgresql.acid.zalan.do
+    passwordSecretKey: password
+  redis:
+    host: authentik-redis-master
+  smtp:
+    host: mailing-server
+    port: 25
+    from: "Login - W.I.S.V. 'Christiaan Huygens' <noreply@ch.tudelft.nl>"
+    username: "noreply@ch.tudelft.nl"
+    password: ""

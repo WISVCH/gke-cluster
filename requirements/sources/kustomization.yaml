@@ -4,3 +4,5 @@ namespace: flux-system
 resources:
   - ingress-nginx.yaml
   - wisvch.yaml
+  - bitnami.yaml
+  - authentik-operator.yaml
