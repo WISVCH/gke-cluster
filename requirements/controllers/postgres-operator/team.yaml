@@ -1,5 +1,0 @@
-apiVersion: "acid.zalan.do/v1"
-kind: PostgresTeam
-metadata:
-  name: beheer
-spec:
