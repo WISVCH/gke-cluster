@@ -2,6 +2,7 @@ apiVersion: ak.dany.dev/v1
 kind: Authentik
 metadata:
   name: auth
+  namespace: default
 spec:
   image:
     repository: "ghcr.io/goauthentik/server"
