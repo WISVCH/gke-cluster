@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: transip
+  namespace: default
+spec:
+  acme:
+    email: beheer@ch.tudelft.nl
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: transip-issuer-key
+    solvers:
+      - dns01:
+          webhook:
+            groupName: cert-manager.webhook.transip
+            solverName: transip
+            config:
+              accountName: wisvch
+              ttl: 300
+              privateKeySecretRef:
+                name: transip
+                key: privateKey

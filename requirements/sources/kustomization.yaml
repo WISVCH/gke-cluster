@@ -6,3 +6,5 @@ resources:
   - wisvch.yaml
   - bitnami.yaml
   - authentik-operator.yaml
+  - jetstack.yaml
+  - transip-webhook.yaml

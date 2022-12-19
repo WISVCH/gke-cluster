@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: transip-webhook
+spec:
+  interval: 30m
+  url: https://assi010.github.io/cert-manager-webhook-transip/
