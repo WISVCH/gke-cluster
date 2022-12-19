@@ -40,8 +40,8 @@ spec:
       targetPath: authentik.postgresql.host
     - kind: Secret
       name: postgres
-      valuesKey: user
-      targetPath: authentik.postgresql.username
+      valuesKey: username
+      targetPath: authentik.postgresql.user
     - kind: Secret
       name: postgres
       valuesKey: password
