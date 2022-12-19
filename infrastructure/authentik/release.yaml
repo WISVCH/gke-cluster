@@ -22,6 +22,8 @@ spec:
     image:
       repository: "ghcr.io/wisvch/authentik"
       tag: "1671480022-30ffe89" # {"$imagepolicy": "flux-system:authentik-ch:tag"}
+    env:
+      AUTHENTIK_BOOTSTRAP_TOKEN: AUTHENTIK_TEMP_AUTH_TOKEN
     ingress:
       enabled: true
       hosts:
