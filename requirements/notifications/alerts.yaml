@@ -11,5 +11,9 @@ spec:
   eventSources:
     - kind: GitRepository
       name: "*"
+    - kind: HelmRelease
+      name: "*"
     - kind: Kustomization
+      name: "*"
+    - kind: Certificate
       name: "*"
