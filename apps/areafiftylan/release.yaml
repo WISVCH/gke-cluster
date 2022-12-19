@@ -17,7 +17,7 @@ spec:
   values:
     replicaCount: 1
     domains:
-      - areafiftylan.nl
+      - dev.areafiftylan.nl
     image:
       repository: ghcr.io/areafiftylan/areafiftylan
       tag: 1670445502-619eac9 # {"$imagepolicy": "flux-system:areafiftylan:tag"}
