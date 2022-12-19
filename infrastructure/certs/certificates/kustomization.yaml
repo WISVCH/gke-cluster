@@ -3,3 +3,4 @@ kind: Kustomization
 resources:
   - areafiftylan.yaml
   - hackdelft.yaml
+  - wisvch.yaml
