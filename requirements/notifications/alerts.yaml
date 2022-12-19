@@ -7,7 +7,7 @@ spec:
   summary: "GKE Cluster"
   providerRef:
     name: discord
-  eventSeverity: info
+  eventSeverity: error
   eventSources:
     - kind: GitRepository
       name: "*"
