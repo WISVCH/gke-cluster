@@ -1,0 +1,50 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: authentik-auth
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: authentik
+      version: "2022.11.x"
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: authentik
+        namespace: flux-system
+  values:
+    authentik:
+      avatars: "none"
+      postgresql:
+        name: "authentik"
+    image:
+      repository: "ghcr.io/wisvch/authentik"
+      tag: "1671480022-30ffe89" # {"$imagepolicy": "flux-system:authentik-ch:tag"}
+    ingress:
+      enabled: true
+      hosts:
+        - host: login.wisv.ch
+          paths:
+            - path: "/"
+              pathType: Prefix
+    redis:
+      enabled: true
+  valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: host
+      targetPath: authentik.postgresql.host
+    - kind: Secret
+      name: postgres
+      valuesKey: user
+      targetPath: authentik.postgresql.user
+    - kind: Secret
+      name: postgres
+      valuesKey: password
+      targetPath: authentik.postgresql.password
+    - kind: Secret
+      name: authentik
+      valuesKey: secret
+      targetPath: authentik.secret_key
