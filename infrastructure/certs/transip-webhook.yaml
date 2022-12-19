@@ -14,3 +14,6 @@ spec:
         kind: HelmRepository
         name: transip-webhook
         namespace: flux-system
+  values:
+    certManager:
+      namespace: default
