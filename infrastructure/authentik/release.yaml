@@ -31,6 +31,10 @@ spec:
           paths:
             - path: "/"
               pathType: Prefix
+      tls:
+        - secretName: wisvch-tls
+          hosts:
+            - login.wisv.ch
     redis:
       enabled: true
   valuesFrom:
