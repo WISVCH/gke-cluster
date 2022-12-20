@@ -33,7 +33,12 @@ spec:
         admin: chbeheer,dienst2,epa,vc
         beta: svenp, florisv, daveys, davida, ruthk, gijsw, karimo, willemijnv, svenh, jurriaant, yoshia, joepj, juliand
     postgres:
-      database: events  
+      database: events 
+    hibernate:
+      hb2mddl:
+        auto: create
+    flyway:
+      enable: false
 
   valuesFrom:
     - kind: Secret
