@@ -36,7 +36,7 @@ spec:
       database: events 
     hibernate:
       hb2mddl:
-        auto: validate
+        auto: create
     flyway:
       enable: false
 
