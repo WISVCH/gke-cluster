@@ -35,10 +35,11 @@ spec:
     postgres:
       database: events 
     hibernate:
+      generateDdl: true
       hb2mddl:
-        auto: validate
+        auto: update
     flyway:
-      enable: true
+      enable: false
 
   valuesFrom:
     - kind: Secret
