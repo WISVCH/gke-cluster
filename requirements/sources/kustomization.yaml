@@ -7,3 +7,4 @@ resources:
   - authentik-operator.yaml
   - jetstack.yaml
   - transip-webhook.yaml
+  - cetic.yaml
