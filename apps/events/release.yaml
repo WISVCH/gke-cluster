@@ -35,8 +35,9 @@ spec:
     postgres:
       database: events 
     hibernate:
+      generate-ddl: true
       hb2mddl:
-        auto: create
+        auto: update
     flyway:
       enable: false
 
