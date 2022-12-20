@@ -19,3 +19,5 @@ spec:
       enabled: false
     service:
       type: ClusterIP
+    config:
+      externalserver: "10.59.96.3"
