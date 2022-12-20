@@ -39,11 +39,11 @@ spec:
     - kind: Secret
       name: postgres
       valuesKey: host
-      targetPath: postgresql.host
+      targetPath: postgres.host
     - kind: Secret
       name: postgres
       valuesKey: port
-      targetPath: postgresql.port
+      targetPath: postgres.port
     - kind: Secret
       name: postgres
       valuesKey: username
