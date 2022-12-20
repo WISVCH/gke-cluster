@@ -36,9 +36,9 @@ spec:
       database: events 
     hibernate:
       hb2mddl:
-        auto: create
+        auto: validate
     flyway:
-      enable: false
+      enable: true
 
   valuesFrom:
     - kind: Secret
