@@ -27,7 +27,6 @@ spec:
       issuer: https://connect.ch.tudelft.nl
       client:
         url: https://events.wisv.ch
-        id: events-cloud
       scope: openid, profile, email, ldap
       groups:
         admin: chbeheer,dienst2,epa,vc
@@ -66,3 +65,7 @@ spec:
       name: events
       valuesKey: connect-client-secret
       targetPath: oauth.client.secret
+    - kind: Secret
+      name: events
+      valuesKey: connect-client-id
+      targetPath: oauth.client.id
