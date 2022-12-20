@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ingress-nginx.yaml
   - wisvch.yaml
-  - bitnami.yaml
+  - authentik.yaml
   - authentik-operator.yaml
   - jetstack.yaml
   - transip-webhook.yaml

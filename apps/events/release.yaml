@@ -1,0 +1,62 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: events
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./events
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    tlsSecret: events-tls
+    domains:
+      - wisv.ch/events
+    image:
+      repository: ghcr.io/wisvch/events
+      tag: 20221030-3f01f9d # {"$imagepolicy": "flux-system:events:tag"}    
+    oauth:
+      issuer: https://connect.ch.tudelft.nl
+      client:
+        url: https://events.wisv.ch
+        id: events-cloud
+      scope: openid, profile, email, ldap
+      groups:
+        admin: chbeheer,dienst2,epa,vc
+        beta: svenp, florisv, daveys, davida, ruthk, gijsw, karimo, willemijnv, svenh, jurriaant, yoshia, joepj, juliand
+    postgres:
+      database: events  
+
+  valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: host
+      targetPath: postgres.host
+    - kind: Secret
+      name: postgres
+      valuesKey: port
+      targetPath: postgres.port
+    - kind: Secret
+      name: postgres
+      valuesKey: username
+      targetPath: postgres.username
+    - kind: Secret
+      name: postgres
+      valuesKey: password
+      targetPath: postgres.password
+    - kind: Secret
+      name: events
+      valuesKey: mollie-key
+      targetPath: mollie.key
+    - kind: Secret
+      name: events
+      valuesKey: connect-client-secret
+      targetPath: oauth.client.secret
