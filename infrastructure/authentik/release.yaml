@@ -37,6 +37,9 @@ spec:
             - login.wisv.ch
     redis:
       enabled: true
+      master:
+        persistence:
+          size: 2Gi
   valuesFrom:
     - kind: Secret
       name: postgres
