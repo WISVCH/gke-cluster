@@ -1,13 +1,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: mand
+  name: choice
   namespace: default
 spec:
   interval: 15m
   chart:
     spec:
-      chart: ./mand
+      chart: ./choice
       version: "0.1.x"
       interval: 15m
       reconcileStrategy: Revision
@@ -17,20 +17,27 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
+    tlsSecret: wisvch-tls
+    domains:
+      - wisv.ch/choice
     image:
-      repository: ghcr.io/wisvch/mand
-      tag: 20220502-bbfd616 # {"$imagepolicy": "flux-system:mand:tag"}
-    auth:
-      url: https://connect.ch.tudelft.nl
-      clientId: mand
+      repository: ghcr.io/wisvch/choice
+      tag: 20221221-47888c8 # {"$imagepolicy": "flux-system:events:tag"}    
+    oauth:
+      issuer: https://connect.ch.tudelft.nl
+      client:
+        url: https://choice.wisv.ch
+      scope: openid, profile, email, ldap
+      groups:
+        admin: chbeheer,dienst2,epa,vc
     postgres:
-      name: mand
-    ingress:
-      enabled: true
-      tls:
-        - hosts:
-            - wisv.ch
-          secretName: "wisvch-tls"
+      database: choice
+    hibernate:
+      generateDdl: true
+      hb2mddl:
+        auto: validate
+    flyway:
+      enable: false
   valuesFrom:
     - kind: Secret
       name: postgres
@@ -49,6 +56,6 @@ spec:
       valuesKey: password
       targetPath: postgres.password
     - kind: Secret
-      name: mand
-      valuesKey: clientSecret
-      targetPath: auth.clientSecret
+      name: choice
+      valuesKey: connect-client-secret
+      targetPath: oauth.client.secret
