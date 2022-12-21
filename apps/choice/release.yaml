@@ -18,11 +18,10 @@ spec:
   values:
     replicaCount: 1
     tlsSecret: wisvch-tls
-    domains:
-      - wisv.ch/choice
+    domain: choice.wisv.ch
     image:
       repository: ghcr.io/wisvch/choice
-      tag: 20221221-47888c8 # {"$imagepolicy": "flux-system:events:tag"}    
+      tag: choice:20221221-5bd74eb # {"$imagepolicy": "flux-system:choice:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
