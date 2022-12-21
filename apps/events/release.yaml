@@ -22,7 +22,7 @@ spec:
       - wisv.ch/events
     image:
       repository: ghcr.io/wisvch/events
-      tag: 20221030-3f01f9d # {"$imagepolicy": "flux-system:events:tag"}    
+      tag: 20221221-f5d734c # {"$imagepolicy": "flux-system:events:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
@@ -32,14 +32,13 @@ spec:
         admin: chbeheer,dienst2,epa,vc
         beta: svenp, florisv, daveys, davida, ruthk, gijsw, karimo, willemijnv, svenh, jurriaant, yoshia, joepj, juliand
     postgres:
-      database: events 
+      database: events
     hibernate:
       generateDdl: true
       hb2mddl:
         auto: update
     flyway:
       enable: false
-
   valuesFrom:
     - kind: Secret
       name: postgres
