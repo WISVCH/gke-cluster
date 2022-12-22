@@ -21,7 +21,7 @@ spec:
     domain: wisv.ch/feedback
     image:
       repository: ghcr.io/wisvch/events
-      tag: 20220402-940e262 # {"$imagepolicy": "flux-system:events:tag"}    
+      tag: 20221221-c8ce8e0 # {"$imagepolicy": "flux-system:events:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
