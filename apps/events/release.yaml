@@ -38,7 +38,7 @@ spec:
       hb2mddl:
         auto: validate
     flyway:
-      enable: true
+      enabled: true
   valuesFrom:
     - kind: Secret
       name: postgres
