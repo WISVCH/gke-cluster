@@ -32,14 +32,14 @@ spec:
           paths:
             - path: "/"
               pathType: Prefix
-        - host: www.wisv.ch
+        - host: "*.wisv.ch"
           paths:
             - path: "/"
               pathType: Prefix
       tls:
         - hosts:
             - wisv.ch
-            - www.wisv.ch
+            - "*.wisv.ch"
           secretName: "wisvch-tls"
   valuesFrom:
     - kind: Secret

@@ -23,3 +23,22 @@ spec:
     image:
       repository: ghcr.io/areafiftylan/areafiftylan
       tag: 1670445502-619eac9 # {"$imagepolicy": "flux-system:areafiftylan:tag"}
+    postgres:
+      database: areafiftylan
+  valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: host
+      targetPath: postgres.host
+    - kind: Secret
+      name: postgres
+      valuesKey: port
+      targetPath: postgres.port
+    - kind: Secret
+      name: postgres
+      valuesKey: username
+      targetPath: postgres.username
+    - kind: Secret
+      name: postgres
+      valuesKey: password
+      targetPath: postgres.password
