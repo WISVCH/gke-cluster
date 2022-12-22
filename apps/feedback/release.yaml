@@ -21,7 +21,7 @@ spec:
     domain: feedback.wisv.ch
     image:
       repository: ghcr.io/wisvch/feedback
-      tag: 20221222-ac8a553 # {"$imagepolicy": "flux-system:feedback:tag"}    
+      tag: 20221222-2759d7b # {"$imagepolicy": "flux-system:feedback:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
