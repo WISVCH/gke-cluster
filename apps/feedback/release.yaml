@@ -1,0 +1,84 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: feedback
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./feedback
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    tlsSecret: wisvch-tls
+    domain: wisv.ch/feedback
+    image:
+      repository: ghcr.io/wisvch/events
+      tag: 20220402-940e262 # {"$imagepolicy": "flux-system:events:tag"}    
+    oauth:
+      issuer: https://connect.ch.tudelft.nl
+      client:
+        url: https://feedback.wisv.ch
+      scope: openid, profile, email, ldap
+      groups:
+        admin: chbeheer,dienst2,epa,vc
+    postgres:
+      database: feedback
+    hibernate:
+      generateDdl: true
+      hb2mddl:
+        auto: validate
+    flyway:
+      enable: true
+  valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: host
+      targetPath: postgres.host
+    - kind: Secret
+      name: postgres
+      valuesKey: port
+      targetPath: postgres.port
+    - kind: Secret
+      name: postgres
+      valuesKey: username
+      targetPath: postgres.username
+    - kind: Secret
+      name: postgres
+      valuesKey: password
+      targetPath: postgres.password
+    - kind: Secret
+      name: feedback
+      valuesKey: connect-secret
+      targetPath: oauth.client.secret
+    - kind: Secret
+      name: feedback
+      valuesKey: recaptcha-site
+      targetPath: recaptcha.site
+    - kind: Secret
+      name: feedback
+      valuesKey: recaptcha-secret
+      targetPath: recaptcha.secret
+    - kind: Secret
+      name: mail
+      valuesKey: username
+      targetPath: mail.username
+    - kind: Secret
+      name: mail
+      valuesKey: password
+      targetPath: mail.password
+    - kind: Secret
+      name: mail
+      valuesKey: port
+      targetPath: mail.port
+    - kind: Secret
+      name: mail
+      valuesKey: host
+      targetPath: mail.host
