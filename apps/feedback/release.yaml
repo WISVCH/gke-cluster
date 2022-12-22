@@ -20,8 +20,8 @@ spec:
     tlsSecret: wisvch-tls
     domain: feedback.wisv.ch
     image:
-      repository: ghcr.io/wisvch/events
-      tag: 20221222-2397ec0 # {"$imagepolicy": "flux-system:events:tag"}    
+      repository: ghcr.io/wisvch/feedback
+      tag: 20221222-2397ec0 # {"$imagepolicy": "flux-system:feedback:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
