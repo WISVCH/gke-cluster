@@ -19,4 +19,4 @@ spec:
       replicaCount: 1
     controller:
       flags:
-        on-by-default: ""
+        on-by-default: "true"
