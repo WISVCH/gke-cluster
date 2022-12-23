@@ -18,16 +18,12 @@ spec:
     grafana.ini:
       instance_name: "W.I.S.V. Christiaan Huygens Metrics"
       security:
-        disable_initial_admin_creation: true
+        disable_initial_admin_creation: false
         disable_gravatar: true
       analytics:
         reporting_enabled: false
       users:
         viewers_can_edit: true
-      auth:
-        anonymous:
-          enabled: true
-          org_role: Admin
     persistence:
       enabled: true
       size: 1Gi
