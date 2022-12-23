@@ -24,6 +24,10 @@ spec:
         reporting_enabled: false
       users:
         viewers_can_edit: true
+      auth:
+        anonymous:
+          enabled: true
+          org_role: Admin
     persistence:
       enabled: true
       size: 1Gi
