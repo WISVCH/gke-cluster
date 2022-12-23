@@ -17,7 +17,18 @@ spec:
   values:
     controller:
       watchIngressWithoutClass: true
+      enableLatencyMetrics: true
+      metrics:
+        enabled: true
+        service:
+          annotations:
+            prometheus.io/port: "10254"
+            prometheus.io/scrape: "true"
       ingressClassResource:
         default: true
       admissionWebhooks:
         enabled: false
+      extraArgs:
+        default-ssl-certificate: "default/wisvch-tls"
+    prometheus:
+      create: true
