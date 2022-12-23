@@ -8,3 +8,6 @@ resources:
   - jetstack.yaml
   - transip-webhook.yaml
   - cetic.yaml
+  - fairwinds.yaml
+  - grafana.yaml
+  - victoriametrics.yaml

@@ -4,3 +4,5 @@ resources:
   - ../../ingress-nginx
   - ../../certs
   - ../../authentik
+  - ../../monitoring
+  - ../../goldilocks
