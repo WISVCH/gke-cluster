@@ -32,3 +32,15 @@ spec:
         limits:
           cpu: 500m
           memory: 128Mi
+    admin:
+      replicaCount: 1
+      image:
+        repository: ghcr.io/areafiftylan/lancie-admin
+        tag: 20220216-41883df # {"$imagepolicy": "flux-system:areafiftylan-legacy-admin:tag"}
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+        limits:
+          cpu: 250m
+          memory: 128Mi
