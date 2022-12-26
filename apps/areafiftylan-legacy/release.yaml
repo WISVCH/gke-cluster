@@ -36,7 +36,7 @@ spec:
       replicaCount: 1
       image:
         repository: ghcr.io/areafiftylan/lancie-admin
-        tag: 20220216-41883df # {"$imagepolicy": "flux-system:areafiftylan-legacy-admin:tag"}
+        tag: 20220223-41883df # {"$imagepolicy": "flux-system:areafiftylan-legacy-admin:tag"}
       resources:
         requests:
           cpu: 50m
