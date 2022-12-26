@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../../hackdelft
   - ../../areafiftylan
+  - ../../areafiftylan-legacy
   - ../../events
   - ../../adminer
   - ../../mand

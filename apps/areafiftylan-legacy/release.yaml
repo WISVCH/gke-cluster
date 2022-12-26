@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: areafiftylan-legacy
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./areafiftylan-frontend
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    tlsSecret: areafiftylan-tls
+    domains:
+      - area51an.nl
+      - area5lan.nl
+    frontend:
+      replicaCount: 1
+      image:
+        repository: ghcr.io/areafiftylan/lancie-frontend
+        tag: 1670445502-619eac9 # {"$imagepolicy": "flux-system:areafiftylan-legacy-frontend:tag"}
+      resources:
+        requests:
+          cpu: 50m
+          memory: 64Mi
+        limits:
+          cpu: 500m
+          memory: 128Mi
