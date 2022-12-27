@@ -18,6 +18,7 @@ spec:
   values:
     tlsSecret: areafiftylan-tls
     domains:
+      - areafiftylan.nl
       - area51an.nl
       - area5lan.nl
     postgres:
