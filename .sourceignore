@@ -12,4 +12,4 @@
 !/secrets/
 
 # Exclude templates
-*.yaml.tpl
+*.tpl.yaml
