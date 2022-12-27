@@ -17,6 +17,6 @@ spec:
       username: admin
   valuesFrom:
     - kind: Secret
-      name: cluster-user-auth
+      name: weave-admin
       valuesKey: password
       targetPath: adminUser.passwordHash
