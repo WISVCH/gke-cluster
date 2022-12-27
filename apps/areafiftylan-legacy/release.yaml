@@ -20,6 +20,8 @@ spec:
     domains:
       - area51an.nl
       - area5lan.nl
+    postgres:
+      database: areafiftylan-legacy
     frontend:
       replicaCount: 1
       image:
@@ -32,6 +34,18 @@ spec:
         limits:
           cpu: 500m
           memory: 128Mi
+    api:
+      replicaCount: 1
+      image:
+        repository: ghcr.io/areafiftylan/lancie-api
+        tag: 20220408-b1d5bb7 # {"$imagepolicy": "flux-system:areafiftylan-legacy-api:tag"}
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 500m
+          memory: 256Mi
     admin:
       replicaCount: 1
       image:
@@ -44,3 +58,44 @@ spec:
         limits:
           cpu: 250m
           memory: 128Mi
+  valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: host
+      targetPath: postgres.host
+    - kind: Secret
+      name: postgres
+      valuesKey: port
+      targetPath: postgres.port
+    - kind: Secret
+      name: postgres
+      valuesKey: username
+      targetPath: postgres.username
+    - kind: Secret
+      name: postgres
+      valuesKey: password
+      targetPath: postgres.password
+    - kind: Secret
+      name: areafiftylan-legacy
+      valuesKey: mollie-key
+      targetPath: mollie.key
+    - kind: Secret
+      name: areafiftylan-legacy
+      valuesKey: gmaps-key
+      targetPath: gmaps.key
+    - kind: Secret
+      name: mail
+      valuesKey: username
+      targetPath: mail.username
+    - kind: Secret
+      name: mail
+      valuesKey: password
+      targetPath: mail.password
+    - kind: Secret
+      name: mail
+      valuesKey: port
+      targetPath: mail.port
+    - kind: Secret
+      name: mail
+      valuesKey: host
+      targetPath: mail.host
