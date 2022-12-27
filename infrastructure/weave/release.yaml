@@ -11,3 +11,12 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: weave
+  values:
+    adminUser:
+      create: true
+      username: admin
+  valuesFrom:
+    - kind: Secret
+      name: cluster-user-auth
+      valuesKey: password
+      targetPath: adminUser.passwordHash
