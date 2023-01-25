@@ -23,6 +23,8 @@ spec:
         ipFamilies:
           - IPv4
           - IPv6
+        annotations:
+          networking.gke.io/load-balancer-type: "External"
       metrics:
         enabled: true
         service:
