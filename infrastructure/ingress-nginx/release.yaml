@@ -18,6 +18,11 @@ spec:
     controller:
       watchIngressWithoutClass: true
       enableLatencyMetrics: true
+      service:
+        ipFamilyPolicy: "PreferDualStack"
+        ipFamilies:
+          - IPv4
+          - IPv6
       metrics:
         enabled: true
         service:
