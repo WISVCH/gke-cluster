@@ -9,3 +9,4 @@ resources:
   - ../../mand
   - ../../choice
   - ../../feedback
+  - ../../wiki
