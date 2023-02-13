@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: wiki
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/wiki
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: wiki
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: wiki
+  filterTags:
+    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc

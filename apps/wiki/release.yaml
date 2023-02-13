@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wiki
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./wiki
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    tlsSecret: wisvch-tls
+    domain: wiki.wisv.ch
+    image:
+      repository: ghcr.io/wisvch/wiki
+      tag: 20230213-81c901c # {"$imagepolicy": "flux-system:wiki:tag"}
