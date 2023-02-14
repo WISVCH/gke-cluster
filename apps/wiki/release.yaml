@@ -15,10 +15,6 @@ spec:
         kind: GitRepository
         name: wisvch
         namespace: flux-system
-      volumes:
-        - name: wiki-data
-          persistentVolumeClaim:
-            claimName: wiki-pvc
   values:
     replicaCount: 1
     tlsSecret: wisvch-tls
@@ -35,14 +31,11 @@ spec:
       name: wiki
       valuesKey: connect-client-id
       targetPath: oauth.client.id
----
-# TODO: Move to storage/wiki.yaml
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wiki-pvc
-spec:
-  storageClassName: ""
-  resources:
-    requests:
-      storage: 1Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: wiki-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
