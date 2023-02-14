@@ -15,10 +15,6 @@ spec:
         kind: GitRepository
         name: wisvch
         namespace: flux-system
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: wiki-pvc
   values:
     replicaCount: 1
     tlsSecret: wisvch-tls
@@ -40,7 +36,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wiki-pvc
+  name: wiki-data
   namespace: default
 spec:
   accessModes:
