@@ -43,6 +43,8 @@ metadata:
   name: wiki-pvc
   namespace: default
 spec:
+  accessModes:
+    - ReadWriteOnce
   storageClassName: ""
   resources:
     requests:
