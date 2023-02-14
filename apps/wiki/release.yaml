@@ -36,7 +36,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: wiki-data
+  name: wiki-pvc
   namespace: default
 spec:
   accessModes:
