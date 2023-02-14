@@ -44,7 +44,6 @@ metadata:
   name: wiki-pvc
 spec:
   storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
-  volumeName: wiki-pv
   resources:
     requests:
       storage: 1Gi
