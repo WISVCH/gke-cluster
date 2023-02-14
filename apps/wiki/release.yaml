@@ -16,10 +16,9 @@ spec:
         name: wisvch
         namespace: flux-system
       volumes:
-        - name: data
+        - name: wiki-data
           persistentVolumeClaim:
             claimName: wiki-pvc
-
   values:
     replicaCount: 1
     tlsSecret: wisvch-tls
@@ -43,7 +42,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: wiki-pvc
 spec:
-  storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
+  storageClassName: ""
   resources:
     requests:
       storage: 1Gi
