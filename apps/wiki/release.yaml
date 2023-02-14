@@ -32,7 +32,6 @@ spec:
       valuesKey: connect-client-id
       targetPath: oauth.client.id
 ---
-# TODO: Move to storage/wiki.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -41,7 +40,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: ""
+  storageClassName: default
   resources:
     requests:
       storage: 1Gi
