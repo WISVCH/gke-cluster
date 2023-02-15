@@ -31,16 +31,3 @@ spec:
       name: wiki
       valuesKey: connect-client-id
       targetPath: oauth.client.id
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: wiki-pvc
-  namespace: default
-spec:
-  accessModes:
-    - ReadWriteOnce
-  storageClassName: standard
-  resources:
-    requests:
-      storage: 1Gi
