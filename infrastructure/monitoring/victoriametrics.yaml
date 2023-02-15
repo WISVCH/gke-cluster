@@ -18,7 +18,7 @@ spec:
     server:
       retentionPeriod: "1w"
       persistentVolume:
-        size: 1Gi
+        size: 4Gi
       statefulSet:
         enabled: false
       scrape:
