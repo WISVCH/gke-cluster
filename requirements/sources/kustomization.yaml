@@ -3,8 +3,12 @@ kind: Kustomization
 resources:
   - ingress-nginx.yaml
   - wisvch.yaml
-  - authentik.yaml
-  - authentik-operator.yaml
+  # - authentik.yaml
+  # - authentik-operator.yaml
   - jetstack.yaml
   - transip-webhook.yaml
   - cetic.yaml
+  - fairwinds.yaml
+  - grafana.yaml
+  - victoriametrics.yaml
+  - weave.yaml

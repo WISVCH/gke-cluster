@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: goldilocks
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: goldilocks
+      version: "6.4.x"
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: fairwinds
+        namespace: flux-system
+  values:
+    dashboard:
+      replicaCount: 1
+    controller:
+      flags:
+        on-by-default: "true"

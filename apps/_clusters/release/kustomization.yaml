@@ -3,8 +3,10 @@ kind: Kustomization
 resources:
   - ../../hackdelft
   - ../../areafiftylan
+  - ../../areafiftylan-legacy
   - ../../events
   - ../../adminer
   - ../../mand
   - ../../choice
   - ../../feedback
+  - ../../wiki

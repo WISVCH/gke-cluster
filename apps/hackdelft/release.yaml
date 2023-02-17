@@ -40,7 +40,7 @@ spec:
           type: ClusterIP
           port: 80
         image:
-          repository: quay.io/wisvch/hackdelft-2019
+          repository: ghcr.io/wisvch/hackdelft-2019
           tag: "61" # {"$imagepolicy": "flux-system:hackdelft-2019:tag"}
           pullPolicy: IfNotPresent
           pullSecrets: {}
@@ -51,7 +51,7 @@ spec:
           type: ClusterIP
           port: 80
         image:
-          repository: quay.io/wisvch/hackdelft-2018
+          repository: ghcr.io/wisvch/hackdelft-2018
           tag: "75" # {"$imagepolicy": "flux-system:hackdelft-2018:tag"}
           pullPolicy: IfNotPresent
           pullSecrets: {}
@@ -62,7 +62,7 @@ spec:
           type: ClusterIP
           port: 80
         image:
-          repository: quay.io/wisvch/hackdelft-2017
+          repository: ghcr.io/wisvch/hackdelft-2017
           tag: "41" # {"$imagepolicy": "flux-system:hackdelft-2017:tag"}
           pullPolicy: IfNotPresent
           pullSecrets: {}

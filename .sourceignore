@@ -1,0 +1,15 @@
+# Flux ignore
+# https://fluxcd.io/docs/components/source/gitrepositories/#excluding-files
+
+# Exclude all
+/*
+
+# Include manifest directories
+!/apps/
+!/clusters/
+!/infrastructure/
+!/requirements/
+!/secrets/
+
+# Exclude templates
+*.tpl.yaml
