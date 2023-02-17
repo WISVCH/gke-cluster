@@ -10,5 +10,6 @@ resources:
   - cetic.yaml
   - fairwinds.yaml
   - grafana.yaml
+  - openldap.yaml
   - victoriametrics.yaml
   - weave.yaml

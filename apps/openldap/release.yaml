@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openldap
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: openldap-stack-ha
+      version: "4.1.x"
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: openldap
+        namespace: flux-system
+  values:
+    global:
+      imageRegistry: ""
+      ldapDomain: "ch.tudelft.nl"
+      # Specifies an existing secret to be used for admin and config user passwords. The expected key are LDAP_ADMIN_PASSWORD and LDAP_CONFIG_ADMIN_PASSWORD.
+      # existingSecret: ""
+      ## Default Passwords to use, stored as a secret. Not used if existingSecret is set.
+      adminPassword: Not@SecurePassw0rd
+      configPassword: Not@SecurePassw0rd
+      ldapPort: 389
+      sslLdapPort: 636
+    replicaCount: 1
+    replication:
+      enabled: false
+    persistence:
+      enabled: true
+      accessModes:
+        - ReadWriteOnce
+      size: 1Gi
+      storageClass: ""
+    ltb-passwd:
+      enabled: true
+      image:
+        tag: 5.2.3
+      ingress:
+        enabled: false
+
+    ## phpldapadmin
+    phpldapadmin:
+      enabled: true
+      image:
+        tag: 0.9.0
+      env:
+        PHPLDAPADMIN_LDAP_CLIENT_TLS_REQCERT: "never"
+      ingress:
+        enabled: false
