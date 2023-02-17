@@ -5,6 +5,9 @@ metadata:
   namespace: default
 spec:
   interval: 15m
+  serviceAccountName: events
+  nodeSelector:
+    iam.gke.io/gke-metadata-server-enabled: "true"
   chart:
     spec:
       chart: ./events
