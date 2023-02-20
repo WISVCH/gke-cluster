@@ -45,7 +45,7 @@ spec:
           cpu: 22m
           memory: 629M
         limits:
-          cpu: 23m
+          cpu: 50m
           memory: 650M
     admin:
       replicaCount: 1
