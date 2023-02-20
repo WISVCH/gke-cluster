@@ -9,4 +9,5 @@ resources:
   - ../../mand
   - ../../choice
   - ../../feedback
+  - ../../openldap
   - ../../wiki
