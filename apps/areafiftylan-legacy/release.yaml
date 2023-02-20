@@ -30,11 +30,11 @@ spec:
         tag: 20230112-6e71c33 # {"$imagepolicy": "flux-system:areafiftylan-legacy-frontend:tag"}
       resources:
         requests:
-          cpu: 50m
-          memory: 64Mi
+          cpu: 15m
+          memory: 105M
         limits:
-          cpu: 500m
-          memory: 128Mi
+          cpu: 15m
+          memory: 105M
     api:
       replicaCount: 1
       image:
@@ -42,11 +42,11 @@ spec:
         tag: 20220408-6737b62 # {"$imagepolicy": "flux-system:areafiftylan-legacy-api:tag"}
       resources:
         requests:
-          cpu: 100m
-          memory: 128Mi
+          cpu: 22m
+          memory: 629M
         limits:
-          cpu: 750m
-          memory: 512Mi
+          cpu: 23m
+          memory: 650M
     admin:
       replicaCount: 1
       image:
@@ -54,11 +54,11 @@ spec:
         tag: 20220223-41883df # {"$imagepolicy": "flux-system:areafiftylan-legacy-admin:tag"}
       resources:
         requests:
-          cpu: 50m
-          memory: 64Mi
+          cpu: 15m
+          memory: 105M
         limits:
-          cpu: 250m
-          memory: 128Mi
+          cpu: 15m
+          memory: 105M
   valuesFrom:
     - kind: Secret
       name: postgres
