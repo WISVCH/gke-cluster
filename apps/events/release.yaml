@@ -38,6 +38,7 @@ spec:
       database: events
       host: 127.0.0.1
       port: 5432
+      username: events
       cloudSQL: true
     hibernate:
       generateDdl: true
@@ -46,14 +47,6 @@ spec:
     flyway:
       enabled: true
   valuesFrom:
-    - kind: Secret
-      name: postgres
-      valuesKey: username
-      targetPath: postgres.username
-    - kind: Secret
-      name: postgres
-      valuesKey: password
-      targetPath: postgres.password
     - kind: Secret
       name: events
       valuesKey: mollie-key
