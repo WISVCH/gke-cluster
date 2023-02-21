@@ -1,0 +1,8 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: config-connector
+  labels:
+    name: config-connector
+  annotations:
+    cnrm.cloud.google.com/project-id: wisvch
