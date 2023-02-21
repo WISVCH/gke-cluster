@@ -42,10 +42,10 @@ spec:
         tag: 20220408-6737b62 # {"$imagepolicy": "flux-system:areafiftylan-legacy-api:tag"}
       resources:
         requests:
-          cpu: 22m
+          cpu: 50m
           memory: 629M
         limits:
-          cpu: 50m
+          cpu: 80m
           memory: 650M
     admin:
       replicaCount: 1
