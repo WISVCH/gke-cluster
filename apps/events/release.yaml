@@ -39,7 +39,7 @@ spec:
       host: 127.0.0.1
       port: 5432
       username: events
-      password: random
+      password: 
       cloudSQL: true
     hibernate:
       generateDdl: true
