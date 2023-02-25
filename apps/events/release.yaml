@@ -74,3 +74,15 @@ spec:
       name: mail
       valuesKey: password
       targetPath: mail.password
+    - kind: Secret
+      name: mail
+      valuesKey: host
+      targetPath: mail.host
+    - kind: Secret
+      name: mail
+      valuesKey: port
+      targetPath: mail.port
+    - kind: Secret
+      name: mail
+      valuesKey: auth
+      targetPath: mail.auth
