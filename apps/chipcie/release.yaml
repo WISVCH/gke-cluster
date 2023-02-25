@@ -17,7 +17,7 @@ metadata:
           namespace: flux-system
     values:
       replicaCount: 1
-      tlsSecret: areafiftylan-tls
+      tlsSecret: wisvch-tls 
       domains:
         - chipcie.wisv.ch
       image:
