@@ -79,7 +79,3 @@ spec:
       name: mail
       valuesKey: host
       targetPath: mail.host
-    - kind: Secret
-      name: mail
-      valuesKey: auth
-      targetPath: mail.auth
