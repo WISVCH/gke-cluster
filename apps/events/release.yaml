@@ -31,9 +31,6 @@ spec:
       groups:
         admin: chbeheer,dienst2,epa,vc
         beta: joepj, juliand, danys
-    mail:
-      host: ch.tudelft.nl
-      port: 587
     postgres:
       database: events
       host: 127.0.0.1
