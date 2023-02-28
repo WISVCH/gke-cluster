@@ -16,7 +16,7 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    name: cod
+    fullnameOverride: cod
     tlsSecret: cod-tls
     domains: cod.wisv.ch
     replicaCount: 1
