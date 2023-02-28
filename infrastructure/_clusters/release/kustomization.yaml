@@ -7,4 +7,3 @@ resources:
   - ../../monitoring
   - ../../goldilocks
   - ../../weave
-  - ../../config-connector
