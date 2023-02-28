@@ -31,15 +31,10 @@ spec:
       groups:
         admin: chbeheer,dienst2,epa,vc
         beta: joepj, juliand, danys
-    mail:
-      host: ch.tudelft.nl
-      port: 587
     postgres:
       database: events
       host: 127.0.0.1
       port: 5432
-      username: events
-      password: ""
       cloudSQL: true
     hibernate:
       generateDdl: true
@@ -48,6 +43,14 @@ spec:
     flyway:
       enabled: true
   valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: username
+      targetPath: postgres.username
+    - kind: Secret
+      name: postgres
+      valuesKey: password
+      targetPath: postgres.password
     - kind: Secret
       name: events
       valuesKey: mollie-key
@@ -68,3 +71,11 @@ spec:
       name: mail
       valuesKey: password
       targetPath: mail.password
+    - kind: Secret
+      name: mail
+      valuesKey: port
+      targetPath: mail.port
+    - kind: Secret
+      name: mail
+      valuesKey: host
+      targetPath: mail.host
