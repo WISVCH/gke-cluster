@@ -1,20 +1,20 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: archive
+  name: archived-static
   namespace: flux-system
 spec:
-  image: ghcr.io/wisvch/archive
+  image: ghcr.io/wisvch/archived-static
   interval: 15m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: archive
+  name: archived-static
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: archive
+    name: archived-static
   filterTags:
     pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
     extract: "$ts"
