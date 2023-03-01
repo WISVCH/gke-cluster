@@ -26,6 +26,6 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/cod22
-      tag: 20230301-bfd0f49 # {"$imagepolicy": "flux-system:cod22:tag"}
+      tag: 20230301-d9c2ea9 # {"$imagepolicy": "flux-system:cod22:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
