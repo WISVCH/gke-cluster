@@ -22,7 +22,7 @@ spec:
       - dev.areafiftylan.nl
     image:
       repository: ghcr.io/areafiftylan/areafiftylan
-      tag: 1675306733-619eac9 # {"$imagepolicy": "flux-system:areafiftylan:tag"}
+      tag: 1677726465-619eac9 # {"$imagepolicy": "flux-system:areafiftylan:tag"}
     postgres:
       database: areafiftylan
   valuesFrom:
