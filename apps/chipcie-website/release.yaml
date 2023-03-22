@@ -22,4 +22,4 @@ spec:
       - chipcie.wisv.ch
     image:
       repository: ghcr.io/wisvch/chipcie-website
-      tag: 20230222-f7c4c4e # {"$imagepolicy": "flux-system:chipcie:tag"}
+      tag: 20230302-9adfa22 # {"$imagepolicy": "flux-system:chipcie:tag"}
