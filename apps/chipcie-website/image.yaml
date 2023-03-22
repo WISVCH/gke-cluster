@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: chipcie
+  name: chipcie-website
   namespace: flux-system
 spec:
   image: ghcr.io/wisvch/chipcie-website
@@ -10,11 +10,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: chipcie
+  name: chipcie-website
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: chipcie
+    name: chipcie-website
   filterTags:
     pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
     extract: "$ts"
