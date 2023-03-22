@@ -19,7 +19,7 @@ spec:
     replicaCount: 1
     tlsSecret: wisvch-tls
     fullnameOverride: chipcie
-    domains: chipcie.wisv.ch
+    domain: chipcie.wisv.ch
     containerPort: 8080
     service:
       type: ClusterIP
