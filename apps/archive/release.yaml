@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: archive
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./archive
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    fullnameOverride: archive
+    domains:
+      - symposium.ch.tudelft.nl
+      - eerstejaarsweekend.nl
+      - coh.ewi.tudelft.nl
+      - commissies.ch.tudelft.nl
+      - lustrum.ch
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: ClusterIP
+      port: 80
+    image:
+      repository: ghcr.io/wisvch/archived-static
+      tag: 20230302-139b411 # {"$imagepolicy": "flux-system:archived-static:tag"}
+      pullPolicy: IfNotPresent
+      pullSecrets: {}

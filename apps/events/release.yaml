@@ -22,7 +22,7 @@ spec:
       - wisv.ch/events
     image:
       repository: ghcr.io/wisvch/events
-      tag: 20230214-55f86fc # {"$imagepolicy": "flux-system:events:tag"}
+      tag: 20230316-47247a9 # {"$imagepolicy": "flux-system:events:tag"}
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
@@ -31,9 +31,6 @@ spec:
       groups:
         admin: chbeheer,dienst2,epa,vc
         beta: joepj, juliand, danys
-    mail:
-      host: ch.tudelft.nl
-      port: 587
     postgres:
       database: events
       host: 127.0.0.1
@@ -74,3 +71,11 @@ spec:
       name: mail
       valuesKey: password
       targetPath: mail.password
+    - kind: Secret
+      name: mail
+      valuesKey: port
+      targetPath: mail.port
+    - kind: Secret
+      name: mail
+      valuesKey: host
+      targetPath: mail.host
