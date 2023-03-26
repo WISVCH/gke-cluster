@@ -29,3 +29,4 @@ spec:
       tag: 20230316-c5e9a25 # {"$imagepolicy": "flux-system:cod22:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
+ 
