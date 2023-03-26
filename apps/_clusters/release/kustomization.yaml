@@ -12,5 +12,5 @@ resources:
   - ../../openldap
   - ../../wiki
   # - ../../cod
-  - ../../archive
+  # - ../../archive
   # - ../../chipcie-website
