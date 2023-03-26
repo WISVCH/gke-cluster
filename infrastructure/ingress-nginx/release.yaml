@@ -19,9 +19,10 @@ spec:
       watchIngressWithoutClass: true
       enableLatencyMetrics: true
       service:
-        ipFamilyPolicy: "SingleStack"
+        ipFamilyPolicy: "PreferDualStack"
         ipFamilies:
           - IPv4
+          - IPv6
         annotations:
           networking.gke.io/load-balancer-type: "External"
       metrics:
