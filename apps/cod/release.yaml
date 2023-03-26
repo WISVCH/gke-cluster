@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
   values:
     fullnameOverride: cod
-    tlsSecret: cod-tls
+    tlsSecret: default/wisvch-tls
     domain: cod.wisv.ch
     replicaCount: 1
     containerPort: 8080
