@@ -11,6 +11,6 @@ resources:
   - ../../feedback
   - ../../openldap
   - ../../wiki
-  - ../../cod
+  # - ../../cod
   - ../../archive
-  - ../../chipcie-website
+  # - ../../chipcie-website
