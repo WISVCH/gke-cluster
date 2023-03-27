@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: chipcie-nwerc-2022
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./static-site
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    nameOverride: chipcie-nwerc-2022
+    fullnameOverride: chipcie-nwerc-2022
+    tlsSecret: chipcie-contests-tls
+    domain: 2022.nwerc.eu
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: ClusterIP
+      port: 80
+    image:
+      repository: ghcr.io/wisvch/nwerc-2022
+      tag: 20230327-7eb9df3 # {"$imagepolicy": "flux-system:chipcie-nwerc-2022:tag"}
+      pullPolicy: IfNotPresent
+      pullSecrets: {}

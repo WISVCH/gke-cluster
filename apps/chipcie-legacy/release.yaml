@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: chipcie-legacy
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./archive
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    nameOverride: chipcie-legacy
+    fullnameOverride: chipcie-legacy
+    tlsSecret: wisvch-tls
+    domains:
+      - 2001.bapc.eu
+      - 2002.nwerc.eu
+      - 2005.bapc.eu
+      - 2008.bapc.eu
+      - 2012.nwerc.eu
+      - 2013.nwerc.eu
+      - 2016.bapc.eu
+      - 2020.bapc.eu
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: ClusterIP
+      port: 80
+    image:
+      repository: ghcr.io/wisvch/chipcie-legacy
+      tag: 20230305-91acaa0 # {"$imagepolicy": "flux-system:chipcie-legacy:tag"}
+      pullPolicy: IfNotPresent
+      pullSecrets: {}
