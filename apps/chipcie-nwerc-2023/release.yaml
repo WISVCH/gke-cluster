@@ -26,7 +26,7 @@ spec:
       type: ClusterIP
       port: 80
     image:
-      repository: ghcr.io/wisvch/chipcie-nwerc-2023
-      tag: 20230323-8e3b1d1 # {"$imagepolicy": "flux-system:chipcie-nwerc-2023:tag"}
+      repository: ghcr.io/wisvch/nwerc-2023
+      tag: 20230323-8e3b1d1 # {"$imagepolicy": "flux-system:nwerc-2023:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
