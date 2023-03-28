@@ -1,0 +1,17 @@
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/temporal-redirect: https://2023.nwerc.eu$request_uri
+  name: redirect-nwerc
+  namespace: default
+spec:
+  rules:
+    - host: nwerc.eu
+    - host: www.nwerc.eu
+  tls:
+    - hosts:
+        - nwerc.eu
+        - www.nwerc.eu
+      secretName: chipcie-contests-tls

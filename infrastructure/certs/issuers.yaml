@@ -20,3 +20,19 @@ spec:
               privateKeySecretRef:
                 name: transip
                 key: privateKey
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: http01
+  namespace: default
+spec:
+  acme:
+    email: beheer@ch.tudelft.nl
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: http01-issuer-key
+    solvers:
+      - http01:
+          ingress:
+            class: nginx
