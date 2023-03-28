@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: chipcie-nwerc-2023
+  name: nwerc-2023
   namespace: flux-system
 spec:
   image: ghcr.io/wisvch/nwerc-2023
@@ -10,7 +10,7 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: chipcie-nwerc-2023
+  name: nwerc-2023
   namespace: flux-system
 spec:
   imageRepositoryRef:
