@@ -31,4 +31,4 @@ spec:
     - "2020.bapc.eu"
   issuerRef:
     kind: Issuer
-    name: transip
+    name: http01
