@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: chipcie-nwerc-2023
+  name: nwerc-2023
   namespace: default
 spec:
   interval: 15m
@@ -16,8 +16,8 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    nameOverride: chipcie-nwerc-2023
-    fullnameOverride: chipcie-nwerc-2023
+    nameOverride: nwerc-2023
+    fullnameOverride: nwerc-2023
     tlsSecret: chipcie-contests-tls
     domain: 2023.nwerc.eu
     replicaCount: 1
