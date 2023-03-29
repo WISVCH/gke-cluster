@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
   - image.yaml
   - release.yaml
-  # - redirect.yaml
+  - redirect.yaml
