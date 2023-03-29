@@ -19,7 +19,10 @@ spec:
     nameOverride: nwerc-2023
     fullnameOverride: nwerc-2023
     tlsSecret: chipcie-contests-tls
-    domain: 2023.nwerc.eu
+    domains:
+     2023.nwerc.eu
+     nwerc.eu
+     www.nwerc.eu
     replicaCount: 1
     containerPort: 8080
     service:
