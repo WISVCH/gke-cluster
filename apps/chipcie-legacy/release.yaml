@@ -18,7 +18,7 @@ spec:
   values:
     nameOverride: chipcie-legacy
     fullnameOverride: chipcie-legacy
-    tlsSecret: wisvch-tls
+    tlsSecret: chipcie-contests-tls
     domains:
       - 2001.bapc.eu
       - 2002.nwerc.eu
