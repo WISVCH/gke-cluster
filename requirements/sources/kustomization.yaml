@@ -13,3 +13,4 @@ resources:
   - openldap.yaml
   - victoriametrics.yaml
   - weave.yaml
+  - bitnami.yaml
