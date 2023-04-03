@@ -16,8 +16,7 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
-    database:
-      init: true
+    database.init: true
   valuesFrom:
     - kind: Secret
       name: postgres
