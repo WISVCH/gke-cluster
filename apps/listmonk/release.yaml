@@ -18,7 +18,6 @@ spec:
     replicaCount: 1
     database:
       init: true
-      create: true
   valuesFrom:
     - kind: Secret
       name: postgres
