@@ -13,4 +13,3 @@ resources:
   - openldap.yaml
   - victoriametrics.yaml
   - weave.yaml
-  - listmonk.yaml

@@ -16,17 +16,27 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
-    database.init: true
+
+    postgres:
+      initTables: true
   valuesFrom:
     - kind: Secret
       name: postgres
       valuesKey: host
-      targetPath: database.host
+      targetPath: postgres.host
     - kind: Secret
       name: listmonk
       valuesKey: postgresUser
-      targetPath: database.username
+      targetPath: postgres.user
     - kind: Secret
       name: listmonk
       valuesKey: postgresPassword
-      targetPath: database.password
+      targetPath: postgres.password
+    - kind: Secret
+      name: listmonk
+      valuesKey: adminUser
+      targetPath: admin.username
+    - kind: Secret
+      name: listmonk
+      valuesKey: adminPassword
+      targetPath: admin.password
