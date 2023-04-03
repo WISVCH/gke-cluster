@@ -24,13 +24,22 @@ spec:
     configuration:
       oidcIssuerUrl: https://connect.ch.tudelft.nl
       redirectUrl: https://authproxy.wisv.ch
+      whitelist: .wisv.ch
     extraEnvVars:
-      OAUTH2_PROXY_PROVIDER: keycloak-oidc
-      OAUTH2_PROXY_REDIRECT_URL: https://authproxy.wisv.ch/oauth2/callback
-      OAUTH2_PROXY_ISSUER_URL: https://connect.ch.tudelft.nl
-      OAUTH2_PROXY_profile_url: keycloak
-      OAUTH2_PROXY_validate_url: keycloak
-      OAUTH2_PROXY_keycloak_group: 
+      - name: OAUTH2_PROXY_PROVIDER
+        value: oidc
+      - name: OAUTH2_PROXY_PROVIDER_DISPLAY_NAME
+        value: "CH Connect"
+      - name: OAUTH2_PROXY_REDIRECT_URL
+        value: https://authproxy.wisv.ch/callback
+      - name: OAUTH2_PROXY_ISSUER_URL
+        value: https://connect.ch.tudelft.nl
+      - name: OAUTH2_PROXY_CUSTOM_SIGN_IN_LOGO
+        value: "-"
+      - name: OAUTH2_PROXY_PROXY_PREFIX
+        value: "/"
+      - name: OAUTH2_PROXY_ALLOWED_GROUP
+        value: "listmonk"
   valuesFrom:
     - kind: Secret
       name: connect-proxy
