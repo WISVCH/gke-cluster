@@ -19,8 +19,6 @@ spec:
       enabled: true
       hostname: authproxy.wisv.ch
       tls: true
-      secrets:
-       - wisvch-tls
     configuration:
       oidcIssuerUrl: https://connect.ch.tudelft.nl
       redirectUrl: https://authproxy.wisv.ch
