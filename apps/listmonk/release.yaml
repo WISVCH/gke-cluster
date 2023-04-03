@@ -18,6 +18,9 @@ spec:
   values:
     postgres:
       initTables: true
+    domain: list.wisv.ch
+    authDomain: authproxy.wisv.ch
+    tlsSecret: wisvch-tls
   valuesFrom:
     - kind: Secret
       name: postgres

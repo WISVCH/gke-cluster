@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: connect-proxy
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: oauth2-proxy
+      version: "3.14.x"
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+    ingress:
+      enabled: true
+      hostname: authproxy.wisv.ch
+      tls: true
+      secrets:
+       - wisvch-tls
+    configuration:
+      oidcIssuerUrl: https://connect.ch.tudelft.nl
+      redirectUrl: https://authproxy.wisv.ch
+  valuesFrom:
+    - kind: Secret
+      name: connect-proxy
+      valuesKey: client-id
+      targetPath: configuration.clientID
+    - kind: Secret
+      name: connect-proxy
+      valuesKey: client-secret
+      targetPath: configuration.clientSecret
+    - kind: Secret
+      name: connect-proxy
+      valuesKey: client-cookie
+      targetPath: configuration.cookieSecret
