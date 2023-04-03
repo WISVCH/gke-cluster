@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: oauth2-proxy
-      version: "3.14.x"
+      version: "7.4.x"
       interval: 30m
       sourceRef:
         kind: HelmRepository
