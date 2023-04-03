@@ -18,7 +18,7 @@ spec:
   values:
     nameOverride: chipcie-legacy
     fullnameOverride: chipcie-legacy
-    tlsSecret: wisvch-tls
+    tlsSecret: chipcie-contests-tls
     domains:
       - 2001.bapc.eu
       - 2002.nwerc.eu
@@ -35,6 +35,6 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/chipcie-legacy
-      tag: 20230329-04a7ebc # {"$imagepolicy": "flux-system:chipcie-legacy:tag"}
+      tag: 20230402-04a7ebc # {"$imagepolicy": "flux-system:chipcie-legacy:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
