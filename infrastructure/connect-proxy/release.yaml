@@ -38,8 +38,6 @@ spec:
         value: https://connect.ch.tudelft.nl
       - name: OAUTH2_PROXY_CUSTOM_SIGN_IN_LOGO
         value: "-"
-      - name: OAUTH2_PROXY_PROXY_PREFIX
-        value: ""
       - name: OAUTH2_PROXY_ALLOWED_GROUP
         value: "listmonk"
       - name: OAUTH2_PROXY_SKIP_PROVIDER_BUTTON
