@@ -26,10 +26,10 @@ spec:
       valuesKey: host
       targetPath: database.host
     - kind: Secret
-      name: listmonkDatabase
+      name: listmonk
       valuesKey: postgresUser
       targetPath: database.username
     - kind: Secret
-      name: listmonkDatabase
+      name: listmonk
       valuesKey: postgresPassword
       targetPath: database.password
