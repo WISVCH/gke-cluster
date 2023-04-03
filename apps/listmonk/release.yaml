@@ -14,3 +14,22 @@ spec:
         kind: HelmRepository
         name: deliveryhero
         namespace: flux-system
+  value:
+    replicaCount: 1
+    postgresql:
+      enable: true
+    database:
+      init: true
+  valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: host
+      targetPath: database.host
+    - kind: Secret
+      name: listmonk
+      valuesKey: postgresUser
+      targetPath: database.username
+    - kind: Secret
+      name: listmonk
+      valuesKey: postgresPassword
+      targetPath: database.password
