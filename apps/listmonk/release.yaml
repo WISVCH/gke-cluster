@@ -15,8 +15,6 @@ spec:
         name: deliveryhero
         namespace: flux-system
   values:
-    replicaCount: 1
-
     postgres:
       initTables: true
   valuesFrom:
