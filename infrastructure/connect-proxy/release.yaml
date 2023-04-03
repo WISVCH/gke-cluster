@@ -25,7 +25,12 @@ spec:
       oidcIssuerUrl: https://connect.ch.tudelft.nl
       redirectUrl: https://authproxy.wisv.ch
     extraEnvVars:
-      OAUTH2_PROXY_PROVIDER: keycloak
+      OAUTH2_PROXY_PROVIDER: keycloak-oidc
+      OAUTH2_PROXY_REDIRECT_URL: https://authproxy.wisv.ch/oauth2/callback
+      OAUTH2_PROXY_ISSUER_URL: https://connect.ch.tudelft.nl
+      OAUTH2_PROXY_profile_url: keycloak
+      OAUTH2_PROXY_validate_url: keycloak
+      OAUTH2_PROXY_keycloak_group: 
   valuesFrom:
     - kind: Secret
       name: connect-proxy
