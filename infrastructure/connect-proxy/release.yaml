@@ -23,7 +23,7 @@ spec:
       enabled: false
     configuration:
       oidcIssuerUrl: https://connect.ch.tudelft.nl
-      redirectUrl: https://authproxy.wisv.ch/callback
+      redirectUrl: https://authproxy.wisv.ch/oauth2/callback
       whitelist: .wisv.ch
     extraEnvVars:
       - name: OAUTH2_PROXY_PROVIDER
@@ -32,8 +32,6 @@ spec:
         value: "CH Connect"
       - name: OAUTH2_PROXY_APPROVAL_PROMPT
         value: "none"
-      - name: OAUTH2_PROXY_REDIRECT_URL
-        value: https://authproxy.wisv.ch/callback
       - name: OAUTH2_PROXY_ISSUER_URL
         value: https://connect.ch.tudelft.nl
       - name: OAUTH2_PROXY_CUSTOM_SIGN_IN_LOGO
