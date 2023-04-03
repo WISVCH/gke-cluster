@@ -40,6 +40,8 @@ spec:
         value: "/"
       - name: OAUTH2_PROXY_ALLOWED_GROUP
         value: "listmonk"
+      - name: OAUTH2_PROXY_SKIP_PROVIDER_BUTTON
+        value: "true"
   valuesFrom:
     - kind: Secret
       name: connect-proxy
