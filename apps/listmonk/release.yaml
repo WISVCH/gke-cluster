@@ -7,12 +7,13 @@ spec:
   interval: 30m
   chart:
     spec:
-      chart: listmonk
+      chart: ./listmonk
       version: "0.1.x"
-      interval: 30m
+      interval: 15m
+      reconcileStrategy: Revision
       sourceRef:
-        kind: HelmRepository
-        name: deliveryhero
+        kind: GitRepository
+        name: wisvch
         namespace: flux-system
   values:
     postgres:
