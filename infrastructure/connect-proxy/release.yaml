@@ -23,14 +23,28 @@ spec:
       enabled: false
     configuration:
       oidcIssuerUrl: https://connect.ch.tudelft.nl
-      redirectUrl: https://authproxy.wisv.ch
+      redirectUrl: https://authproxy.wisv.ch/oauth2/callback
     extraEnvVars:
-      OAUTH2_PROXY_PROVIDER: oidc
-      OAUTH2_PROXY_PROVIDER_DISPLAY_NAME: "CH Connect"
-      OAUTH2_PROXY_REDIRECT_URL: https://authproxy.wisv.ch/oauth2/callback
-      OAUTH2_PROXY_ISSUER_URL: https://connect.ch.tudelft.nl
-      OAUTH2_PROXY_OIDC_GROUPS_CLAIM: ldap_groups
-      OAUTH2_PROXY_ALLOWED_GROUP: staff
+      - name: OAUTH2_PROXY_OIDC_GROUPS_CLAIM
+        value: ldap_groups
+      - name: OAUTH2_PROXY_ALLOWED_GROUP
+        value: staff
+      - name: OAUTH2_PROXY_PROVIDER
+        value: oidc
+      - name: OAUTH2_PROXY_PROVIDER_DISPLAY_NAME
+        value: "CH Connect"
+      - name: OAUTH2_PROXY_APPROVAL_PROMPT
+        value: "none"
+      - name: OAUTH2_PROXY_ISSUER_URL
+        value: https://connect.ch.tudelft.nl
+      - name: OAUTH2_PROXY_CUSTOM_SIGN_IN_LOGO
+        value: "-"
+      - name: OAUTH2_PROXY_SKIP_PROVIDER_BUTTON
+        value: "true"
+      - name: OAUTH2_PROXY_WHITELIST_DOMAINS
+        value: ".wisv.ch"
+      - name: OAUTH2_PROXY_COOKIE_DOMAINS
+        value: ".wisv.ch"
   valuesFrom:
     - kind: Secret
       name: connect-proxy
