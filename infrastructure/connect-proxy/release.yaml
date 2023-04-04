@@ -27,8 +27,6 @@ spec:
     extraEnvVars:
       - name: OAUTH2_PROXY_OIDC_GROUPS_CLAIM
         value: ldap_groups
-      - name: OAUTH2_PROXY_ALLOWED_GROUP
-        value: staff
       - name: OAUTH2_PROXY_PROVIDER
         value: oidc
       - name: OAUTH2_PROXY_PROVIDER_DISPLAY_NAME
