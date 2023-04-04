@@ -16,8 +16,6 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    postgres:
-      initTables: true
     domain: list.wisv.ch
     authDomain: authproxy.wisv.ch
     tlsSecret: wisvch-tls
