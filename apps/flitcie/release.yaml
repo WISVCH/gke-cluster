@@ -17,4 +17,4 @@ spec:
         namespace: flux-system
   values:
     process_on_start: true
-    replicaCount: 1
+    replicaCount: 0
