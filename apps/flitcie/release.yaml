@@ -16,5 +16,4 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    process_on_start: true
-    replicaCount: 0
+    replicaCount: 1
