@@ -8,7 +8,6 @@ resources:
   - ../../adminer
   - ../../mand
   - ../../choice
-  - ../../openldap
   - ../../wiki
   - ../../cod
   - ../../chipcie-website
