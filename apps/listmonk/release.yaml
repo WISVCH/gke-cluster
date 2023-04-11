@@ -19,6 +19,9 @@ spec:
     domain: list.wisv.ch
     authDomain: authproxy.wisv.ch
     tlsSecret: wisvch-tls
+    allowedGroups: 
+      - beheer
+      - bestuur
   valuesFrom:
     - kind: Secret
       name: postgres

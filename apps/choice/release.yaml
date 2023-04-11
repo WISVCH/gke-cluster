@@ -26,9 +26,9 @@ spec:
       issuer: https://connect.ch.tudelft.nl
       client:
         url: https://choice.wisv.ch
-      scope: openid, profile, email, ldap
+      scope: openid, profile, email, auth
       groups:
-        admin: chbeheer,dienst2,epa,vc
+        admin: beheer,bestuur,vc
     postgres:
       database: choice
     hibernate:
