@@ -25,6 +25,8 @@ spec:
       clientId: mand
     postgres:
       name: mand
+    mand:
+      allowedGroup: bestuur
     ingress:
       enabled: true
       hosts:

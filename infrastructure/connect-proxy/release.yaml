@@ -32,9 +32,9 @@ spec:
       - name: OAUTH2_PROXY_APPROVAL_PROMPT
         value: "none"
       - name: OAUTH2_PROXY_OIDC_GROUPS_CLAIM
-        value: ldap_groups
+        value: google_groups
       - name: OAUTH2_PROXY_SCOPE
-        value: "openid email profile ldap"
+        value: "openid email profile auth"
       - name: OAUTH2_PROXY_ISSUER_URL
         value: https://connect.ch.tudelft.nl
       - name: OAUTH2_PROXY_CUSTOM_SIGN_IN_LOGO

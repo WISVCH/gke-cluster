@@ -27,9 +27,9 @@ spec:
       issuer: https://connect.ch.tudelft.nl
       client:
         url: https://events.wisv.ch
-      scope: openid, profile, email, ldap
+      scope: openid, profile, email, auth
       groups:
-        admin: chbeheer,dienst2,epa,vc
+        admin: beheer, vc, bestuur
         beta: joepj, juliand, danys
     postgres:
       database: events
