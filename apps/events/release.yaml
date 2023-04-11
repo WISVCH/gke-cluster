@@ -22,7 +22,7 @@ spec:
       - wisv.ch/events
     image:
       repository: ghcr.io/wisvch/events
-      tag: 20230411-496019b # {"$imagepolicy": "flux-system:events:tag"}
+      tag: 20230411-f848f93 # {"$imagepolicy": "flux-system:events:tag"}
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
