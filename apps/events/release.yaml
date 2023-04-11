@@ -28,6 +28,7 @@ spec:
       client:
         url: https://events.wisv.ch
       scope: openid, profile, email, auth
+      claimName: google_groups
       groups:
         admin: beheer, vc, bestuur
         beta: joepj, juliand, danys
