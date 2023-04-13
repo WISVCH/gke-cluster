@@ -16,10 +16,6 @@ spec:
         name: budibase
         namespace: flux-system
   values:
-    couchdb:
-      enabled: false
-    redis:
-      enabled: false
     ingress:
       hosts:
       - host: budibase.wisv.ch
