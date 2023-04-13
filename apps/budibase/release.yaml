@@ -12,7 +12,7 @@ spec:
       interval: 15m
       reconcileStrategy: Revision
       sourceRef:
-        kind: GitRepository
+        kind: HelmRepository
         name: budibase
         namespace: flux-system
   values:
