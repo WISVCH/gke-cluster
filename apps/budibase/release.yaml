@@ -1,0 +1,34 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: budibase
+  namespace: default
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: budibase
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: budibase
+        namespace: flux-system
+  values:
+    couchdb:
+      enabled: false
+    redis:
+      enabled: false
+    ingress:
+      hosts:
+      - host: budibase.wisv.ch
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: proxy-service
+                port:
+                  number: 10000
+    

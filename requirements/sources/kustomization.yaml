@@ -13,3 +13,4 @@ resources:
   - victoriametrics.yaml
   - weave.yaml
   - bitnami.yaml
+  - budibase.yaml
