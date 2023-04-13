@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: budibase
-      version: "0.1.x"
+      version: "2.5.x"
       interval: 15m
       reconcileStrategy: Revision
       sourceRef:
