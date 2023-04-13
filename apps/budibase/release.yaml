@@ -17,6 +17,7 @@ spec:
         namespace: flux-system
   values:
     ingress:
+      className: "nginx-budibase"
       hosts:
       - host: budibase.wisv.ch
         paths:
