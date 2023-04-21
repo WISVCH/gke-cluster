@@ -27,7 +27,7 @@ spec:
       replicaCount: 1
       image:
         repository: ghcr.io/areafiftylan/lancie-frontend
-        tag: 20230421-d66e0bf # {"$imagepolicy": "flux-system:areafiftylan-legacy-frontend:tag"}
+        tag: 20230421-f613d0c # {"$imagepolicy": "flux-system:areafiftylan-legacy-frontend:tag"}
       resources:
         requests:
           cpu: 15m
