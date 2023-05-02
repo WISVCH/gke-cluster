@@ -21,7 +21,7 @@ spec:
     domain: wiki.wisv.ch
     image:
       repository: ghcr.io/wisvch/wiki
-      tag: 20230412-38fb117 # {"$imagepolicy": "flux-system:wiki:tag"}
+      tag: 20230502-38fb117 # {"$imagepolicy": "flux-system:wiki:tag"}
   valuesFrom:
     - kind: Secret
       name: wiki
