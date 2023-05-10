@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: chtudelft
+  namespace: default
+spec:
+  secretName: chtudelft-tls
+  duration: 2160h
+  renewBefore: 360h
+  isCA: false
+  privateKey:
+    algorithm: RSA
+    encoding: PKCS1
+    size: 4096
+  usages:
+    - server auth
+    - client auth
+  dnsNames:
+    - cod.ch.tudelft.nl
+  issuerRef:
+    kind: Issuer
+    name: http01
