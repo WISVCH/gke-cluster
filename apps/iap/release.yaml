@@ -51,9 +51,9 @@ metadata:
   namespace: default
 spec:
   iap:
-    enabled: true
+    enabled: false
     oauthclientCredentials:
-      secretName: iap-secret
+      secretName: iap
 ---
 apiVersion: v1
 kind: Service
