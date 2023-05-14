@@ -40,3 +40,9 @@ spec:
     enabled: true
     oauthclientCredentials:
       secretName: iap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cloud.google.com/backend-config: '{"default": "config-default"}'
