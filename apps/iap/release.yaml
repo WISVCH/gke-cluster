@@ -28,9 +28,9 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: web
+      name: web-service
       port:
-        number: 8080
+        number: 80
 ---
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
@@ -46,14 +46,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: web
+  name: web-service
   namespace: default
   annotations:
     cloud.google.com/backend-config: '{"default": "my-backendconfig"}'
+    cloud.google.com/neg: '{"ingress": true}'
 spec:
   ports:
-  - port: 8080
-    protocol: TCP
+  - name: http
+    port: 80
     targetPort: 8080
   selector:
     run: web
