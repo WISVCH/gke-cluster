@@ -44,16 +44,3 @@ metadata:
   namespace: default
   annotations:
     cloud.google.com/backend-config: '{"default": "config-default"}'
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: iap-ingress
-  namespace: default
-spec:
-  defaultBackend:
-    service:
-      name: iap
-      port:
-        number: 8080
----
