@@ -26,6 +26,7 @@ metadata:
   name: basic-ingress
   namespace: default
 spec:
+  ingressClassName: "gce"
   defaultBackend:
     service:
       name: web-service
@@ -70,4 +71,3 @@ spec:
     targetPort: 8080
   selector:
     run: web
-  type: NodePort
