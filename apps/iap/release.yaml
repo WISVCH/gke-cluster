@@ -6,16 +6,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      run: web
+      run: iap
   template:
     metadata:
       labels:
-        run: web
+        run: iap
     spec:
       containers:
       - image: us-docker.pkg.dev/google-samples/containers/gke/hello-app:1.0
         imagePullPolicy: IfNotPresent
-        name: web
+        name: iap
         ports:
         - containerPort: 8080
           protocol: TCP
