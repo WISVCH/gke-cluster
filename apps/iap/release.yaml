@@ -44,12 +44,3 @@ metadata:
   namespace: default
   annotations:
     cloud.google.com/backend-config: '{"default": "config-default"}'
-spec:
-  ports:
-  - name: iap-http
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    run: web
-  type: NodePort
