@@ -4,10 +4,6 @@ metadata:
   name: web
   namespace: default
 spec:
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
   selector:
     matchLabels:
       run: web
@@ -24,6 +20,17 @@ spec:
         - containerPort: 8080
           protocol: TCP
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: basic-ingress
+spec:
+  defaultBackend:
+    service:
+      name: web
+      port:
+        number: 8080
+---
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
@@ -38,7 +45,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: iap
+  name: web
   namespace: default
   annotations:
-    cloud.google.com/backend-config: '{"default": "config-default"}'
+    cloud.google.com/backend-config: '{"ports": { "8080":"config-default"}}'
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    run: web
+  type: NodePort
