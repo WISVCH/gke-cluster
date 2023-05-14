@@ -53,7 +53,7 @@ spec:
   iap:
     enabled: false
     oauthclientCredentials:
-      secretName: iap
+      secretName: iap-secret
 ---
 apiVersion: v1
 kind: Service
