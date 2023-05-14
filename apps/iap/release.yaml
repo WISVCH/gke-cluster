@@ -46,7 +46,7 @@ metadata:
     cloud.google.com/backend-config: '{"default": "config-default"}'
 spec:
   ports:
-  - name: http
+  - name: iap-http
     port: 8080
     protocol: TCP
     targetPort: 8080
