@@ -38,7 +38,6 @@ metadata:
     kubernetes.io/ingress.class: gce
     networking.gke.io/managed-certificates: iap-cert
 spec:
-  ingressClassName: "gce"
   defaultBackend:
     service:
       name: web-service
