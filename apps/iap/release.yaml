@@ -20,6 +20,14 @@ spec:
         - containerPort: 8080
           protocol: TCP
 ---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: iap-cert
+spec:
+  domains:
+    - iap.wisv.ch
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -27,6 +35,7 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: gce
+    networking.gke.io/managed-certificates: iap-cert
 spec:
   ingressClassName: "gce"
   defaultBackend:
@@ -34,8 +43,6 @@ spec:
       name: web-service
       port:
         number: 80
-  tls:
-  - secretName: wisvch-tls
   rules:
   - host: iap.wisv.ch  # Replace with your desired domain
     http:
