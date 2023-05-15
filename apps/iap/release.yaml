@@ -39,8 +39,13 @@ metadata:
     networking.gke.io/managed-certificates: iap-cert
 spec:
   ingressClassName: "gce"
+  defaultBackend:
+    service:
+      name: web-service
+      port:
+        number: 80
   rules:
-  - host: iap.wisv.ch
+  - host: iap.wisv.ch  # Replace with your desired domain
     http:
       paths:
       - pathType: Prefix
