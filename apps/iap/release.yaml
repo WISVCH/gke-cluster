@@ -82,4 +82,3 @@ spec:
     targetPort: 8080
   selector:
     run: web
-  type: NodePort
