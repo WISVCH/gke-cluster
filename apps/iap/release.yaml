@@ -25,8 +25,9 @@ kind: Ingress
 metadata:
   name: basic-ingress
   namespace: default
+  annotations:
+    kubernetes.io/ingress.class: gce
 spec:
-  ingressClassName: "gce"
   defaultBackend:
     service:
       name: web-service
