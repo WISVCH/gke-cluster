@@ -36,7 +36,7 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: gce
-    kubernetes.io/ingress.regional-static-ip-name: gce-load-balancer
+    kubernetes.io/ingress.global-static-ip-name: gce-load-balancer
     networking.gke.io/managed-certificates: iap-cert
 spec:
   defaultBackend:
