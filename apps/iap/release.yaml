@@ -24,6 +24,7 @@ apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: iap-cert
+  namespace: default
 spec:
   domains:
     - iap.wisv.ch
