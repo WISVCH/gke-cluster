@@ -28,12 +28,12 @@ spec:
       valuesKey: host
       targetPath: postgres.host
     - kind: Secret
-      name: listmonk
-      valuesKey: postgresUser
+      name: postgres
+      valuesKey: user
       targetPath: postgres.user
     - kind: Secret
-      name: listmonk
-      valuesKey: postgresPassword
+      name: postgres
+      valuesKey: password
       targetPath: postgres.password
     - kind: Secret
       name: listmonk

@@ -45,19 +45,19 @@ spec:
           secretName: "wisvch-tls"
   valuesFrom:
     - kind: Secret
-      name: postgres-new
+      name: postgres
       valuesKey: host
       targetPath: postgres.host
     - kind: Secret
-      name: postgres-new
+      name: postgres
       valuesKey: port
       targetPath: postgres.port
     - kind: Secret
-      name: postgres-new
+      name: postgres
       valuesKey: username
       targetPath: postgres.username
     - kind: Secret
-      name: postgres-new
+      name: postgres
       valuesKey: password
       targetPath: postgres.password
     - kind: Secret
