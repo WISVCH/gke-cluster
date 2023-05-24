@@ -47,19 +47,19 @@ spec:
     - kind: Secret
       name: postgres
       valuesKey: host
-      targetPath: postgres.host
+      targetPath: postgres-new.host
     - kind: Secret
       name: postgres
       valuesKey: port
-      targetPath: postgres.port
+      targetPath: postgres-new.port
     - kind: Secret
       name: postgres
       valuesKey: username
-      targetPath: postgres.username
+      targetPath: postgres-new.username
     - kind: Secret
       name: postgres
       valuesKey: password
-      targetPath: postgres.password
+      targetPath: postgres-new.password
     - kind: Secret
       name: mand
       valuesKey: clientSecret
