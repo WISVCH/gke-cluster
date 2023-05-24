@@ -29,7 +29,7 @@ spec:
       targetPath: postgres.host
     - kind: Secret
       name: postgres
-      valuesKey: user
+      valuesKey: username
       targetPath: postgres.user
     - kind: Secret
       name: postgres
