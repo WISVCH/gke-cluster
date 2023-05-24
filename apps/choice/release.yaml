@@ -39,19 +39,19 @@ spec:
       enable: false
   valuesFrom:
     - kind: Secret
-      name: postgres
+      name: postgres-new
       valuesKey: host
       targetPath: postgres.host
     - kind: Secret
-      name: postgres
+      name: postgres-new
       valuesKey: port
       targetPath: postgres.port
     - kind: Secret
-      name: postgres
+      name: postgres-new
       valuesKey: username
       targetPath: postgres.username
     - kind: Secret
-      name: postgres
+      name: postgres-new
       valuesKey: password
       targetPath: postgres.password
     - kind: Secret
