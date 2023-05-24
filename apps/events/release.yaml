@@ -45,11 +45,11 @@ spec:
       enabled: true
   valuesFrom:
     - kind: Secret
-      name: postgres-new
+      name: postgres
       valuesKey: username
       targetPath: postgres.username
     - kind: Secret
-      name: postgres-new
+      name: postgres
       valuesKey: password
       targetPath: postgres.password
     - kind: Secret
