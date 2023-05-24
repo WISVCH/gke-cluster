@@ -16,7 +16,7 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    replicaCount: 0
+    replicaCount: 1
     tlsSecret: wisvch-tls
     domains:
       - wisv.ch/events
@@ -45,11 +45,11 @@ spec:
       enabled: true
   valuesFrom:
     - kind: Secret
-      name: postgres
+      name: postgres-new
       valuesKey: username
       targetPath: postgres.username
     - kind: Secret
-      name: postgres
+      name: postgres-new
       valuesKey: password
       targetPath: postgres.password
     - kind: Secret
