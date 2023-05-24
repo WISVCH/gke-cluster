@@ -1,0 +1,36 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiki-tmp-svc
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    run: wiki
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wiki-tmp-ingress
+  namespace: default
+spec:
+  rules:
+    - host: wiki.wisv.ch
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: wiki-tmp-svc
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - wiki.wisv.ch
+      secretName: wisvch-tls
