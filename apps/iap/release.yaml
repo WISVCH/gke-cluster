@@ -55,11 +55,21 @@ spec:
             name: web-service
             port:
               number: 80
+  - host: wiki.wisv.ch
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: wiki
+            port:
+              number: 80
 ---
 apiVersion: cloud.google.com/v1
 kind: BackendConfig
 metadata:
-  name: my-backendconfig
+  name: ch-iap-backendconfig
   namespace: default
 spec:
   iap:
@@ -73,7 +83,7 @@ metadata:
   name: web-service
   namespace: default
   annotations:
-    cloud.google.com/backend-config: '{"default": "my-backendconfig"}'
+    cloud.google.com/backend-config: '{"default": "ch-iap-backendconfig"}'
     cloud.google.com/neg: '{"ingress": true}'
 spec:
   ports:
