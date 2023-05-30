@@ -23,6 +23,7 @@ spec:
       - coh.ewi.tudelft.nl
       - commissies.ch.tudelft.nl
       - lustrum.ch
+      - coh.ewi.tudelft.nl
     replicaCount: 1
     containerPort: 8080
     service:
