@@ -5,7 +5,7 @@ metadata:
   name: standard-retain
   annotations:
     # Use this class as the default for new claims.
-    storageclass.kubernetes.io/is-default-class: "false"
+    storageclass.kubernetes.io/is-default-class: "true"
 parameters:
   # SSD backed storage, instead of HDD for the default type.
   type: pd-balanced
