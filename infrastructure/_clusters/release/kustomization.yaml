@@ -4,7 +4,7 @@ resources:
   - ../../ingress-nginx
   - ../../certs
   # - ../../authentik
-  - ../../monitoring
+  # - ../../monitoring
   # - ../../goldilocks
   - ../../weave
   - ../../connect-proxy
