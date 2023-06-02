@@ -6,3 +6,4 @@ resources:
   - hackdelft.yaml
   - wisvch.yaml
   - chtudelft.yaml
+  - staticsites.yaml
