@@ -1,0 +1,21 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  # The name of the storage class, which can be refered to with PV's
+  name: standard-retain
+  annotations:
+    # Use this class as the default for new claims.
+    storageclass.kubernetes.io/is-default-class: "true"
+parameters:
+  # SSD backed storage, instead of HDD for the default type.
+  type: pd-balanced
+# Retain the PV when all PVC's are deleted.
+# This means that you can easily restore the if and when the resource is accidentally deleted.
+# Not speaking out of experience of course.
+reclaimPolicy: Retain
+# Don't create the PV until a Pod is created which uses it.
+volumeBindingMode: WaitForFirstConsumer
+# Allow changing the size of a PV after creation.
+allowVolumeExpansion: true
+# Use GKE's build in storage.
+provisioner: pd.csi.storage.gke.io
