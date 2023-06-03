@@ -1,20 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../hackdelft
+  - ../../archive
   - ../../areafiftylan
   - ../../areafiftylan-legacy
-  - ../../events
   - ../../adminer
-  - ../../mand
-  - ../../choice
-  - ../../wiki
-  - ../../cod
-  - ../../chipcie-website
   - ../../chipcie-legacy
   - ../../chipcie-nwerc-2022
   - ../../chipcie-nwerc-2023
-  - ../../archive
-  - ../../listmonk
+  - ../../chipcie-website
+  - ../../choice
+  - ../../cod
+  - ../../events
   # - ../../flitcie
+  - ../../hackdelft
   - ../../iap
+  - ../../listmonk
+  - ../../mand
+  - ../../wiki
