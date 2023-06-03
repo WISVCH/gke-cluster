@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: connect2
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./connect2
+      version: "0.2.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    tlsSecret: wisvch-tls
+    image:
+      repository: ghcr.io/wisvch/connect2
+      tag: 20230602-38fb117 # {"$imagepolicy": "flux-system:connect2:tag"}
+  # TODO add secrets
+  # valuesFrom:
+  #   - kind: Secret
+  #     name: connect2
+  #     valuesKey: connect-client-secret
+  #     targetPath: oauth.client.secret
