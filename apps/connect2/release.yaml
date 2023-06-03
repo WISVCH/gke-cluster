@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: ./connect2
-      version: "0.2.x"
+      version: "0.1.x"
       interval: 15m
       reconcileStrategy: Revision
       sourceRef:
@@ -20,10 +20,4 @@ spec:
     tlsSecret: wisvch-tls
     image:
       repository: ghcr.io/wisvch/connect2
-      tag: 20230602-38fb117 # {"$imagepolicy": "flux-system:connect2:tag"}
-  # TODO add secrets
-  # valuesFrom:
-  #   - kind: Secret
-  #     name: connect2
-  #     valuesKey: connect-client-secret
-  #     targetPath: oauth.client.secret
+      tag: 20230603-a64e546
