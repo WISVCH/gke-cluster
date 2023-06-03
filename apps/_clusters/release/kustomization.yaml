@@ -11,6 +11,7 @@ resources:
   - ../../chipcie-website
   - ../../choice
   - ../../cod
+  - ../../connect2
   - ../../events
   # - ../../flitcie
   - ../../hackdelft
