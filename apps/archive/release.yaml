@@ -23,6 +23,7 @@ spec:
       - coh.ewi.tudelft.nl
       - commissies.ch.tudelft.nl
       - lustrum.ch
+      - icpc.tudelft.nl
     tlsSecret: staticsites-tls
     replicaCount: 1
     containerPort: 8080
