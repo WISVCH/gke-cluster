@@ -18,6 +18,8 @@ spec:
   values:
     replicaCount: 1
     tlsSecret: wisvch-tls
+    serviceAccountSecretName: connect2
+    serviceAccountSecretKey: serviceAccount
     image:
       repository: ghcr.io/wisvch/connect2
       tag: 20230604-6ab951b # {"$imagepolicy": "flux-system:connect2:tag"}
