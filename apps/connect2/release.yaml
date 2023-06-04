@@ -20,4 +20,4 @@ spec:
     tlsSecret: wisvch-tls
     image:
       repository: ghcr.io/wisvch/connect2
-      tag: 20230419-1627379 # {"$imagepolicy": "flux-system:events:tag"}
+      tag: 20230419-1627379 # {"$imagepolicy": "flux-system:connect2:tag"}
