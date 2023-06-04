@@ -21,7 +21,7 @@ spec:
     domain: wiki2.wisv.ch
     image:
       repository: ghcr.io/wisvch/wiki2
-      tag: 20230604-2eccd2c # {"$imagepolicy": "flux-system:wiki2:tag"}
+      tag: 20230604-cdd517a # {"$imagepolicy": "flux-system:wiki2:tag"}
 ---
 apiVersion: v1
 kind: Service
