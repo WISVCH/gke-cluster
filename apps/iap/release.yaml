@@ -28,7 +28,7 @@ metadata:
 spec:
   domains:
     - iap.wisv.ch
-    - wiki.wisv.ch
+    - wiki2.wisv.ch
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -56,14 +56,14 @@ spec:
             name: web-service
             port:
               number: 80
-  - host: wiki.wisv.ch
+  - host: wiki2.wisv.ch
     http:
       paths:
       - pathType: Prefix
         path: /
         backend:
           service:
-            name: wiki
+            name: wiki2
             port:
               number: 80
 ---
