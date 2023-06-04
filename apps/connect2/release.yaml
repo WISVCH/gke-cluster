@@ -20,4 +20,4 @@ spec:
     tlsSecret: wisvch-tls
     image:
       repository: ghcr.io/wisvch/connect2
-      tag: 20230603-f90e856
+      tag: 20230604-1e46f69
