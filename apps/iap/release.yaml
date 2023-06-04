@@ -28,7 +28,6 @@ metadata:
 spec:
   domains:
     - iap.wisv.ch
-    - wiki2.wisv.ch
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
