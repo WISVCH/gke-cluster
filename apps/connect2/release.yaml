@@ -22,4 +22,4 @@ spec:
     serviceAccountSecretKey: serviceAccount
     image:
       repository: ghcr.io/wisvch/connect2
-      tag: 20230604-e51c5d0 # {"$imagepolicy": "flux-system:connect2:tag"}
+      tag: 20230605-c7ab6f3 # {"$imagepolicy": "flux-system:connect2:tag"}
