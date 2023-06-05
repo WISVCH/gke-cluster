@@ -21,7 +21,7 @@ spec:
     domain: wiki2.wisv.ch
     image:
       repository: ghcr.io/wisvch/wiki2
-      tag: 20230604-cfdbc04 # {"$imagepolicy": "flux-system:wiki2:tag"}
+      tag: 20230605-6d96be7 # {"$imagepolicy": "flux-system:wiki2:tag"}
 ---
 apiVersion: v1
 kind: Service
@@ -38,5 +38,5 @@ spec:
     port: 80
     targetPort: 8080
   selector:
-    run: web
+    run: wiki2
   type: NodePort

@@ -23,5 +23,5 @@ spec:
     service:
       ip: 10.24.13.2
     image:
-      repository: ghcr.io/wisvch/connect2
-      tag: 20230604-e51c5d0 # {"$imagepolicy": "flux-system:connect2:tag"}
+      repository: ghcr.io/wisvch/connect2-jwt
+      tag: 20230605-3bc8ea7 # {"$imagepolicy": "flux-system:connect2-jwt:tag"}
