@@ -20,8 +20,6 @@ spec:
     tlsSecret: wisvch-tls
     serviceAccountSecretName: connect2
     serviceAccountSecretKey: serviceAccount
-    service:
-      ip: 10.24.13.2
     image:
       repository: ghcr.io/wisvch/connect2-jwt
       tag: 20230605-3bc8ea7 # {"$imagepolicy": "flux-system:connect2-jwt:tag"}
