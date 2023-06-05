@@ -38,5 +38,5 @@ spec:
     port: 80
     targetPort: 8080
   selector:
-    run: web
+    run: wiki2
   type: NodePort
