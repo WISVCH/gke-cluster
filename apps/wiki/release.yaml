@@ -19,8 +19,8 @@ spec:
     replicaCount: 1
     domain: wiki.wisv.ch
     image:
-      repository: ghcr.io/wisvch/wiki2
-      tag: 20230605-51cbd2a # {"$imagepolicy": "flux-system:wiki2:tag"}
+      repository: ghcr.io/wisvch/wiki
+      tag: 20230613-e09acb4 # {"$imagepolicy": "flux-system:wiki:tag"}
 ---
 apiVersion: v1
 kind: Service
