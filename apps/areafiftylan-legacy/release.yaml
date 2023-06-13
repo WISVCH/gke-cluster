@@ -83,3 +83,19 @@ spec:
       name: areafiftylan-legacy
       valuesKey: gmaps-key
       targetPath: gmaps.key
+    - kind: Secret
+      name: areafiftylan-legacy
+      valuesKey: username
+      targetPath: mail.username
+    - kind: Secret
+      name: areafiftylan-legacy
+      valuesKey: password
+      targetPath: mail.password
+    - kind: Secret
+      name: areafiftylan-legacy
+      valuesKey: port
+      targetPath: mail.port
+    - kind: Secret
+      name: areafiftylan-legacy
+      valuesKey: host
+      targetPath: mail.host
