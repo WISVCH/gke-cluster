@@ -3,5 +3,3 @@ kind: Kustomization
 resources:
   - image.yaml
   - release.yaml
-  # Temporarly add ingress.
-  - ingress.yaml
