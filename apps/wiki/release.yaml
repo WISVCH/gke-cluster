@@ -17,17 +17,25 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
-    tlsSecret: wisvch-tls
     domain: wiki.wisv.ch
     image:
       repository: ghcr.io/wisvch/wiki
       tag: 20230602-38fb117 # {"$imagepolicy": "flux-system:wiki:tag"}
-  valuesFrom:
-    - kind: Secret
-      name: wiki
-      valuesKey: connect-client-secret
-      targetPath: oauth.client.secret
-    - kind: Secret
-      name: wiki
-      valuesKey: connect-client-id
-      targetPath: oauth.client.id
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiki
+  namespace: default
+  annotations:
+    cloud.google.com/backend-config: '{"default": "ch-iap-backendconfig"}'
+    cloud.google.com/neg: '{"ingress": true}'
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    run: wiki
+  type: NodePort

@@ -28,6 +28,7 @@ metadata:
 spec:
   domains:
     - iap.wisv.ch
+    - wiki.wisv.ch
     - wiki2.wisv.ch
 ---
 apiVersion: networking.k8s.io/v1
@@ -64,6 +65,16 @@ spec:
         backend:
           service:
             name: wiki2
+            port:
+              number: 80
+  - host: wiki.wisv.ch
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: wiki
             port:
               number: 80
 ---
