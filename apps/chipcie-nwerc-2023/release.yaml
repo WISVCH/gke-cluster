@@ -27,6 +27,6 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/nwerc-2023
-      tag: 20230602-1e955ed # {"$imagepolicy": "flux-system:nwerc-2023:tag"}
+      tag: 20230628-738d2be # {"$imagepolicy": "flux-system:nwerc-2023:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
