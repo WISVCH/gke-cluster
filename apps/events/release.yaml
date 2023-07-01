@@ -9,7 +9,7 @@ spec:
     spec:
       chart: ./events
       version: "0.1.x"
-      interval: 15m
+      interval: 5m
       reconcileStrategy: Revision
       sourceRef:
         kind: GitRepository
