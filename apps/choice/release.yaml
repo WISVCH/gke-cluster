@@ -21,7 +21,7 @@ spec:
     domain: choice.wisv.ch
     image:
       repository: ghcr.io/wisvch/choice
-      tag: 20230602-74bf65e # {"$imagepolicy": "flux-system:choice:tag"}    
+      tag: 20230702-74bf65e # {"$imagepolicy": "flux-system:choice:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
