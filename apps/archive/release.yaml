@@ -29,7 +29,7 @@ spec:
           - coh.ewi.tudelft.nl
           - commissies.ch.tudelft.nl
           - icpc.tudelft.nl
-        tlsSecret: tudelft-tls
+        tlsSecret: chtudelft-tls
     replicaCount: 1
     containerPort: 8080
     service:
