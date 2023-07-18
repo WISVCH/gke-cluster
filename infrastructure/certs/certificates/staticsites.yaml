@@ -18,6 +18,9 @@ spec:
   dnsNames:
     - "lustrum.ch"
     - "eerstejaarsweekend.nl"
+    - commissies.ch.tudelft.nl
+    - coh.ewi.tudelft.nl
+    - symposium.ch.tudelft.nl
   issuerRef:
     kind: Issuer
     name: transip
