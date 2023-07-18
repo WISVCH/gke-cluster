@@ -17,14 +17,19 @@ spec:
         namespace: flux-system
   values:
     fullnameOverride: archive
-    domains:
-      - symposium.ch.tudelft.nl
-      - eerstejaarsweekend.nl
-      - coh.ewi.tudelft.nl
-      - commissies.ch.tudelft.nl
-      - lustrum.ch
-      - icpc.tudelft.nl
-    tlsSecret: staticsites-tls
+    ingress:
+      transip:
+        domains:
+          - lustrum.ch
+          - eerstejaarsweekend.nl
+        tlsSecret: staticsites-tls
+      tudelft:
+        domains:
+          - symposium.ch.tudelft.nl
+          - coh.ewi.tudelft.nl
+          - commissies.ch.tudelft.nl
+          - icpc.tudelft.nl
+        tlsSecret: tudelft-tls
     replicaCount: 1
     containerPort: 8080
     service:
