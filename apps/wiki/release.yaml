@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: ./wiki
-      version: "0.2.x"
+      version: "0.1.x"
       interval: 15m
       reconcileStrategy: Revision
       sourceRef:
