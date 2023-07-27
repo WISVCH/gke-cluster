@@ -21,6 +21,12 @@ spec:
     image:
       repository: ghcr.io/wisvch/wiki
       tag: 20230727-fe4b8cf # {"$imagepolicy": "flux-system:wiki:tag"}
+  
+  valuesFrom:
+    - kind: Secret
+      name: wiki
+      valuesKey: iap_audience_key
+      targetPath: iap.aucience_key
 ---
 apiVersion: v1
 kind: Service
