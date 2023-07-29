@@ -27,14 +27,43 @@ spec:
       valuesKey: iap_expected_audience
       targetPath: iap.expected_audience
 ---
+  # https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
+  apiVersion: networking.gke.io/v1
+  kind: GCPBackendPolicy
+  metadata:
+    name: wiki-backend-policy
+  spec:
+    default:
+      iap:
+        enabled: true
+        oauth2ClientSecret:
+          name: iap-secret
+        clientID: 966138216790-us6sue108a879v3vk2om9inn3ftpobkg.apps.googleusercontent.com
+    targetRef:
+      group: ""
+      kind: Service
+      name: wiki
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: wiki-route
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: gateway
+  hostnames:
+  - wiki.wisv.ch
+  rules:
+  - backendRefs:
+    - name: wiki
+      port: 80
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: wiki
   namespace: default
-  annotations:
-    cloud.google.com/backend-config: '{"default": "ch-iap-backendconfig"}'
-    cloud.google.com/neg: '{"ingress": true}'
 spec:
   ports:
   - name: http
