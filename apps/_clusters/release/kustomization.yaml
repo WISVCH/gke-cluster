@@ -15,7 +15,6 @@ resources:
   - ../../events
   # - ../../flitcie
   - ../../hackdelft
-  - ../../iap
   - ../../listmonk
   - ../../mand
   - ../../wiki
