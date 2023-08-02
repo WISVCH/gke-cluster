@@ -20,30 +20,30 @@ spec:
     domain: wiki.wisv.ch
     image:
       repository: ghcr.io/wisvch/wiki
-      tag: 20230727-4933a50 # {"$imagepolicy": "flux-system:wiki:tag"}
+      tag: 20230802-4933a50 # {"$imagepolicy": "flux-system:wiki:tag"}
   valuesFrom:
     - kind: Secret
       name: wiki
       valuesKey: iap_expected_audience
       targetPath: iap.expected_audience
 ---
-  # https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
-  apiVersion: networking.gke.io/v1
-  kind: GCPBackendPolicy
-  metadata:
-    name: wiki-backend-policy
-    namespace: default
-  spec:
-    default:
-      iap:
-        enabled: true
-        oauth2ClientSecret:
-          name: iap-secret
-        clientID: 966138216790-us6sue108a879v3vk2om9inn3ftpobkg.apps.googleusercontent.com
-    targetRef:
-      group: ""
-      kind: Service
-      name: wiki
+# https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
+apiVersion: networking.gke.io/v1
+kind: GCPBackendPolicy
+metadata:
+  name: wiki-backend-policy
+  namespace: default
+spec:
+  default:
+    iap:
+      enabled: true
+      oauth2ClientSecret:
+        name: iap-secret
+      clientID: 966138216790-us6sue108a879v3vk2om9inn3ftpobkg.apps.googleusercontent.com
+  targetRef:
+    group: ""
+    kind: Service
+    name: wiki
 ---
 apiVersion: gateway.networking.k8s.io/v1beta1
 kind: HTTPRoute
