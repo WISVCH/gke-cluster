@@ -11,6 +11,5 @@ resources:
   - fairwinds.yaml
   - grafana.yaml
   - victoriametrics.yaml
-  - weave.yaml
   - bitnami.yaml
   - budibase.yaml
