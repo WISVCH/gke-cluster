@@ -12,6 +12,7 @@ resources:
   - ../../choice
   - ../../cod
   - ../../connect2
+  - ../../dienst2
   - ../../events
   # - ../../flitcie
   - ../../hackdelft
