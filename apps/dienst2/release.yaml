@@ -36,10 +36,14 @@ spec:
       name: postgres
       valuesKey: password
       targetPath: postgres.password
-  # - kind: Secret
-  #   name: dienst2
-  #   valuesKey: iap_expected_audience
-  #   targetPath: iap.expected_audience
+    - kind: Secret
+      name: dienst2
+      valuesKey: secret_key
+      targetPath: secret_key
+    - kind: Secret
+      name: dienst2
+      valuesKey: iap_expected_audience
+      targetPath: iap.expected_audience
 ---
 # https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
 apiVersion: networking.gke.io/v1
