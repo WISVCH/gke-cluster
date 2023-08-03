@@ -1,0 +1,91 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dienst2
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./dienst2
+      version: "0.1.x"
+      interval: 5m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    replicaCount: 1
+    domains:
+      - wisv.ch/dienst2
+    image:
+      repository: ghcr.io/wisvch/dienst2
+      tag: 20230724-60d2dbb # {"$imagepolicy": "flux-system:dienst2:tag"}
+    postgres:
+      database: dienst2
+      host: 127.0.0.1
+      port: 5432
+      cloudSQL: true
+  valuesFrom:
+    - kind: Secret
+      name: postgres
+      valuesKey: username
+      targetPath: postgres.username
+    - kind: Secret
+      name: postgres
+      valuesKey: password
+      targetPath: postgres.password
+    # - kind: Secret
+    #   name: dienst2
+    #   valuesKey: iap_expected_audience
+    #   targetPath: iap.expected_audience
+---
+# https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
+apiVersion: networking.gke.io/v1
+kind: GCPBackendPolicy
+metadata:
+  name: dienst2-backend-policy
+  namespace: default
+spec:
+  default:
+    iap:
+      enabled: true
+      oauth2ClientSecret:
+        name: iap-secret
+      clientID: 966138216790-us6sue108a879v3vk2om9inn3ftpobkg.apps.googleusercontent.com
+  targetRef:
+    group: ""
+    kind: Service
+    name: dienst2
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: dienst2-route
+  namespace: default
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: gateway
+  hostnames:
+  - dienst2.wisv.ch
+  rules:
+  - backendRefs:
+    - name: dienst2
+      port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dienst2
+  namespace: default
+spec:
+  ports:
+  - name: http
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  selector:
+    run: dienst2
+  type: NodePort
