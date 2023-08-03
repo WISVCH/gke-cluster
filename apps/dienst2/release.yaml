@@ -21,7 +21,7 @@ spec:
       - wisv.ch/dienst2
     image:
       repository: ghcr.io/wisvch/dienst2
-      tag: 20230724-60d2dbb # {"$imagepolicy": "flux-system:dienst2:tag"}
+      tag: 20230729-4f7ee13 # {"$imagepolicy": "flux-system:dienst2:tag"}
     postgres:
       database: dienst2
       host: 127.0.0.1
@@ -36,10 +36,10 @@ spec:
       name: postgres
       valuesKey: password
       targetPath: postgres.password
-    # - kind: Secret
-    #   name: dienst2
-    #   valuesKey: iap_expected_audience
-    #   targetPath: iap.expected_audience
+  # - kind: Secret
+  #   name: dienst2
+  #   valuesKey: iap_expected_audience
+  #   targetPath: iap.expected_audience
 ---
 # https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
 apiVersion: networking.gke.io/v1
