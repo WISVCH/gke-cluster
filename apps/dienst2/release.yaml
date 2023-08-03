@@ -21,7 +21,7 @@ spec:
       - wisv.ch/dienst2
     image:
       repository: ghcr.io/wisvch/dienst2
-      tag: 20230729-4f7ee13 # {"$imagepolicy": "flux-system:dienst2:tag"}
+      tag: 20230803-536ef59 # {"$imagepolicy": "flux-system:dienst2:tag"}
     postgres:
       database: dienst2
       host: 127.0.0.1
