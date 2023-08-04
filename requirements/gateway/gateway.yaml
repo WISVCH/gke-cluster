@@ -12,7 +12,7 @@ spec:
     tls:
       mode: Terminate
       options:
-        networking.gke.io/pre-shared-certs: mcrt-5a70dd4e-405a-4170-ad88-687e858979f2
+        networking.gke.io/pre-shared-certs: mcrt-71ffb56b-df9f-443f-89f2-594e4d263322
   - name: http
     protocol: HTTP
     port: 80
