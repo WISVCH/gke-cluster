@@ -17,8 +17,7 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
-    domains:
-      - wisv.ch/dienst2
+    domain: wiki.wisv.ch
     image:
       repository: ghcr.io/wisvch/dienst2
       tag: 20230803-536ef59 # {"$imagepolicy": "flux-system:dienst2:tag"}
