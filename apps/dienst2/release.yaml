@@ -92,3 +92,22 @@ spec:
   selector:
     run: dienst2
   type: NodePort
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  namespace: default
+  name: dienst2
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 80
+        requestPath: /healthz
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: dienst2
