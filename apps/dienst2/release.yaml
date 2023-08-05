@@ -103,8 +103,9 @@ spec:
     config:
       type: HTTP
       httpHealthCheck:
-        port: 80
+        port: 8000
         requestPath: /healthz
+
     logConfig:
       enabled: true
   targetRef:
