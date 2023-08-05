@@ -74,4 +74,4 @@ spec:
     targetPort: 8080
   selector:
     run: wiki
-  type: NodePort
+  type: ClusterIP

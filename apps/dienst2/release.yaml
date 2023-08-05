@@ -91,7 +91,7 @@ spec:
     targetPort: 8000
   selector:
     run: dienst2
-  type: NodePort
+  type: ClusterIP
 ---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy
