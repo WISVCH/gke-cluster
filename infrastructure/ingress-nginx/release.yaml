@@ -22,6 +22,7 @@ spec:
         ipFamilyPolicy: "SingleStack"
         ipFamilies:
           - IPv4
+        externalTrafficPolicy: "Local"
         annotations:
           networking.gke.io/load-balancer-type: "External"
       metrics:
