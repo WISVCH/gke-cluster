@@ -121,7 +121,7 @@ metadata:
   namespace: default
 spec:
   rules:
-    - host: api.dienst2.wisv.ch
+    - host: dienst2-api.wisv.ch
       http:
         paths:
         - pathType: Prefix
@@ -133,5 +133,5 @@ spec:
                 name: http
   tls:
     - hosts:
-        - api.dienst2.wisv.ch
+        - dienst2-api.wisv.ch
       secretName: wisvch-tls
