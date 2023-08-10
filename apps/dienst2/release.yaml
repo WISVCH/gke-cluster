@@ -125,11 +125,11 @@ spec:
       http:
         paths:
         - pathType: Prefix
-            path: "/ldb/api"
-            backend:
-              service:
-                name: dienst2
-                port: 80
+          path: "/ldb/api"
+          backend:
+            service:
+              name: dienst2
+              port: 80
   tls:
     - hosts:
         - api.dienst2.wisv.ch
