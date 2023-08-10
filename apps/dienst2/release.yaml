@@ -116,7 +116,7 @@ apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/whitelist-source-range: "131.180.119.113"
+    nginx.ingress.kubernetes.io/whitelist-source-range: "131.180.119.118"
   name: dienst2-api
   namespace: default
 spec:
