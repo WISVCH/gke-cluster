@@ -19,7 +19,7 @@ spec:
     replicaCount: 1
     domain: dienst2.wisv.ch
     serviceAccountSecretName: dienst2
-    serviceAccountSecretKey: serviceAccount
+    serviceAccountSecretKey: service_account
     image:
       repository: ghcr.io/wisvch/dienst2
       tag: 20230807-bf1931f # {"$imagepolicy": "flux-system:dienst2:tag"}
