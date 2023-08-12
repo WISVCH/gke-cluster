@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: connect
+  namespace: default
+  labels:
+    app: connect
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: connect
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: connect
+    spec:
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Xms400m -Xmx400m -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom
+            -Dspring.config.location=/connect/application.properties -Dspring.profiles.active=production
+        image: ghcr.io/wisvch/connect:20230812-ec797b9@sha256:64e95734912f44b4f7f17f270668d04023ada606f5f1999a307abc3b52b593ee
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 5
+        name: connect
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 5
+        resources:
+          limits:
+            memory: 900Mi
+          requests:
+            cpu: 250m
+            memory: 550Mi
+        volumeMounts:
+        - mountPath: /connect
+          name: connect
+          readOnly: true
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: connect
+        secret:
+          defaultMode: 420
+          secretName: connect

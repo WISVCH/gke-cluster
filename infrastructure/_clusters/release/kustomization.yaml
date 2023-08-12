@@ -5,3 +5,4 @@ resources:
   - ../../certs
   - ../../monitoring
   - ../../connect-proxy
+  - ../../connect
