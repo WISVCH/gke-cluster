@@ -5,5 +5,4 @@ resources:
   - ../../certs
   # - ../../authentik
   - ../../monitoring
-  # - ../../goldilocks
   - ../../connect-proxy
