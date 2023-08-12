@@ -8,7 +8,9 @@ spec:
   - host: connect.wisv.ch
     http:
       paths:
-      - backend:
+      - pathType: Prefix
+        path: "/"
+        backend:
           service:
             name: connect
             port: 
