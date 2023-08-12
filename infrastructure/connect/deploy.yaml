@@ -23,10 +23,11 @@ spec:
         app: connect
     spec:
       containers:
-      - env:
-        - name: JAVA_OPTS
-          value: -Xms400m -Xmx400m -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom
-            -Dspring.config.location=/connect/application.properties -Dspring.profiles.active=production
+      - name: connect
+        env:
+          - name: JAVA_OPTS
+            value: -Xms400m -Xmx400m -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom
+              -Dspring.config.location=/connect/application.properties -Dspring.profiles.active=production
         image: ghcr.io/wisvch/connect:20230812-ec797b9@sha256:64e95734912f44b4f7f17f270668d04023ada606f5f1999a307abc3b52b593ee
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -39,11 +40,10 @@ spec:
           periodSeconds: 10
           successThreshold: 1
           timeoutSeconds: 5
-        name: connect
         ports:
-        - containerPort: 8080
-          name: http
-          protocol: TCP
+          - containerPort: 8080
+            name: http
+            protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -61,13 +61,27 @@ spec:
             cpu: 250m
             memory: 550Mi
         volumeMounts:
-        - mountPath: /connect
-          name: connect
-          readOnly: true
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 30
-      volumes:
-      - name: connect
-        secret:
-          defaultMode: 420
-          secretName: connect
+          - mountPath: /connect
+            name: connect
+            readOnly: true
+        volumes:
+          - name: connect
+            secret:
+              defaultMode: 420
+              secretName: connect
+      - name: cloud-sql-proxy
+            image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.0.0
+            args:
+              - "--structured-logs"
+              - "--private-ip"
+              - "--port=5432"
+              - "-i" # Enables automatic authentication through the serviceaccount
+              - "wisvch:europe-west4:geurt"
+            securityContext:
+              runAsNonRoot: true
+            resources:
+              limits:
+                memory: 200Mi
+              requests:
+                cpu: 20m
+                memory: 100Mi
