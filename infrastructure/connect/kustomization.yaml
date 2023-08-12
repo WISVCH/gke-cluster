@@ -4,3 +4,4 @@ resources:
   - deploy.yaml
   - service.yaml
   - ingress.yaml
+  - serviceaccount.yaml
