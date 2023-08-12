@@ -64,11 +64,6 @@ spec:
           - mountPath: /connect
             name: connect
             readOnly: true
-        volumes:
-          - name: connect
-            secret:
-              defaultMode: 420
-              secretName: connect
       - name: cloud-sql-proxy
         image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.0.0
         args:
@@ -85,3 +80,8 @@ spec:
           requests:
             cpu: 20m
             memory: 100Mi
+      volumes:
+        - name: connect
+          secret:
+            defaultMode: 420
+            secretName: connect
