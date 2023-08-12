@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - ../../ingress-nginx
   - ../../certs
-  # - ../../authentik
   - ../../monitoring
   # - ../../goldilocks
   - ../../connect-proxy
