@@ -4,5 +4,4 @@ resources:
   - ../../ingress-nginx
   - ../../certs
   - ../../monitoring
-  # - ../../goldilocks
   - ../../connect-proxy
