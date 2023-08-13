@@ -13,3 +13,9 @@ spec:
   - backendRefs:
     - name: website
       port: 80
+  - matches:
+    - path:
+        value: "/choice2"
+    backendRefs:
+    - name: choice
+      port: 80
