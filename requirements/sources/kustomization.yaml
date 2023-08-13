@@ -7,7 +7,4 @@ resources:
   - transip-webhook.yaml
   - cetic.yaml
   - fairwinds.yaml
-  - grafana.yaml
-  - victoriametrics.yaml
   - bitnami.yaml
-  - budibase.yaml
