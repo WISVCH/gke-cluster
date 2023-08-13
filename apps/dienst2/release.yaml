@@ -114,27 +114,3 @@ spec:
     group: ""
     kind: Service
     name: dienst2
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  annotations:
-    nginx.ingress.kubernetes.io/whitelist-source-range: "131.180.119.118"
-  name: dienst2-api
-  namespace: default
-spec:
-  rules:
-    - host: dienst2-api.wisv.ch
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/ldb/api"
-            backend:
-              service:
-                name: dienst2
-                port:
-                  name: http
-  tls:
-    - hosts:
-        - dienst2-api.wisv.ch
-      secretName: wisvch-tls
