@@ -17,7 +17,7 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
-    domain: dienst2.wisv.ch
+    domain: dienst2.ch.tudelft.nl
     serviceAccountSecretName: dienst2-service-account
     serviceAccountSecretKey: service_account
     image:
