@@ -9,7 +9,7 @@ spec:
       type: HTTP
       httpHealthCheck:
         port: 8080
-        requestPath: /actuator/health/readiness
+        requestPath: /choice2/actuator/health/readiness
     logConfig:
       enabled: true
   targetRef:
