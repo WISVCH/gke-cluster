@@ -8,7 +8,7 @@ spec:
   - kind: Gateway
     name: gateway
   hostnames:
-  - connect.wisv.ch
+  - connect.ch.tudelft.nl
   rules:
   - backendRefs:
     - name: connect
