@@ -75,6 +75,7 @@ spec:
     name: gateway
   hostnames:
   - dienst2.wisv.ch
+  - dienst2.ch.tudelft.nl
   rules:
   - backendRefs:
     - name: dienst2
@@ -131,7 +132,7 @@ spec:
           backend:
             service:
               name: dienst2
-              port: 
+              port:
                 name: http
   tls:
     - hosts:
