@@ -22,7 +22,7 @@ spec:
     serviceAccountSecretKey: service_account
     image:
       repository: ghcr.io/wisvch/dienst2
-      tag: 20230807-bf1931f # {"$imagepolicy": "flux-system:dienst2:tag"}
+      tag: 20230813-aef807e # {"$imagepolicy": "flux-system:dienst2:tag"}
     postgres:
       database: dienst2
       host: 127.0.0.1
@@ -127,13 +127,13 @@ spec:
     - host: dienst2-api.wisv.ch
       http:
         paths:
-        - pathType: Prefix
-          path: "/ldb/api"
-          backend:
-            service:
-              name: dienst2
-              port:
-                name: http
+          - pathType: Prefix
+            path: "/ldb/api"
+            backend:
+              service:
+                name: dienst2
+                port:
+                  name: http
   tls:
     - hosts:
         - dienst2-api.wisv.ch
