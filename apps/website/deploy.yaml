@@ -1,0 +1,88 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+  namespace: default
+  labels:
+    app: website
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: website
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      name: website
+      labels:
+        app: website
+    spec:
+      serviceAccountName: website
+      containers:
+      - name: website
+        image: ghcr.io/wisvch/website:20230813-7b949fc
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 80
+          protocol: TCP
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: 127.0.0.1
+        - name: WORDPRESS_DB_NAME
+          value: website
+        - name: WORDPRESS_DB_USER
+          value: website # authentication via IAM
+        - name: WORDPRESS_DB_PREFIX
+          value: chtud59_
+        - name: DIENST2_API_URL
+          value: http://dienst2.default.svc.cluster.local./ldb/api/v3/
+        - name: DIENST2_API_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: website
+              key: dienst2-api-token
+        - name: W3CIE_THEME
+          value: https://github.com/WISVCH/rechallenge/archive/master.zip
+        - name: W3CIE_PLUGINS
+          value: disable-comments,disable-search,post-types-order,wordpress-seo,https://github.com/daggerhart/openid-connect-generic/archive/dev.zip,https://github.com/WISVCH/wisvch-wordpress-plugin/archive/master.zip,depublish-posts,redirection,ewww-image-optimizer,photo-gallery,10web-manager,instagram-feed,wp-statistics
+        - name: APACHE_LOG_DIR
+          value: /var/log/apache/
+        resources:
+          limits:
+            cpu: "2"
+            memory: 2Gi
+          requests:
+            cpu: 50m
+            memory: 500Mi
+        securityContext:
+          runAsNonRoot: false # FIXME: run as an unprivileged user
+        volumeMounts:
+        - mountPath: /var/www/html/wp-content
+          name: website-storage
+      - name: cloud-sql-proxy
+        image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.6.0
+        args:
+          - "--structured-logs"
+          - "--private-ip"
+          - "--port=3306"
+          - "-i"
+          - "wisvch:europe-west4:cees"
+        securityContext:
+          runAsNonRoot: true
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 20m
+            memory: 100Mi
+      volumes:
+      - name: website-storage
+        persistentVolumeClaim:
+          claimName: website-storage
