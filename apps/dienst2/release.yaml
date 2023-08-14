@@ -22,7 +22,7 @@ spec:
     serviceAccountSecretKey: service_account
     image:
       repository: ghcr.io/wisvch/dienst2
-      tag: 20230813-aef807e # {"$imagepolicy": "flux-system:dienst2:tag"}
+      tag: 20230814-64a01b1 # {"$imagepolicy": "flux-system:dienst2:tag"}
     postgres:
       database: dienst2
       host: 127.0.0.1
