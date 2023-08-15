@@ -26,6 +26,7 @@ apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
   name: managed-cert
+  namespace: default
 spec:
   domains:
     - cod.wisv.ch
