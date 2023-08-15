@@ -30,7 +30,7 @@ spec:
       scope: openid, profile, email, auth
       claimName: google_groups
       groups:
-        admin: beheer, vc, bestuur
+        admin: beheer, vc, epa, bestuur
         beta: joepj, juliand, danys
     postgres:
       database: events
