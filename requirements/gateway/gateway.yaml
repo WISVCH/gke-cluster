@@ -12,7 +12,7 @@ spec:
     tls:
       mode: Terminate
       options:
-        networking.gke.io/pre-shared-certs: wisvch-20230815-2
+        networking.gke.io/pre-shared-certs: wisvch-20230815
   - name: http
     protocol: HTTP
     port: 80
@@ -25,15 +25,10 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: managed-cert
+  name: managed-cert1
   namespace: default
 status:
-  certificateName: wisvch-20230815-2
+  certificateName: wisvch-20230815-01
 spec:
   domains:
-    - ch.tudelft.nl
-    - dienst2.wisv.ch
-    - dienst2.ch.tudelft.nl
-    - connect.ch.tudelft.nl
-    - wiki.wisv.ch
-    - list.wisv.ch
+    - cod.wisv.ch
