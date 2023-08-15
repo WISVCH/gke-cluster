@@ -16,7 +16,7 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    fullnameOverride: cod
+    fullnameOverride: codsite
     domains:
       - cod.ch.tudelft.nl
       - cod.wisv.ch
