@@ -21,3 +21,11 @@ spec:
     value: gce-load-balancer-ipv4
   - type: NamedAddress
     value: gce-load-balancer-ipv6
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: managed-cert
+spec:
+  domains:
+    - cod.wisv.ch
