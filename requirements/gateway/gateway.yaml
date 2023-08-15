@@ -12,7 +12,7 @@ spec:
     tls:
       mode: Terminate
       options:
-        networking.gke.io/pre-shared-certs: wisvch-20230815
+        networking.gke.io/pre-shared-certs: wisvch-20230815, mcrt-e4e63d43-3e2a-451b-921f-3ad42d298105
   - name: http
     protocol: HTTP
     port: 80
@@ -27,8 +27,6 @@ kind: ManagedCertificate
 metadata:
   name: managed-cert1
   namespace: default
-status:
-  certificateName: wisvch-20230815-01
 spec:
   domains:
     - cod.wisv.ch
