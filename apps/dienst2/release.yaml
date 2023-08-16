@@ -108,6 +108,7 @@ spec:
       type: HTTP
       httpHealthCheck:
         port: 8000
+        host: dienst2.ch.tudelft.nl
         requestPath: /healthz
     logConfig:
       enabled: true
