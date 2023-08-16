@@ -23,7 +23,7 @@ spec:
     allowedHosts: "dienst2.ch.tudelft.nl,dienst2.wisv.ch"
     image:
       repository: ghcr.io/wisvch/dienst2
-      tag: 20230814-3403e12 # {"$imagepolicy": "flux-system:dienst2:tag"}
+      tag: 20230816-389043b # {"$imagepolicy": "flux-system:dienst2:tag"}
     postgres:
       database: dienst2
       host: 127.0.0.1
