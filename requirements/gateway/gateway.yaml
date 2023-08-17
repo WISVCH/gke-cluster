@@ -25,7 +25,7 @@ spec:
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: managed-cert1
+  name: managed-cert
   namespace: default
 spec:
   domains:
