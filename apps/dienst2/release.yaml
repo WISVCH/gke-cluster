@@ -73,6 +73,7 @@ metadata:
 spec:
   parentRefs:
   - kind: Gateway
+    namespace: gateway-infra
     name: gateway
   hostnames:
   - dienst2.wisv.ch

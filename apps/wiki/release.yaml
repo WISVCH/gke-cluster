@@ -53,6 +53,7 @@ metadata:
 spec:
   parentRefs:
   - kind: Gateway
+    namespace: gateway-infra
     name: gateway
   hostnames:
   - wiki.wisv.ch
