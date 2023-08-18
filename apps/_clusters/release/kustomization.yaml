@@ -17,5 +17,6 @@ resources:
   - ../../hackdelft
   - ../../listmonk
   - ../../mand
+  - ../../website
   - ../../wiki
   - ../../connect
