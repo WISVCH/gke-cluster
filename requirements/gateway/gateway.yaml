@@ -56,7 +56,7 @@ metadata:
 spec:
   parentRefs:
   - namespace: gateway-infra
-    name: external-http
+    name: gateway
     sectionName: http
   rules:
   - filters:
