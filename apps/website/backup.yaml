@@ -1,0 +1,13 @@
+kind: ProtectedApplication
+apiVersion: gkebackup.gke.io/v1alpha2
+metadata:
+  name: website
+  namespace: default
+  labels:
+    app: website
+spec:
+  resourceSelection:
+    type: Selector
+    selector:
+      matchLabels:
+        app: website
