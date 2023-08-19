@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: ./static-site
-      version: "0.1.0"
+      version: "0.1.x"
       interval: 15m
       reconcileStrategy: Revision
       sourceRef:
@@ -18,8 +18,8 @@ spec:
   values:
     nameOverride: chipcie-nwerc-2022
     fullnameOverride: chipcie-nwerc-2022
-    tlsSecret: chipcie-contests-tls
-    domain: 2022.nwerc.eu
+    domains:
+    - 2022.nwerc.eu
     replicaCount: 1
     containerPort: 8080
     service:
