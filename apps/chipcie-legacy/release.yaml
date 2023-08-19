@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: ./archive
-      version: "0.1.x"
+      version: "0.1.0"
       interval: 15m
       reconcileStrategy: Revision
       sourceRef:

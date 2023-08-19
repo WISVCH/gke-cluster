@@ -6,9 +6,10 @@ metadata:
 spec:
   parentRefs:
   - kind: Gateway
+    namespace: gateway-infra
     name: gateway
   hostnames:
-  - connect.wisv.ch
+  - connect.ch.tudelft.nl
   rules:
   - backendRefs:
     - name: connect

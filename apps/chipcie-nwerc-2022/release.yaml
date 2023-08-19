@@ -18,8 +18,8 @@ spec:
   values:
     nameOverride: chipcie-nwerc-2022
     fullnameOverride: chipcie-nwerc-2022
-    tlsSecret: chipcie-contests-tls
-    domain: 2022.nwerc.eu
+    domains:
+    - 2022.nwerc.eu
     replicaCount: 1
     containerPort: 8080
     service:

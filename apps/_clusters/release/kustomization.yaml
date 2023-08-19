@@ -11,10 +11,12 @@ resources:
   - ../../chipcie-website
   - ../../choice
   - ../../cod
+  - ../../connect
   - ../../dienst2
   - ../../events
   # - ../../flitcie
   - ../../hackdelft
   - ../../listmonk
   - ../../mand
+  - ../../website
   - ../../wiki

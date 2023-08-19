@@ -16,12 +16,10 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
+    image:
+      repository: listmonk/listmonk
+      tag: v2.5.1 # {"$imagepolicy": "flux-system:listmonk:tag"}
     domain: list.wisv.ch
-    authDomain: authproxy.wisv.ch
-    tlsSecret: wisvch-tls
-    allowedGroups: 
-      - beheer
-      - bestuur
   valuesFrom:
     - kind: Secret
       name: postgres

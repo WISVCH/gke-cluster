@@ -17,15 +17,13 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
-    tlsSecret: wisvch-tls
-    domain: choice.wisv.ch
     image:
       repository: ghcr.io/wisvch/choice
       tag: 20230702-74bf65e # {"$imagepolicy": "flux-system:choice:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
-        url: https://choice.wisv.ch
+        url: https://ch.tudelft.nl/choice2
       scope: openid, profile, email, auth
       groups:
         admin: beheer,bestuur,vc,epa

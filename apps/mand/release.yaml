@@ -34,10 +34,6 @@ spec:
           paths:
             - path: "/"
               pathType: Prefix
-        - host: "*.wisv.ch"
-          paths:
-            - path: "/"
-              pathType: Prefix
       tls:
         - hosts:
             - wisv.ch
