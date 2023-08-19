@@ -18,11 +18,6 @@ spec:
   values:
     fullnameOverride: archive
     ingress:
-      transip:
-        domains:
-          - lustrum.ch
-          - eerstejaarsweekend.nl
-        tlsSecret: staticsites-tls
       tudelft:
         domains:
           - symposium.ch.tudelft.nl
@@ -30,6 +25,9 @@ spec:
           - commissies.ch.tudelft.nl
           - icpc.tudelft.nl
         tlsSecret: chtudelft-tls
+    domains:
+    - lustrum.ch
+    - eerstejaarsweekend.nl
     replicaCount: 1
     containerPort: 8080
     service:
