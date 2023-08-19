@@ -23,7 +23,7 @@ spec:
     tls:
       mode: Terminate
       options:
-        networking.gke.io/pre-shared-certs: wisvch-20230815, mcrt-0e0aa9bd-595d-4eef-80b6-032da82a2d4f, chipcie-nwerc-bapc, static-sites, nwerc-redirect, hackdelft-certs, events, areafiftylan-legacy, areafiftylan, flux-webhook
+        networking.gke.io/pre-shared-certs: wisvch-20230815, chipcie-nwerc-bapc, nwerc-redirect, hackdelft-certs, areafiftylan-legacy, areafiftylan
   - name: http
     protocol: HTTP
     port: 80
@@ -37,16 +37,6 @@ spec:
     value: gce-load-balancer-ipv4
   - type: NamedAddress
     value: gce-load-balancer-ipv6
----
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
-  name: managed-cert
-  namespace: default
-spec:
-  domains:
-    - cod.wisv.ch
-    - chipcie.wisv.ch
 ---
 kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1beta1
