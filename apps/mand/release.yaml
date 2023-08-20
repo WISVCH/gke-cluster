@@ -1,4 +1,8 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1kind: HelmReleasemetadata:  name: mand  namespace: default
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:  
+  name: mand  
+  namespace: default
 spec:
   interval: 15m
   chart:
