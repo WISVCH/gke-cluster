@@ -1,8 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
-kind: HelmRelease
-metadata:
-  name: mand
-  namespace: default
+apiVersion: helm.toolkit.fluxcd.io/v2beta1kind: HelmReleasemetadata:  name: mand  namespace: default
 spec:
   interval: 15m
   chart:
@@ -27,18 +23,8 @@ spec:
       name: mand
     mand:
       allowedGroup: staff
-    ingress:
-      enabled: true
-      hosts:
-        - host: wisv.ch
-          paths:
-            - path: "/"
-              pathType: Prefix
-      tls:
-        - hosts:
-            - wisv.ch
-            - "*.wisv.ch"
-          secretName: "wisvch-tls"
+    domains:
+      - wisv.ch
   valuesFrom:
     - kind: Secret
       name: postgres
