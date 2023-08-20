@@ -21,11 +21,7 @@ spec:
     image:
       repository: ghcr.io/wisvch/wiki
       tag: 20230813-483b652 # {"$imagepolicy": "flux-system:wiki:tag"}
-  valuesFrom:
-    - kind: Secret
-      name: wiki
-      valuesKey: iap_expected_audience
-      targetPath: iap.expected_audience
+    iap.expected_audience: /projects/966138216790/global/backendServices/2044437052005738173
 ---
 # https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
 apiVersion: networking.gke.io/v1
