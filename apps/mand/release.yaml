@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
-metadata:  
-  name: mand  
+metadata:
+  name: mand
   namespace: default
 spec:
   interval: 15m
@@ -19,7 +19,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/wisvch/mand
-      tag: 20230802-7f8e74f # {"$imagepolicy": "flux-system:mand:tag"}
+      tag: 20230821-49ad804 # {"$imagepolicy": "flux-system:mand:tag"}
     auth:
       url: https://connect.ch.tudelft.nl
       clientId: mand
@@ -70,7 +70,6 @@ spec:
     group: ""
     kind: Service
     name: mand-external
-
 ---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy
