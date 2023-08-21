@@ -69,4 +69,4 @@ spec:
   targetRef:
     group: ""
     kind: Service
-    name: mand-external
+    name: mand-internal
