@@ -100,7 +100,8 @@ spec:
       type: HTTP
       httpHealthCheck:
         port: 80
-        requestPath: /
+        host: ch.tudelft.nl
+        requestPath: /wp-json/
     logConfig:
       enabled: true
   targetRef:
