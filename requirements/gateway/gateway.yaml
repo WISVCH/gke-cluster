@@ -23,7 +23,7 @@ spec:
     tls:
       mode: Terminate
       options:
-        networking.gke.io/pre-shared-certs: wisvch, wisvch-20230815, chipcie-nwerc-bapc, nwerc-redirect, hackdelft-certs, areafiftylan-legacy, areafiftylan, wisvch-20230819
+        networking.gke.io/pre-shared-certs: wisvch, wisvch-20230815, chipcie-nwerc-bapc, nwerc-redirect, hackdelft-certs, areafiftylan-legacy, areafiftylan, wisvch-20230819, archive-20230821
   - name: http
     protocol: HTTP
     port: 80
