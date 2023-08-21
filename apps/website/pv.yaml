@@ -1,7 +1,10 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  namespace: default
   name: website-storage
+  labels:
+    app: website
 spec:
   storageClassName: "standard-retain"
   capacity:
@@ -21,6 +24,8 @@ kind: PersistentVolumeClaim
 metadata:
   namespace: default
   name: website-storage
+  labels:
+    app: website
 spec:
   storageClassName: "standard-retain"
   volumeName: website-storage

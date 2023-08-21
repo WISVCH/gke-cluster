@@ -5,3 +5,4 @@ resources:
   - service.yaml
   - pv.yaml
   - httproute.yaml
+  - backup.yaml
