@@ -100,7 +100,6 @@ spec:
       type: HTTP
       httpHealthCheck:
         port: 80
-        host: ch.tudelft.nl
         requestPath: /
     logConfig:
       enabled: true
