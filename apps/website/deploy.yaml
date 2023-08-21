@@ -94,7 +94,8 @@ metadata:
   name: website
 spec:
   default:
-  timeoutSec: 30
+    checkIntervalSec: 60
+    timeoutSec: 30
     config:
       type: HTTP
       httpHealthCheck:
