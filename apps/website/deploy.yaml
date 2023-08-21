@@ -86,3 +86,23 @@ spec:
       - name: website-storage
         persistentVolumeClaim:
           claimName: website-storage
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  namespace: default
+  name: website
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 80
+        host: ch.tudelft.nl
+        requestPath: /
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: website
