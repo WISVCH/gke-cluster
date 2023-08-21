@@ -38,3 +38,23 @@ spec:
       tag: 20230607-058946d # {"$imagepolicy": "flux-system:archived-static:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: archive
+  namespace: default
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 8080
+        host: lustrum.ch
+        requestPath: /
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: archive
