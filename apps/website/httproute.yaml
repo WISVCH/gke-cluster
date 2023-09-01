@@ -12,6 +12,7 @@ spec:
     name: gateway
   hostnames:
   - ch.tudelft.nl
+  - www.ch.tudelft.nl
   rules:
   - backendRefs:
     - name: website
