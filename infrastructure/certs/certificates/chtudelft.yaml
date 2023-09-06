@@ -16,7 +16,6 @@ spec:
     - server auth
     - client auth
   dnsNames:
-    - "cod.ch.tudelft.nl"
     - "commissies.ch.tudelft.nl"
     - "coh.ewi.tudelft.nl"
     - "rob.ch.tudelft.nl"

@@ -20,14 +20,14 @@ spec:
     ingress:
       tudelft:
         domains:
-          - symposium.ch.tudelft.nl
           - coh.ewi.tudelft.nl
-          - commissies.ch.tudelft.nl
           - icpc.tudelft.nl
         tlsSecret: chtudelft-tls
     domains:
-    - lustrum.ch
+    - commissies.ch.tudelft.nl
     - eerstejaarsweekend.nl
+    - lustrum.ch
+    - symposium.ch.tudelft.nl
     replicaCount: 1
     containerPort: 8080
     service:

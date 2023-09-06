@@ -19,7 +19,9 @@ spec:
     fullnameOverride: codsite
     domains:
       - cod.ch.tudelft.nl
+      - www.cod.ch.tudelft.nl
       - cod.wisv.ch
+      - www.cod.wisv.ch
     replicaCount: 1
     containerPort: 8080
     service:
