@@ -23,3 +23,9 @@ spec:
     backendRefs:
     - name: choice
       port: 80
+  - matches:
+    - path:
+        value: "/events"
+    backendRefs:
+    - name: events
+      port: 80
