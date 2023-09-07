@@ -26,7 +26,7 @@ spec:
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
-        url: https://events.wisv.ch
+        url: https://ch.tudelft.nl/events
       scope: openid, profile, email, auth
       claimName: google_groups
       groups:
