@@ -28,4 +28,4 @@ spec:
         value: "/events"
     backendRefs:
     - name: events
-      port: 80
+      port: 8080
