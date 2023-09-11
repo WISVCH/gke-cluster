@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiki
+  namespace: default
+  labels:
+    run: wiki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: wiki
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      name: wiki
+      labels:
+        run: wiki
+    spec:
+      containers:
+        - name: wiki
+          image: ghcr.io/wisvch/wiki:20230907-3fb3b22 # {"$imagepolicy": "flux-system:wiki"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+          - name: IAP_EXPECTED_AUDIENCE
+            value: /projects/966138216790/global/backendServices/2044437052005738173
+          resources:
+            limits:
+              cpu: 100m
+              memory: 300Mi
+            requests:
+              cpu: 50m
+              memory: 100Mi
+          volumeMounts:
+          - mountPath: /var/www/dokuwiki/data
+            name: wiki-data
+      volumes:
+        - name: wiki-data
+          persistentVolumeClaim:
+            claimName: wiki-storage
+
+    
