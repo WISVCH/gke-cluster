@@ -23,3 +23,9 @@ spec:
     backendRefs:
     - name: choice
       port: 80
+  - matches:
+    - path:
+        value: "/wiki"
+    backendRefs:
+    - name: wiki
+      port: 80
