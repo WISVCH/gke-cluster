@@ -1,13 +1,13 @@
 kind: ProtectedApplication
 apiVersion: gkebackup.gke.io/v1alpha2
 metadata:
-  name: wiki
+  name: listmonk
   namespace: default
   labels:
-    app.kubernetes.io/name: wiki
+    app.kubernetes.io/name: listmonk
 spec:
   resourceSelection:
     type: Selector
     selector:
       matchLabels:
-        app.kubernetes.io/name: wiki
+        app.kubernetes.io/name: listmonk
