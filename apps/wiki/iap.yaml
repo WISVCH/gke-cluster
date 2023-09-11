@@ -1,0 +1,17 @@
+# https://cloud.google.com/kubernetes-engine/docs/how-to/configure-gateway-resources#configure_iap
+apiVersion: networking.gke.io/v1
+kind: GCPBackendPolicy
+metadata:
+  name: wiki-backend-policy
+  namespace: default
+spec:
+  default:
+    iap:
+      enabled: true
+      oauth2ClientSecret:
+        name: iap-secret
+      clientID: 966138216790-us6sue108a879v3vk2om9inn3ftpobkg.apps.googleusercontent.com
+  targetRef:
+    group: ""
+    kind: Service
+    name: wiki
