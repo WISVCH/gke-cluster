@@ -1,10 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ingress-nginx.yaml
+  # - ingress-nginx.yaml
   - wisvch.yaml
   - jetstack.yaml
-  - transip-webhook.yaml
+  # - transip-webhook.yaml
   - cetic.yaml
   - fairwinds.yaml
   - bitnami.yaml
