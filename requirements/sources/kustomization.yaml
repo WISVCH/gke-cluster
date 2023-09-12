@@ -7,4 +7,3 @@ resources:
   # - transip-webhook.yaml
   - cetic.yaml
   - fairwinds.yaml
-  - bitnami.yaml
