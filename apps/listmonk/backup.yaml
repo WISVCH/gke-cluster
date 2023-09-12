@@ -4,10 +4,10 @@ metadata:
   name: listmonk
   namespace: default
   labels:
-    app.kubernetes.io/name: listmonk
+    app: listmonk
 spec:
   resourceSelection:
     type: Selector
     selector:
       matchLabels:
-        app.kubernetes.io/name: listmonk
+        app: listmonk
