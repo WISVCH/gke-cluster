@@ -5,12 +5,12 @@ metadata:
   name: passes
   namespace: default
   labels:
-    app: passes
+    run: passes
 spec:
   replicas: 1
   selector:
     matchLabels:
-     app: passes
+     run: passes
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -18,6 +18,8 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+    labels:
+      run: passes
     spec:
       volumes:
         - name: secret
