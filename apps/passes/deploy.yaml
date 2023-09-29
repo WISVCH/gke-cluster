@@ -18,8 +18,8 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-    labels:
-      app: passes
+      labels:
+        app: passes
     spec:
       volumes:
         - name: secret
