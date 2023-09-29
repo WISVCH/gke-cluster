@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -10,7 +9,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-     app: passes
+      app: passes
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -28,7 +27,7 @@ spec:
             defaultMode: 420
       containers:
         - name: passes
-          image: ghcr.io/wisvch/passes:20230929-14b7b19 # {"$imagepolicy": "flux-system:passes"}
+          image: ghcr.io/wisvch/passes:20230929-bb44a55 # {"$imagepolicy": "flux-system:passes"}
           imagePullPolicy: IfNotPresent
           env:
             - name: APPLE_PASS_TYPE_IDENTIFIER
