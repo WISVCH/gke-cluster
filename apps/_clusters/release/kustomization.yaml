@@ -17,6 +17,7 @@ resources:
   # - ../../flitcie
   - ../../hackdelft
   - ../../listmonk
+  - ../../passes
   - ../../mand
   - ../../website
   - ../../wiki
