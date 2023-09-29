@@ -50,8 +50,8 @@ spec:
                   name: passes
                   key: certificatePassword
           volumeMounts:
-            - mountPath: /secret
-              name: keys
+            - mountPath: /keys
+              name: secret
           ports:
             - name: http
               containerPort: 3000

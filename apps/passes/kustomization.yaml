@@ -3,5 +3,4 @@ kind: Kustomization
 resources:
   - image.yaml
   - deploy.yaml
-  - release.yaml
   - httproute.yaml
