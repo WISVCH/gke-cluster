@@ -50,6 +50,8 @@ spec:
                 secretKeyRef:
                   name: passes
                   key: certificatePassword
+            - name: TEMPLATE_PATH
+              value: "./Event.pass"
           volumeMounts:
             - mountPath: /keys
               name: secret
