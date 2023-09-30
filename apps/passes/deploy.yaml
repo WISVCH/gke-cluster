@@ -51,7 +51,7 @@ spec:
                   name: passes
                   key: certificatePassword
             - name: TEMPLATE_PATH
-              value: "./Event.pass"
+              value: "/usr/local/bin/Event.pass"
           volumeMounts:
             - mountPath: /keys
               name: secret
