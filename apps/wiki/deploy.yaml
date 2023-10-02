@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: wiki
-          image: ghcr.io/wisvch/wiki:20230907-3fb3b22 # {"$imagepolicy": "flux-system:wiki"}
+          image: ghcr.io/wisvch/wiki:20231002-3fb3b22 # {"$imagepolicy": "flux-system:wiki"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -43,8 +43,8 @@ spec:
             successThreshold: 1
             timeoutSeconds: 5
           env:
-          - name: IAP_EXPECTED_AUDIENCE
-            value: /projects/966138216790/global/backendServices/2044437052005738173
+            - name: IAP_EXPECTED_AUDIENCE
+              value: /projects/966138216790/global/backendServices/2044437052005738173
           resources:
             limits:
               cpu: 100m
@@ -53,11 +53,9 @@ spec:
               cpu: 50m
               memory: 100Mi
           volumeMounts:
-          - mountPath: /var/www/dokuwiki/data
-            name: wiki-data
+            - mountPath: /var/www/dokuwiki/data
+              name: wiki-data
       volumes:
         - name: wiki-data
           persistentVolumeClaim:
             claimName: wiki-storage
-
-    
