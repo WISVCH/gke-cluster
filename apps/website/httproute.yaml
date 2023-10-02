@@ -29,9 +29,3 @@ spec:
     backendRefs:
     - name: wiki
       port: 80
-  - matches:
-    - path:
-        value: "/passes"
-    backendRefs:
-    - name: passes
-      port: 80

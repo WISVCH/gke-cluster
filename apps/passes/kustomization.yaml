@@ -4,5 +4,3 @@ resources:
   - image.yaml
   - service.yaml
   - deploy.yaml
-  - httproute.yaml
-  - healthcheck.yaml
