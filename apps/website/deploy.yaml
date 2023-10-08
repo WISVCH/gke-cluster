@@ -51,7 +51,7 @@ spec:
         - name: W3CIE_THEME
           value: https://github.com/WISVCH/rechallenge/archive/master.zip
         - name: W3CIE_PLUGINS
-          value: disable-comments,disable-search,post-types-order,wordpress-seo,https://github.com/daggerhart/openid-connect-generic/archive/dev.zip,https://github.com/WISVCH/wisvch-wordpress-plugin/archive/master.zip,depublish-posts,redirection,ewww-image-optimizer,photo-gallery,10web-manager,instagram-feed,wp-statistics
+          value: disable-comments,disable-search,post-types-order,wordpress-seo,https://github.com/daggerhart/openid-connect-generic/archive/dev.zip,https://github.com/WISVCH/wisvch-wordpress-plugin/archive/master.zip,depublish-posts,redirection,ewww-image-optimizer,photo-gallery,10web-manager,instagram-feed,wp-statistics,https://github.com/robertdijk/zettle-stock/archive/master.zip
         - name: APACHE_LOG_DIR
           value: /var/log/apache/
         resources:
