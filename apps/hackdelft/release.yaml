@@ -30,7 +30,7 @@ spec:
           port: 80
         image:
           repository: ghcr.io/wisvch/hackdelft-2024
-          tag: 20231009-67c937d # {"$imagepolicy": "flux-system:hackdelft-2024:tag"}
+          tag: 20231009-0e2e104 # {"$imagepolicy": "flux-system:hackdelft-2024:tag"}
           pullPolicy: IfNotPresent
           pullSecrets: {}
       "2022":
