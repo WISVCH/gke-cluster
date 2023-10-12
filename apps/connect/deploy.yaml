@@ -29,7 +29,7 @@ spec:
           - name: JAVA_OPTS
             value: -Xms400m -Xmx400m -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom
               -Dspring.config.location=/connect/application.properties -Dspring.profiles.active=production
-        image: ghcr.io/wisvch/connect:20230812-ec797b9@sha256:64e95734912f44b4f7f17f270668d04023ada606f5f1999a307abc3b52b593ee
+        image: ghcr.io/wisvch/connect:20230812-ec797b9@sha256:64e95734912f44b4f7f17f270668d04023ada606f5f1999a307abc3b52b593ee  # {"$imagepolicy": "flux-system:connect"}
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
