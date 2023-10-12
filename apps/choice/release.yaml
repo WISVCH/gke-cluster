@@ -19,14 +19,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/wisvch/choice
-      tag: 20231012-d53afcd # {"$imagepolicy": "flux-system:choice:tag"}    
-    oauth:
-      issuer: https://connect.ch.tudelft.nl
-      client:
-        url: https://ch.tudelft.nl/choice2
-      scope: openid, profile, email, auth
-      groups:
-        admin: beheer,bestuur,vc,epa
+      tag: 20230702-74bf65e # {"$imagepolicy": "flux-system:choice:tag"}
     postgres:
       database: choice
     hibernate:
@@ -52,7 +45,3 @@ spec:
       name: postgres
       valuesKey: password
       targetPath: postgres.password
-    - kind: Secret
-      name: choice
-      valuesKey: connect-client-secret
-      targetPath: oauth.client.secret
