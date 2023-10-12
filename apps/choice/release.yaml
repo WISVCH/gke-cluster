@@ -19,7 +19,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/wisvch/choice
-      tag: 20231012-d53afcd # {"$imagepolicy": "flux-system:choice:tag"}
+      tag: 20231012-be2b9f7 # {"$imagepolicy": "flux-system:choice:tag"}
     postgres:
       database: choice
     hibernate:
