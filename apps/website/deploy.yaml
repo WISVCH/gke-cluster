@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,7 +25,7 @@ spec:
       serviceAccountName: website
       containers:
       - name: website
-        image: ghcr.io/wisvch/website:20230813-7b949fc # {"$imagepolicy": "flux-system:website"}
+        image: ghcr.io/wisvch/website:20231002-9719b65 # {"$imagepolicy": "flux-system:website"}
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
@@ -69,11 +68,11 @@ spec:
       - name: cloud-sql-proxy
         image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.6.0
         args:
-          - "--structured-logs"
-          - "--private-ip"
-          - "--port=3306"
-          - "-i"
-          - "wisvch:europe-west4:cees"
+        - "--structured-logs"
+        - "--private-ip"
+        - "--port=3306"
+        - "-i"
+        - "wisvch:europe-west4:cees"
         securityContext:
           runAsNonRoot: true
         resources:
