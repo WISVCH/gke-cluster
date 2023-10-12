@@ -57,7 +57,7 @@ spec:
           timeoutSeconds: 5
         resources:
           limits:
-            memory: 900Mi
+            memory: 700Mi
           requests:
             cpu: 250m
             memory: 550Mi
@@ -77,10 +77,10 @@ spec:
           runAsNonRoot: true
         resources:
           limits:
-            memory: 200Mi
+            memory: 100Mi
           requests:
             cpu: 20m
-            memory: 100Mi
+            memory: 50Mi
       volumes:
         - name: connect
           secret:
