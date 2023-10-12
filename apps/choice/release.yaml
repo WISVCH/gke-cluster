@@ -19,7 +19,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/wisvch/choice
-      tag: 20230702-74bf65e # {"$imagepolicy": "flux-system:choice:tag"}    
+      tag: 20231012-4fd8789 # {"$imagepolicy": "flux-system:choice:tag"}    
     oauth:
       issuer: https://connect.ch.tudelft.nl
       client:
