@@ -26,10 +26,9 @@ spec:
       containers:
       - name: connect
         env:
-          - name: JAVA_OPTS
-            value: -Xms400m -Xmx400m -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom
-              -Dspring.config.location=/connect/application.properties -Dspring.profiles.active=production
-        image: ghcr.io/wisvch/connect:20231012-89f5c1e  # {"$imagepolicy": "flux-system:connect"}
+        - name: JAVA_OPTS
+          value: -Xms400m -Xmx400m -XX:+ExitOnOutOfMemoryError -Djava.security.egd=file:/dev/./urandom -Dspring.config.location=/connect/application.properties -Dspring.profiles.active=production
+        image: ghcr.io/wisvch/connect:20231017-87a802f # {"$imagepolicy": "flux-system:connect"}
         imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 3
@@ -42,9 +41,9 @@ spec:
           successThreshold: 1
           timeoutSeconds: 5
         ports:
-          - containerPort: 8080
-            name: http
-            protocol: TCP
+        - containerPort: 8080
+          name: http
+          protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
@@ -62,17 +61,17 @@ spec:
             cpu: 250m
             memory: 550Mi
         volumeMounts:
-          - mountPath: /connect
-            name: connect
-            readOnly: true
+        - mountPath: /connect
+          name: connect
+          readOnly: true
       - name: cloud-sql-proxy
         image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.0.0
         args:
-          - "--structured-logs"
-          - "--private-ip"
-          - "--port=5432"
-          - "-i" # Enables automatic authentication through the serviceaccount
-          - "wisvch:europe-west4:geurt"
+        - "--structured-logs"
+        - "--private-ip"
+        - "--port=5432"
+        - "-i" # Enables automatic authentication through the serviceaccount
+        - "wisvch:europe-west4:geurt"
         securityContext:
           runAsNonRoot: true
         resources:
@@ -82,7 +81,7 @@ spec:
             cpu: 20m
             memory: 50Mi
       volumes:
-        - name: connect
-          secret:
-            defaultMode: 420
-            secretName: connect
+      - name: connect
+        secret:
+          defaultMode: 420
+          secretName: connect
