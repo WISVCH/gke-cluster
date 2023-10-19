@@ -25,6 +25,12 @@ spec:
       port: 80
   - matches:
     - path:
+        value: "/events"
+    backendRefs:
+    - name: events
+      port: 80
+  - matches:
+    - path:
         value: "/choice2/api"
     backendRefs:
     - name: choice-external
