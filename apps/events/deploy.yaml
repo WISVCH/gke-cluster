@@ -1,0 +1,170 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: events
+  namespace: default
+  labels:
+    app: events
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: events
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: events
+    spec:
+      serviceAccountName: events
+      containers:
+        - name: events
+          image: ghcr.io/wisvch/events:20231012-2728d29 # {"$imagepolicy": "flux-system:events"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /events/actuator/health/liveness
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /events/actuator/health/readiness
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: MANAGEMENT_CONTEXT_PATH
+              value: /management
+            - name: MANAGEMENT_ENDPOINTS_ENABLED
+              value: "false"
+            - name: MANAGEMENT_ENDPOINTS_HEALTH_ENABLED
+              value: "true"
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: /events/
+            - name: SERVER_FORWARD_HEADERS_STRATEGY
+              value: "FRAMEWORK"
+            - name: SERVER_ADDRESS
+              value: "0.0.0.0"
+            - name: SPRING_MAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: host
+            - name: SPRING_MAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: port
+            - name: SPRING_MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: username
+            - name: SPRING_MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: password
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
+              value: "true"
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
+              value: "true"
+            - name: SPRING_PROFILES_ACTIVE
+              value: production
+            - name: SPRING_HTTP_MULTIPART_MAX_FILE_SIZE
+              value: 5mb
+            - name: JAVA_OPTS
+              value: -Xms128m -Xmx192m
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: password
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://127.0.0.1:5432/events
+            - name: SPRING_JPA_HIBERNATE_HB2MDDL_AUTO
+              value: validate
+            - name: SPRING_JPA_GENERATE_DDL
+              value: "false"
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
+              value: https://connect.ch.tudelft.nl
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_CLIENTURI
+              value: https://ch.tudelft.nl/events
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
+              value: events-cloud
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: events
+                  key: connect-client-secret
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_SCOPE
+              value: openid, profile, email, auth
+            - name: SPRING_FLYWAY_ENABLED
+              value: "true"
+            - name: SPRING_FLYWAY_SCHEMAS
+              value: event
+            - name: SPRING_FLYWAY_TABLE
+              value: schema_version
+            - name: TZ
+              value: Europe/Amsterdam
+            - name: WISVCH_CONNECT_ADMIN_GROUPS
+              value: chbeheer,dienst2,epa,vc
+            - name: WISVCH_CONNECT_BETA_USERS
+              value: joepj,juliand,danys
+            - name: WISVCH_CONNECT_CLAIM_NAME
+              value: google_groups
+            - name: WISVCH_EVENTS_IMAGE_PATH
+              value: https://ch.tudelft.nl/events/api/v1/documents/
+            - name: MOLLIE_CLIENTURI
+              value: https://ch.tudelft.nl/events
+            - name: MOLLIE_APIKEY
+              valueFrom:
+                secretKeyRef:
+                  name: events
+                  key: mollie-key
+            - name: LINKS_GTC
+              value: "https://ch.tudelft.nl/wp-content/uploads/Deelnemersvoorwaarden_versie_12_06_2023.pdf"
+            - name: LINKS_PASSES
+              value: "http://passes.default.svc.cluster.local./passes"
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 150Mi
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.0.0
+          args:
+            - "--structured-logs"
+            - "--private-ip"
+            - "--port=5432"
+            - "-i" # Enables automatic authentication through the serviceaccount
+            - "wisvch:europe-west4:geurt"
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 20m
+              memory: 100Mi
