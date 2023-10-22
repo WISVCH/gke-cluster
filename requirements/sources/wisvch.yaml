@@ -4,7 +4,9 @@ metadata:
   name: wisvch
   namespace: flux-system
 spec:
-  interval: 10m
-  url: https://github.com/WISVCH/charts.git
+  interval: 15m
   ref:
     branch: main
+  secretRef:
+    name: flux-system
+  url: ssh://git@github.com/WISVCH/charts
