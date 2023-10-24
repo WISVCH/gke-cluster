@@ -1,8 +1,9 @@
+---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy
 metadata:
-  name: choice
   namespace: default
+  name: choice
 spec:
   default:
     config:
@@ -15,4 +16,23 @@ spec:
   targetRef:
     group: ""
     kind: Service
-    name: choice
+    name: choice-external
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  namespace: default
+  name: choice-internal
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 8080
+        requestPath: /choice2/actuator/health/readiness
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: choice-internal

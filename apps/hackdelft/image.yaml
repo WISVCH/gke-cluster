@@ -1,4 +1,30 @@
+# 2024
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: hackdelft-2024
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/hackdelft-2024
+  interval: 15m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: hackdelft-2024
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hackdelft-2024
+  filterTags:
+    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc
+
 # 2022
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:

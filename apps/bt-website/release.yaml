@@ -1,7 +1,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: nwerc-2023
+  name: bt-website
   namespace: default
 spec:
   interval: 15m
@@ -16,17 +16,17 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    nameOverride: nwerc-2023
-    fullnameOverride: nwerc-2023
+    fullnameOverride: bt-website
     domains:
-    - 2023.nwerc.eu
+      - businesstour.ch.tudelft.nl
+      - businesstour.wisv.ch
     replicaCount: 1
     containerPort: 8080
     service:
       type: ClusterIP
       port: 80
     image:
-      repository: ghcr.io/wisvch/nwerc-2023
-      tag: 20231022-1e60127 # {"$imagepolicy": "flux-system:nwerc-2023:tag"}
+      repository: ghcr.io/wisvch/btwebsite2024
+      tag: 20231018-65c136b # {"$imagepolicy": "flux-system:bt-website:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
