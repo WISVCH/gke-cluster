@@ -27,6 +27,6 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/btwebsite2024
-      tag: 20231018-65c136b # {"$imagepolicy": "flux-system:bt-website:tag"}
+      tag: 20231026-f77f2ed # {"$imagepolicy": "flux-system:bt-website:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
