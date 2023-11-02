@@ -20,12 +20,13 @@ spec:
       filters:
         - type: RequestRedirect
           requestRedirect:
+            hostname: ch.tudelft.nl
             path:
               type: ReplacePrefixMatch
               replacePrefixMatch: /events
-            statusCode: 302
+            statusCode: 301
     - matches:
-        - path:
+        - path: 
             type: PathPrefix
             value: /events
       backendRefs: 
