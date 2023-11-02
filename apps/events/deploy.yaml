@@ -7,9 +7,6 @@ metadata:
     app: events
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: events
   strategy:
     type: RollingUpdate
     rollingUpdate:
