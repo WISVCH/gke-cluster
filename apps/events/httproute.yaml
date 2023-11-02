@@ -13,13 +13,22 @@ spec:
   hostnames:
     - events.wisv.ch
   rules:
-    - filters:
-        - type: URLRewrite
-          urlRewrite:
-            hostname: ch.tudelft.nl
+    - matches:
+      - path: 
+          type: PathPrefix
+          value: /
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
             path:
               type: ReplacePrefixMatch
               replacePrefixMatch: /events
-      backendRefs:
+            statusCode: 302
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /events
+      backendRefs: 
+      # Somehow backendRefs is required for redirects..
       - name: events
         port: 80
