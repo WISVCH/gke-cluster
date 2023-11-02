@@ -17,6 +17,7 @@ spec:
       maxUnavailable: 0
   template:
     metadata:
+      name: events
       labels:
         app: events
     spec:
