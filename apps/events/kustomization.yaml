@@ -4,5 +4,6 @@ resources:
   - image.yaml
   - service.yaml
   - deploy.yaml
+  - healthcheck.yaml
   - httproute.yaml
   - serviceaccount.yaml
