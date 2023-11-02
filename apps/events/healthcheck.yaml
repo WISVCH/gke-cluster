@@ -16,4 +16,4 @@ spec:
   targetRef:
     group: ""
     kind: Service
-    name: events-wisvch-redirect
+    name: events
