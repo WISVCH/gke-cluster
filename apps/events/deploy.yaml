@@ -62,21 +62,25 @@ spec:
             - name: SERVER_ADDRESS
               value: "0.0.0.0"
             - name: SPRING_MAIL_HOST
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: mail
                   key: host
             - name: SPRING_MAIL_PORT
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: mail
                   key: port
             - name: SPRING_MAIL_USERNAME
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: mail
                   key: username
             - name: SPRING_MAIL_PASSWORD
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: mail
@@ -92,11 +96,13 @@ spec:
             - name: JAVA_OPTS
               value: -Xms128m -Xmx192m
             - name: SPRING_DATASOURCE_USERNAME
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: postgres
                   key: username
             - name: SPRING_DATASOURCE_PASSWORD
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: postgres
@@ -114,6 +120,7 @@ spec:
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
               value: events-cloud
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_SECRET
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: events
@@ -139,6 +146,7 @@ spec:
             - name: MOLLIE_CLIENTURI
               value: https://ch.tudelft.nl/events
             - name: MOLLIE_APIKEY
+              value: null
               valueFrom:
                 secretKeyRef:
                   name: events
