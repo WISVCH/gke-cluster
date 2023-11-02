@@ -20,17 +20,8 @@ spec:
       filters:
         - type: RequestRedirect
           requestRedirect:
-            # Hostname seems not to work.. Therefore we serve the app on /events too.
-            # TODO: fix this.
             hostname: ch.tudelft.nl
             path:
               type: ReplacePrefixMatch
               replacePrefixMatch: /events
             statusCode: 301
-    - matches:
-        - path: 
-            type: PathPrefix
-            value: /events
-      backendRefs: 
-      - name: events
-        port: 80
