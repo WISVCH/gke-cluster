@@ -13,13 +13,6 @@ spec:
   hostnames:
     - events.wisv.ch
   rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: null
-      backendRefs:
-      - name: events
-        port: 80
     - filters:
         - type: URLRewrite
           urlRewrite:
@@ -27,3 +20,6 @@ spec:
             path:
               type: ReplacePrefixMatch
               replacePrefixMatch: /events
+      backendRefs:
+      - name: events
+        port: 80
