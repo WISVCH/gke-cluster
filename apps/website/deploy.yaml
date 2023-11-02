@@ -25,7 +25,7 @@ spec:
       serviceAccountName: website
       containers:
       - name: website
-        image: ghcr.io/wisvch/website:20231012-9719b65 # {"$imagepolicy": "flux-system:website"}
+        image: ghcr.io/wisvch/website:20231102-9719b65 # {"$imagepolicy": "flux-system:website"}
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
