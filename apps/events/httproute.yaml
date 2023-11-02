@@ -16,12 +16,14 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /
+            value: null
+      backendRefs:
+      - name: events
+        port: 80
     - filters:
-        - type: RequestRedirect
-          requestRedirect:
+        - type: URLRewrite
+          urlRewrite:
             hostname: ch.tudelft.nl
             path:
               type: ReplacePrefixMatch
               replacePrefixMatch: /events
-            statusCode: 302
