@@ -118,7 +118,11 @@ spec:
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_CLIENTURI
               value: https://ch.tudelft.nl/events
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
-              value: events-cloud
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: events
+                  key: connect-client-id
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_SECRET
               value: null
               valueFrom:
