@@ -22,8 +22,8 @@ spec:
         domains:
           - coh.ewi.tudelft.nl
           - icpc.tudelft.nl
-        tlsSecret: chtudelft-tls
     domains:
+    - alumni.ch.tudelft.nl
     - commissies.ch.tudelft.nl
     - eerstejaarsweekend.nl
     - lustrum.ch
