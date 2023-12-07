@@ -4,3 +4,5 @@ resources:
   - wisvch.yaml
   - cetic.yaml
   - fairwinds.yaml
+  - grafana.yaml
+  - victoriametrics.yaml
