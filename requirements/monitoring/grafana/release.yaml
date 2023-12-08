@@ -15,6 +15,11 @@ spec:
         name: grafana
         namespace: flux-system
   values:
+    serviceAccount:
+      create: true
+      name: grafana
+      annotations:
+        iam.gke.io/gcp-service-account: grafana@wisvch.iam.gserviceaccount.com
     grafana.ini:
       instance_name: "W.I.S.V. Christiaan Huygens Metrics"
       security:
@@ -60,6 +65,11 @@ spec:
             isDefault: true
             updateIntervalSeconds: 10
             editable: false
+          - name: Google Cloud Monitoring
+            type: stackdriver
+            access: proxy
+            jsonData:
+              authenticationType: gce
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
