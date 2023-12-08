@@ -74,10 +74,6 @@ spec:
               path: /var/lib/grafana/dashboards/default
     dashboards:
       default:
-        ingress:
-          gnetId: 9614
-          revision: 1
-          datasource: victoriametrics
         victoriametrics:
           gnetId: 10229
           revision: 23
