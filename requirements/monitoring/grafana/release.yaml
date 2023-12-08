@@ -24,6 +24,10 @@ spec:
         reporting_enabled: false
       users:
         viewers_can_edit: true
+      profile:
+        enabled: false
+      news:
+        news_feed_enabled: false
       auth.jwt:
         # By default, auth.jwt is disabled.
         enabled: true
