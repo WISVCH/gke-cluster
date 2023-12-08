@@ -58,6 +58,9 @@ spec:
             limits:
               cpu: 300m
               memory: 500Mi
+            requests:
+              cpu: 30m
+              memory: 50Mi
           volumeMounts:
             - mountPath: /connect
               name: connect
@@ -76,6 +79,9 @@ spec:
             limits:
               cpu: 100m
               memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
       volumes:
         - name: connect
           secret:
