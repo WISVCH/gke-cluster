@@ -12,31 +12,31 @@ metadata:
 spec:
   gatewayClassName: gke-l7-global-external-managed
   listeners:
-  - name: https
-    protocol: HTTPS
-    port: 443
-    allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
-      namespaces:
-        from: All
-    tls:
-      mode: Terminate
-      options:
-        networking.gke.io/pre-shared-certs: wisvch-20230815, wisvch-20230901, chipcie-nwerc-bapc, nwerc-redirect, hackdelft-certs, areafiftylan-legacy, wisvch-20231010, wisvch-20231010-1, wisvch-20231108
-  - name: http
-    protocol: HTTP
-    port: 80
-    allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
-      namespaces:
-        from: Same
+    - name: https
+      protocol: HTTPS
+      port: 443
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        options:
+          networking.gke.io/pre-shared-certs: wisvch-20230815, wisvch-20230901, chipcie-nwerc-bapc, nwerc-redirect, hackdelft-certs, areafiftylan-legacy, wisvch-20231010, wisvch-20231010-1, wisvch-20231108, mcrt-ffe137ff-4e27-40c6-b482-65247f63002c
+    - name: http
+      protocol: HTTP
+      port: 80
+      allowedRoutes:
+        kinds:
+          - kind: HTTPRoute
+        namespaces:
+          from: Same
   addresses:
-  - type: NamedAddress
-    value: gce-load-balancer-ipv4
-  - type: NamedAddress
-    value: gce-load-balancer-ipv6
+    - type: NamedAddress
+      value: gce-load-balancer-ipv4
+    - type: NamedAddress
+      value: gce-load-balancer-ipv6
 ---
 kind: HTTPRoute
 apiVersion: gateway.networking.k8s.io/v1beta1
@@ -45,11 +45,11 @@ metadata:
   namespace: gateway-infra
 spec:
   parentRefs:
-  - namespace: gateway-infra
-    name: gateway
-    sectionName: http
+    - namespace: gateway-infra
+      name: gateway
+      sectionName: http
   rules:
-  - filters:
-    - type: RequestRedirect
-      requestRedirect:
-        scheme: https
+    - filters:
+        - type: RequestRedirect
+          requestRedirect:
+            scheme: https
