@@ -49,7 +49,6 @@ spec:
         cache_ttl: 60m
         # This can be seen as a required "subset" of a JWT Claims Set.
         expect_claims: '{"iss": "https://cloud.google.com/iap","aud": "/projects/966138216790/global/backendServices/7418003389199337678"}'
-
     persistence:
       enabled: true
       size: 1Gi
@@ -69,6 +68,7 @@ spec:
             type: stackdriver
             access: proxy
             jsonData:
+              defaultProject: wisvch
               authenticationType: gce
     dashboardProviders:
       dashboardproviders.yaml:
