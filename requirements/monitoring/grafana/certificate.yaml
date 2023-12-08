@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: monitoring
+  namespace: default
+spec:
+  domains:
+    - montoring.wisv.ch
