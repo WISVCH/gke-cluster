@@ -1,8 +1,8 @@
 apiVersion: networking.gke.io/v1
 kind: ManagedCertificate
 metadata:
-  name: monitoring
+  name: grafana
   namespace: default
 spec:
   domains:
-    - montoring.wisv.ch
+    - grafana.wisv.ch
