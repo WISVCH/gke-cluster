@@ -24,6 +24,24 @@ spec:
         reporting_enabled: false
       users:
         viewers_can_edit: true
+      auth:
+        jwt:
+          # By default, auth.jwt is disabled.
+          enabled: true
+          # HTTP header to look into to get a JWT token.
+          header_name: x-goog-iap-jwt-assertion
+          # Specify a claim to use as a username to sign in.
+          username_claim: sub
+          # Specify a claim to use as an email to sign in.
+          email_claim: email
+          # auto-create users if they are not already matched
+          auto_sign_up: true
+          jwk_set_url: https://www.gstatic.com/iap/verify/public_key-jwk
+          # Cache TTL for data loaded from http endpoint.
+          cache_ttl: 60m
+          # This can be seen as a required "subset" of a JWT Claims Set.
+          expect_claims: '{"iss": "https://cloud.google.com/iap","aud": "/projects/966138216790/global/backendServices/7418003389199337678"}'
+
     persistence:
       enabled: true
       size: 1Gi
