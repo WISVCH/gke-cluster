@@ -92,5 +92,9 @@ spec:
           gnetId: 14205
           revision: 1
           datasource: victoriametrics
+        flux:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
+        flux-control:
+          url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/control-plane.json
     ingress:
       enabled: false
