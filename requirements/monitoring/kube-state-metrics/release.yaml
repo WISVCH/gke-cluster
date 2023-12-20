@@ -23,4 +23,4 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: flux-kube-state-metrics-config
-      valuesKey: kube-state-metrics-config.yaml
+      valuesKey: config.yaml
