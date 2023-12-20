@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: dienst2
@@ -72,15 +72,15 @@ metadata:
   namespace: default
 spec:
   parentRefs:
-  - kind: Gateway
-    namespace: gateway-infra
-    name: gateway
+    - kind: Gateway
+      namespace: gateway-infra
+      name: gateway
   hostnames:
-  - dienst2.ch.tudelft.nl
+    - dienst2.ch.tudelft.nl
   rules:
-  - backendRefs:
-    - name: dienst2
-      port: 80
+    - backendRefs:
+        - name: dienst2
+          port: 80
 ---
 apiVersion: v1
 kind: Service
@@ -89,10 +89,10 @@ metadata:
   namespace: default
 spec:
   ports:
-  - name: http
-    protocol: TCP
-    port: 80
-    targetPort: 8000
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
   selector:
     run: dienst2
   type: ClusterIP

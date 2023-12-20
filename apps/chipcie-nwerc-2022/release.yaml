@@ -1,4 +1,4 @@
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: chipcie-nwerc-2022
@@ -19,7 +19,7 @@ spec:
     nameOverride: chipcie-nwerc-2022
     fullnameOverride: chipcie-nwerc-2022
     domains:
-    - 2022.nwerc.eu
+      - 2022.nwerc.eu
     replicaCount: 1
     containerPort: 8080
     service:
