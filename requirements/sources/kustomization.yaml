@@ -6,3 +6,4 @@ resources:
   - fairwinds.yaml
   - grafana.yaml
   - victoriametrics.yaml
+  - prometheus.yaml
