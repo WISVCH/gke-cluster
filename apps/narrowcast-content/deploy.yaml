@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: narrowcast-content
+  namespace: default
+  labels:
+    app: narrowcast-content
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: narrowcast-content
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: narrowcast-content
+      labels:
+        app: narrowcast-content
+    spec:
+      serviceAccountName: narrowcast-content
+      containers:
+        - name: narrowcast-content
+          image: ghcr.io/wisvch/narrowcast-content:20240101-8977ef0 # {"$imagepolicy": "flux-system:narrowcast-content"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: FLASK_SECRET_KEY
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: narrowcast-content
+                  key: FLASK_SECRET_KEY
+            - name: FLASK_SPOTIPY_CLIENT_ID
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: narrowcast-content
+                  key: FLASK_SPOTIPY_CLIENT_ID
+            - name: FLASK_SPOTIPY_CLIENT_SECRET
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: narrowcast-content
+                  key: FLASK_SPOTIPY_CLIENT_SECRET
+            - name: FLASK_TOKENS
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: narrowcast-content
+                  key: FLASK_TOKENS
+            - name: FLASK_SPOTIPY_REDIRECT_URI
+              value: https://narrowcast-content.wisv.ch/spotify_now_playing/api_callback
+            - name: FLASK_PUB_GOOGLE_CALENDAR_ID
+              value: 8revkk28m0gu20p11ccmp0nrng@group.calendar.google.com
+            - name: FLASK_PUB_GOOGLE_CALENDAR_API_KEY
+              value: AIzaSyBuaSuYTLnUyOrBcV6OOXEjZXP96qB3Aes
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 150Mi

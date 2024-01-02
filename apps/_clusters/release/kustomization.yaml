@@ -18,6 +18,7 @@ resources:
   # - ../../flitcie
   - ../../hackdelft
   - ../../listmonk
+  - ../../narrowcast-content
   - ../../passes
   - ../../mand
   - ../../website
