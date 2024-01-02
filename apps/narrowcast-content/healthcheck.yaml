@@ -1,0 +1,19 @@
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  namespace: default
+  name: narrowcast-content
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 8080
+        requestPath: /health
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: narrowcast-content

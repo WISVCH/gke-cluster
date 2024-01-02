@@ -5,3 +5,4 @@ resources:
   - deploy.yaml
   - httproute.yaml
   - service.yaml
+  - healthcheck.yaml
