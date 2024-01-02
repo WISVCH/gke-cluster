@@ -24,7 +24,7 @@ spec:
       serviceAccountName: narrowcast-content
       containers:
         - name: narrowcast-content
-          image: ghcr.io/wisvch/narrowcast-content:20240101-8977ef0 # {"$imagepolicy": "flux-system:narrowcast-content"}
+          image: ghcr.io/wisvch/narrowcast-content:20240102-8977ef0 # {"$imagepolicy": "flux-system:narrowcast-content"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
