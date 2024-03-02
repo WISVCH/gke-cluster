@@ -19,7 +19,7 @@ spec:
     replicaCount: 1
     image:
       repository: ghcr.io/wisvch/mand
-      tag: 20240202-dec76bd # {"$imagepolicy": "flux-system:mand:tag"}
+      tag: 20240302-dec76bd # {"$imagepolicy": "flux-system:mand:tag"}
     auth:
       url: https://connect.ch.tudelft.nl
       clientId: mand
