@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: annugame
+  namespace: default
+  labels:
+    app: annugame
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: annugame
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: annugame
+      labels:
+        app: annugame
+    spec:
+      containers:
+        - name: annugame24
+          image: ghcr.io/wisvch/ghcr.io/wisvch/annugame24:20240307-1d938da # {"$imagepolicy": "flux-system:annugame"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 150Mi
