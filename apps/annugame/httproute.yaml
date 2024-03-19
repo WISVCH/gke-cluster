@@ -11,6 +11,13 @@ spec:
   hostnames:
   - annugame.wisv.ch
   rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /api
+    backendRefs:
+    - name: annugame-leaderboard
+      port: 5000
   - backendRefs:
     - name: annugame
       port: 80

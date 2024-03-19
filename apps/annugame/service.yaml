@@ -11,6 +11,10 @@ spec:
     port: 80
     protocol: TCP
     targetPort: 80
+  - name: backend
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
   selector:
     app: annugame
   sessionAffinity: None

@@ -21,3 +21,28 @@ spec:
   policy:
     numerical:
       order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: annugame-leaderboard
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/annugame-leaderboard
+  interval: 15m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: annugame-leaderboard
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: annugame-leaderboard
+  filterTags:
+    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc
+
