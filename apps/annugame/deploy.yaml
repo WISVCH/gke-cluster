@@ -21,7 +21,6 @@ spec:
       labels:
         app: annugame
     spec:
-      serviceAccountName: annugame
       containers:
         - name: annugame24
           image: ghcr.io/wisvch/annugame24:20240319-482166f # {"$imagepolicy": "flux-system:annugame"}
