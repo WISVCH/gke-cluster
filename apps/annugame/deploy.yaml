@@ -80,3 +80,5 @@ spec:
             requests:
               cpu: 50m
               memory: 150Mi
+          env:
+            BASE: ""
