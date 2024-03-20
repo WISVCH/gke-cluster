@@ -16,7 +16,7 @@ spec:
         type: PathPrefix
         value: /api
     backendRefs:
-    - name: annugame-leaderboard
+    - name: annugame
       port: 5000
   - backendRefs:
     - name: annugame
