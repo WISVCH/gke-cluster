@@ -6,4 +6,3 @@ resources:
   - httproute.yaml
   - service.yaml
   - healthcheck.yaml
-  - serviceaccount.yaml

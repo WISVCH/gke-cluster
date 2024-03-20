@@ -81,36 +81,4 @@ spec:
             requests:
               cpu: 50m
               memory: 150Mi
-          env:
-            - name: POSTGRES_HOST
-              value: "127.0.0.1"
-            - name: POSTGRES_DB
-              value: annugame
-            - name: POSTGRES_USER
-              value: null
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: username
-            - name: POSTGRES_PASS
-              value: null
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: password
-        - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.0.0
-          args:
-            - "--structured-logs"
-            - "--private-ip"
-            - "--port=5432"
-            - "-i" # Enables automatic authentication through the serviceaccount
-            - "wisvch:europe-west4:geurt"
-          securityContext:
-            runAsNonRoot: true
-          resources:
-            limits:
-              memory: 200Mi
-            requests:
-              cpu: 20m
-              memory: 100Mi
+      
