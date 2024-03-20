@@ -81,4 +81,5 @@ spec:
               cpu: 50m
               memory: 150Mi
           env:
-            BASE: ""
+          - name: "BASE"
+            value: ""
