@@ -60,7 +60,7 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /api/
               port: backend
             initialDelaySeconds: 15
             periodSeconds: 20
@@ -68,7 +68,7 @@ spec:
             timeoutSeconds: 5
           readinessProbe:
             httpGet:
-              path: /
+              path: /api/
               port: backend
             initialDelaySeconds: 15
             periodSeconds: 20
@@ -82,4 +82,4 @@ spec:
               memory: 150Mi
           env:
           - name: "BASE"
-            value: ""
+            value: "/api"
