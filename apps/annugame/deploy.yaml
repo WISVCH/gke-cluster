@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: annugame24
-          image: ghcr.io/wisvch/annugame24:20240319-482166f # {"$imagepolicy": "flux-system:annugame"}
+          image: ghcr.io/wisvch/annugame24:20240325-3d1fa06 # {"$imagepolicy": "flux-system:annugame"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -81,5 +81,5 @@ spec:
               cpu: 50m
               memory: 150Mi
           env:
-          - name: "BASE"
-            value: "/api"
+            - name: "BASE"
+              value: "/api"
