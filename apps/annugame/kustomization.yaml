@@ -6,3 +6,4 @@ resources:
   - httproute.yaml
   - service.yaml
   - healthcheck.yaml
+  - pv.yaml
