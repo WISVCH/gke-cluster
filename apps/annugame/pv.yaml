@@ -16,7 +16,7 @@ spec:
     name: annugame-storage
   csi:
     driver: pd.csi.storage.gke.io
-    volumeHandle: projects/wisvch/zones/europe-west4-c/disks/annugame-storage
+    # volumeHandle: projects/wisvch/zones/europe-west4-c/disks/annugame-storage
     fsType: ext4
 ---
 apiVersion: v1
