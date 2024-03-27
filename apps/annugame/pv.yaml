@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: default
+  name: annugame-storage
+  labels:
+    app: annugame
+spec:
+  storageClassName: "standard-retain"
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    namespace: default
+    name: annugame-storage
+  csi:
+    driver: pd.csi.storage.gke.io
+    volumeHandle: projects/wisvch/zones/europe-west4-c/disks/annugame-storage
+    fsType: ext4
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: default
+  name: annugame-storage
+  labels:
+    app: annugame
+spec:
+  storageClassName: "standard-retain"
+  volumeName: annugame-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 500Mi

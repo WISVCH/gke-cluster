@@ -83,3 +83,12 @@ spec:
           env:
             - name: "BASE"
               value: "/api"
+            - name: "DB_BASE"
+              value: "/db"
+          volumeMounts:
+            - mountPath: /db
+              name: annugame-data
+      volumes:
+        - name: annugame-data
+          persistentVolumeClaim:
+            claimName: annugame-storage
