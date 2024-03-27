@@ -7,9 +7,8 @@ metadata:
     app: annugame
 spec:
   storageClassName: "standard-retain"
-  volumeName: annugame-disk
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 1Gi
