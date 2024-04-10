@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: nwerc-2024
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./static-site
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    nameOverride: nwerc-2024
+    fullnameOverride: nwerc-2024
+    domains:
+      - 2024.nwerc.eu
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: ClusterIP
+      port: 80
+    image:
+      repository: ghcr.io/wisvch/nwerc-2024
+      tag: 20240403-4feac02 # {"$imagepolicy": "flux-system:nwerc-2024:tag"}
+      pullPolicy: IfNotPresent
+      pullSecrets: {}
