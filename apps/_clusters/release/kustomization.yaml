@@ -10,6 +10,7 @@ resources:
   - ../../chipcie-legacy
   - ../../chipcie-nwerc-2022
   - ../../chipcie-nwerc-2023
+  - ../../chipcie-nwerc-2024
   - ../../chipcie-website
   - ../../choice
   - ../../cod

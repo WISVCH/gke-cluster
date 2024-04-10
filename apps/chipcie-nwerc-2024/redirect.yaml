@@ -15,7 +15,7 @@ spec:
     - filters:
         - type: URLRewrite
           urlRewrite:
-            hostname: 2023.nwerc.eu
+            hostname: 2024.nwerc.eu
       backendRefs:
-        - name: nwerc-2023
+        - name: nwerc-2024
           port: 80
