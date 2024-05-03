@@ -34,7 +34,7 @@ spec:
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 120
-            periodSeconds: 10
+            periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 5
           ports:
@@ -42,13 +42,13 @@ spec:
               name: http
               protocol: TCP
           readinessProbe:
-            failureThreshold: 3
+            failureThreshold: 5
             httpGet:
               path: /
               port: 8080
               scheme: HTTP
             initialDelaySeconds: 120
-            periodSeconds: 5
+            periodSeconds: 30
             successThreshold: 1
             timeoutSeconds: 5
           resources:
