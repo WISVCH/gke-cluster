@@ -35,7 +35,7 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/archived-static
-      tag: 20240429-d0302f0 # {"$imagepolicy": "flux-system:archived-static:tag"}
+      tag: 20240503-e921287 # {"$imagepolicy": "flux-system:archived-static:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
 ---
