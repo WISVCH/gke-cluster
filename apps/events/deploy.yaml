@@ -99,14 +99,14 @@ spec:
               value: null
               valueFrom:
                 secretKeyRef:
-                  name: postgres
-                  key: username
+                  name: events
+                  key: pg-username
             - name: SPRING_DATASOURCE_PASSWORD
               value: null
               valueFrom:
                 secretKeyRef:
-                  name: postgres
-                  key: password
+                  name: events
+                  key: pg-password
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://127.0.0.1:5432/events
             - name: SPRING_JPA_HIBERNATE_HB2MDDL_AUTO
