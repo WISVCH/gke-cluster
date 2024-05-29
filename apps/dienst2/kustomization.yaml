@@ -4,3 +4,4 @@ resources:
   - image.yaml
   - release.yaml
   - serviceaccount.yaml
+  - ilb-svc.yaml
