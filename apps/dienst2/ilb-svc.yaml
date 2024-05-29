@@ -1,0 +1,17 @@
+# https://cloud.google.com/kubernetes-engine/docs/how-to/internal-load-balancing#create
+apiVersion: v1
+kind: Service
+metadata:
+  name: dienst2-ilb-svc
+  annotations:
+    networking.gke.io/load-balancer-type: "Internal"
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
+  selector:
+    run: dienst2
+  ports:
+  - name: tcp-port
+    protocol: TCP
+    port: 80
+    targetPort: 8000
