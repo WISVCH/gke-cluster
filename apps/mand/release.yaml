@@ -39,12 +39,12 @@ spec:
       valuesKey: port
       targetPath: postgres.port
     - kind: Secret
-      name: postgres
-      valuesKey: username
+      name: mand
+      valuesKey: pg-username
       targetPath: postgres.username
     - kind: Secret
-      name: postgres
-      valuesKey: password
+      name: mand
+      valuesKey: pg-password
       targetPath: postgres.password
     - kind: Secret
       name: mand
