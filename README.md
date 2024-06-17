@@ -1,6 +1,6 @@
 # WISCH Kubernetes Cluster
 
-Welcome to the WISVCH Kubernetes Cluster repo. This repository is a collection of config files that make up the currently running kubernetes cloud deployment of WISVCH. The kubernetes cluster uses:
+Welcome to the WISVCH Kubernetes Cluster repo. This repository is a collection of config files that make up the currently running kubernetes cloud deployment of WISVCH. The kubernetes cluster is configured to use:
  - Kubernetes
  - Fluxv2
  - Helm
