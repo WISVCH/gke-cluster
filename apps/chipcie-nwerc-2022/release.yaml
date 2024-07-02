@@ -27,6 +27,6 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/nwerc-2022
-      tag: 20240626-7d3495d # {"$imagepolicy": "flux-system:chipcie-nwerc-2022:tag"}
+      tag: 20240702-7d3495d # {"$imagepolicy": "flux-system:chipcie-nwerc-2022:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
