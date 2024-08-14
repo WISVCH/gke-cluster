@@ -159,6 +159,8 @@ spec:
               value: "https://ch.tudelft.nl/wp-content/uploads/Deelnemersvoorwaarden_versie_12_06_2023.pdf"
             - name: LINKS_PASSES
               value: "http://passes.default.svc.cluster.local./passes"
+            - name: GOOGLEWALLET_SERVICEKEYPATH
+              value: "/events/google-serviceaccount"
             - name: GOOGLEWALLET_ISSUERID
               value: "3388000000022297569"
             - name: GOOGLEWALLET_ORIGIN
