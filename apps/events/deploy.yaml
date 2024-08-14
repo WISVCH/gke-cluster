@@ -167,7 +167,7 @@ spec:
               value: "https://ch.tudelft.nl/events"
           volumeMounts:
             - mountPath: /events
-              name: secret
+              name: events
               readOnly: true
           resources:
             limits:
