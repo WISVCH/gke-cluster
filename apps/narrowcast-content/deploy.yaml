@@ -76,9 +76,18 @@ spec:
               value: 8revkk28m0gu20p11ccmp0nrng@group.calendar.google.com
             - name: FLASK_PUB_GOOGLE_CALENDAR_API_KEY
               value: AIzaSyBuaSuYTLnUyOrBcV6OOXEjZXP96qB3Aes
+            - name: FLASK_DATA_PATH
+              value: /data
           resources:
             limits:
               memory: 512Mi
             requests:
               cpu: 50m
               memory: 150Mi
+          volumeMounts:
+            - mountPath: /data
+              name: narrowcast-content-data
+      volumes:
+        - name: narrowcast-content-data
+          persistentVolumeClaim:
+            claimName: narrowcast-content-disk

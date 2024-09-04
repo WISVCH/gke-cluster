@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: default
+  name: narrowcast-content-disk
+  labels:
+    app: narrowcast-content
+spec:
+  storageClassName: "standard-retain"
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Mi
