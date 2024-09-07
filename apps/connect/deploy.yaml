@@ -63,7 +63,7 @@ spec:
               name: connect
               readOnly: true
         - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.0.0
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
             - "--structured-logs"
             - "--private-ip"
