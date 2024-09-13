@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: chipcie-static-scoreboard
-          image: ghcr.io/wisvch/chipcie-static-scoreboard:20240913-6b55880 # {"$imagepolicy": "flux-system:chipcie-static-scoreboard"}
+          image: ghcr.io/wisvch/chipcie-static-scoreboard:20240913-5580841 # {"$imagepolicy": "flux-system:chipcie-static-scoreboard"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
