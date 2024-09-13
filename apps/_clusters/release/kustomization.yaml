@@ -12,6 +12,7 @@ resources:
   - ../../chipcie-nwerc-2023
   - ../../chipcie-nwerc-2024
   - ../../chipcie-website
+  - ../../chipcie-static-scoreboard
   - ../../choice
   - ../../cod
   - ../../connect
