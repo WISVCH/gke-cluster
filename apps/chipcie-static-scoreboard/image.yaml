@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: chipcie-static-scoreboard
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/chipcie-static-scoreboard
+  interval: 15m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: chipcie-static-scoreboard
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: chipcie-static-scoreboard
+  filterTags:
+    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc

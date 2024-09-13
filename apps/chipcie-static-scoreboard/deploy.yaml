@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chipcie-static-scoreboard
+  namespace: default
+  labels:
+    app: chipcie-static-scoreboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chipcie-static-scoreboard
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: chipcie-static-scoreboard
+      labels:
+        app: chipcie-static-scoreboard
+    spec:
+      containers:
+        - name: chipcie-static-scoreboard
+          image: ghcr.io/wisvch/chipcie-static-scoreboard:20240912-8dc2751 # {"$imagepolicy": "flux-system:chipcie-static-scoreboard"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /public
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /public
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: DOMJUDGE_URL
+              value: https://dj.chipcie.ch.tudelft.nl/
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 150Mi
