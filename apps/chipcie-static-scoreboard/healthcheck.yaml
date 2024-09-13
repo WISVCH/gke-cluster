@@ -10,7 +10,7 @@ spec:
       type: HTTP
       httpHealthCheck:
         port: 8080
-        requestPath: /public
+        requestPath: /health
     logConfig:
       enabled: true
   targetRef:
