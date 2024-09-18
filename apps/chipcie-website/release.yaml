@@ -26,6 +26,6 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/chipcie-website
-      tag: 20240902-56a8c10 # {"$imagepolicy": "flux-system:chipcie-website:tag"}
+      tag: 20240918-8092607 # {"$imagepolicy": "flux-system:chipcie-website:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
