@@ -52,7 +52,7 @@ spec:
               cpu: 50m
               memory: 150Mi
         - name: annugame-leaderboard
-          image: ghcr.io/wisvch/annugame-leaderboard:20240902-7ea48fc # {"$imagepolicy": "flux-system:annugame-leaderboard"}
+          image: ghcr.io/wisvch/annugame-leaderboard:20241002-7ea48fc # {"$imagepolicy": "flux-system:annugame-leaderboard"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: backend
