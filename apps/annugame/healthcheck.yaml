@@ -17,22 +17,3 @@ spec:
     group: ""
     kind: Service
     name: annugame
----
-apiVersion: networking.gke.io/v1
-kind: HealthCheckPolicy
-metadata:
-  namespace: default
-  name: annugame-leaderboard
-spec:
-  default:
-    config:
-      type: HTTP
-      httpHealthCheck:
-        port: 5000
-        requestPath: /
-    logConfig:
-      enabled: true
-  targetRef:
-    group: ""
-    kind: Service
-    name: annugame

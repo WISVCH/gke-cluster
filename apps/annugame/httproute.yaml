@@ -14,10 +14,3 @@ spec:
   - backendRefs:
     - name: annugame
       port: 80
-  - matches:
-    - path:
-        type: PathPrefix
-        value: "/api"
-    backendRefs:
-    - name: annugame
-      port: 5000
