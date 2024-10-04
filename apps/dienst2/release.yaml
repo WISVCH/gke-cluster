@@ -31,12 +31,12 @@ spec:
       cloudSQL: true
   valuesFrom:
     - kind: Secret
-      name: postgres
-      valuesKey: username
+      name: dienst2
+      valuesKey: pg-username
       targetPath: postgres.username
     - kind: Secret
-      name: postgres
-      valuesKey: password
+      name: dienst2 
+      valuesKey: pg-password
       targetPath: postgres.password
     - kind: Secret
       name: dienst2
