@@ -7,4 +7,4 @@ resources:
   - webhook
   - storageClass
   - gateway
-  - monitoring
+  # - monitoring
