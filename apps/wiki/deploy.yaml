@@ -49,9 +49,6 @@ spec:
             limits:
               cpu: 100m
               memory: 300Mi
-            requests:
-              cpu: 50m
-              memory: 100Mi
           volumeMounts:
             - mountPath: /var/www/dokuwiki/data
               name: wiki-data
