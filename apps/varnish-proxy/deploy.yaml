@@ -47,3 +47,24 @@ spec:
             items:
               - key: default.vcl
                 path: default.vcl
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  namespace: default
+  name: varnish-proxy
+spec:
+  default:
+    checkIntervalSec: 60
+    timeoutSec: 30
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 80
+        requestPath: /healthcheck
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: varnish-svc
