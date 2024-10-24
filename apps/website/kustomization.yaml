@@ -7,4 +7,3 @@ resources:
   - pv.yaml
   - httproute.yaml
   - backup.yaml
-  - ./varnish
