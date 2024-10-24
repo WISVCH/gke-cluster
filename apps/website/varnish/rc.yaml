@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: varnish-proxy
+spec:
+  replicas: 1
+  selector: 
+    app: varnish-proxy
+  template:
+    metadata:
+      name: varnish-proxy
+      labels:
+        app: varnish-proxy
+    spec:
+      volumes:
+        - name: varnish-config
+          configMap:
+            name: varnish-vcl
+            items:
+              - key: default.vcl
+                path: default.vcl
+      containers:
+      - name: varnish
+        image: million12/varnish 
+        env:
+        - name: VCL_CONFIG
+          value: /etc/varnish/default.vcl
+        volumeMounts:
+          - name: varnish-config
+            mountPath: /etc/varnish/
+        ports:
+        - containerPort: 80
