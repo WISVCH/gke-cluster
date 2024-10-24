@@ -36,6 +36,10 @@ spec:
           volumeMounts:
             - name: varnish-config
               mountPath: /etc/varnish/
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 80
       volumes:
         - name: varnish-config
           configMap:

@@ -85,25 +85,25 @@ spec:
         - name: website-storage
           persistentVolumeClaim:
             claimName: website-storage
----
-apiVersion: networking.gke.io/v1
-kind: HealthCheckPolicy
-metadata:
-  namespace: default
-  name: website
-spec:
-  default:
-    checkIntervalSec: 60
-    timeoutSec: 30
-    config:
-      type: HTTP
-      httpHealthCheck:
-        port: 80
-        host: ch.tudelft.nl
-        requestPath: /wp-json/
-    logConfig:
-      enabled: true
-  targetRef:
-    group: ""
-    kind: Service
-    name: website
+# ---
+# apiVersion: networking.gke.io/v1
+# kind: HealthCheckPolicy
+# metadata:
+#   namespace: default
+#   name: website
+# spec:
+#   default:
+#     checkIntervalSec: 60
+#     timeoutSec: 30
+#     config:
+#       type: HTTP
+#       httpHealthCheck:
+#         port: 80
+#         host: ch.tudelft.nl
+#         requestPath: /wp-json/
+#     logConfig:
+#       enabled: true
+#   targetRef:
+#     group: ""
+#     kind: Service
+#     name: website

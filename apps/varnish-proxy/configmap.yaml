@@ -22,8 +22,10 @@ data:
 
 
     sub vcl_recv {
-
-
+      # Healthcheck
+        if(req.url == "/healthcheck") {
+          return(synth(200,"OK"));
+        }
 
       # Only a single backend
             set req.backend_hint= default;
