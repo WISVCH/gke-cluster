@@ -215,6 +215,12 @@ data:
             set resp.http.X-Cacheable = "YES";
         }
         
+        if (obj.hits > 0) {
+            set resp.http.X-Cache = "HIT";
+        } else {
+            set resp.http.X-Cache = "MISS";
+        }
+        
         # Cleanup of headers
         unset resp.http.x-url;
         unset resp.http.x-host;    
