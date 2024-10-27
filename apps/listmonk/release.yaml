@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: listmonk/listmonk
-      tag: v3.0.0 # {"$imagepolicy": "flux-system:listmonk:tag"}
+      tag: v4.0.0 # {"$imagepolicy": "flux-system:listmonk:tag"}
     domain: list.wisv.ch
   valuesFrom:
     - kind: Secret
