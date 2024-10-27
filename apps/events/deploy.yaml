@@ -167,6 +167,8 @@ spec:
               value: "https://ch.tudelft.nl/events"
             - name: GOOGLEWALLET_BASEURL
               value: "https://ch.tudelft.nl/events"
+            - name: ADMINISTRATIONCOSTS
+              value: 0.35
           volumeMounts:
             - mountPath: /events
               name: events
