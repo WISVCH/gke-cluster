@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aoch
+  namespace: default
+  labels:
+    app: aoch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aoch
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: aoch
+      labels:
+        app: aoch
+    spec:
+      containers:
+        - name: aoch
+          image: ghcr.io/wisvch/aoch:20241127-fab2798 # {"$imagepolicy": "flux-system:adventofcode"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: session
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: aoch
+                  key: session
+            - name: leaderboard_id
+              value: 954860
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 150Mi
