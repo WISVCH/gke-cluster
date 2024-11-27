@@ -20,7 +20,7 @@ spec:
     domain: dienst2.ch.tudelft.nl
     serviceAccountSecretName: dienst2-service-account
     serviceAccountSecretKey: service_account
-    allowedHosts: "dienst2.ch.tudelft.nl,dienst2.default.svc.cluster.local,dienst2.wisvch.internal"
+    allowedHosts: "dienst2.ch.tudelft.nl,dienst2.default.svc.cluster.local,dienst2.wisvch.internal,localhost"
     image:
       repository: ghcr.io/wisvch/dienst2
       tag: 20240904-cb446ac # {"$imagepolicy": "flux-system:dienst2:tag"}
