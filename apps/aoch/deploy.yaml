@@ -53,7 +53,7 @@ spec:
                   name: aoch
                   key: session
             - name: leaderboard_id
-              value: 954860
+              value: "954860"
           resources:
             limits:
               memory: 512Mi
