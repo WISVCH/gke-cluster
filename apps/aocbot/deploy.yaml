@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aocbot
+  namespace: default
+  labels:
+    app: aocbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aocbot
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: aocbot
+      labels:
+        app: aocbot
+    spec:
+      containers:
+        - name: aocbot
+          image: ghcr.io/wisvch/aocbot:20241205-287e5bf # {"$imagepolicy": "flux-system:aocbot"}
+          imagePullPolicy: IfNotPresent
+          livenessProbe: null
+          readinessProbe: null
+          env:
+            - name: DISCORD_TOKEN
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: aocbot
+                  key: discord_token
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 5m
+              memory: 5Mi
