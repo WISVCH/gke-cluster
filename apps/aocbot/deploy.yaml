@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: aocbot
-          image: ghcr.io/wisvch/aocbot:20241205-f8cf8e4 # {"$imagepolicy": "flux-system:aocbot"}
+          image: ghcr.io/wisvch/aocbot:20241205-0cead3b # {"$imagepolicy": "flux-system:aocbot"}
           imagePullPolicy: IfNotPresent
           livenessProbe: null
           readinessProbe: null
