@@ -54,6 +54,12 @@ spec:
                   key: session
             - name: leaderboard_id
               value: "954860"
+            - name: SECRET_KEY_BASE
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: aoch
+                  key: SECRET_KEY_BASE
           resources:
             limits:
               memory: 512Mi
