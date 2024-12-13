@@ -9,4 +9,4 @@ spec:
     branch: main
   secretRef:
     name: flux-system
-  url: ssh://git@github.com/WISVCH/charts
+  url: https://github.com/WISVCH/charts.git
