@@ -17,5 +17,5 @@ spec:
     commit:
       messageTemplate: "{{range .Updated.Images}}{{println .}}{{end}}"
       author:
-        email: beheer@ch.tudelft.nl
+        email: 17965416+ChristiaanHuygens@users.noreply.github.com
         name: "W.I.S.V. 'Christiaan Huygens'"
