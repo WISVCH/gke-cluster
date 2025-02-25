@@ -40,6 +40,8 @@ spec:
               value: website # authentication via IAM
             - name: WORDPRESS_DB_PREFIX
               value: chtud59_
+            - name: HTTP_HOST
+              value: ch.tudelft.nl
             - name: DIENST2_API_URL
               value: http://dienst2.default.svc.cluster.local./ldb/api/v3/
             - name: DIENST2_API_TOKEN
