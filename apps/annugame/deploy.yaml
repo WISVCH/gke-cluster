@@ -51,6 +51,43 @@ spec:
             requests:
               cpu: 50m
               memory: 150Mi
+        - name: annugame-leaderboard
+          image: ghcr.io/wisvch/annugame-leaderboard:20241002-7ea48fc # {"$imagepolicy": "flux-system:annugame-leaderboard"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: backend
+              containerPort: 5000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/
+              port: backend
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /api/
+              port: backend
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 50m
+              memory: 150Mi
+          env:
+            - name: "BASE"
+              value: "/api"
+            - name: "DB_BASE"
+              value: "/db"
+          volumeMounts:
+            - mountPath: /db
+              name: annugame-data
       volumes:
         - name: annugame-data
           persistentVolumeClaim:
