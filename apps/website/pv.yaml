@@ -8,7 +8,7 @@ metadata:
 spec:
   storageClassName: "standard-retain"
   capacity:
-    storage: 120Gi
+    storage: 150Gi
   accessModes:
     - ReadWriteOnce
   claimRef:
@@ -33,4 +33,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 120Gi
+      storage: 150Gi
