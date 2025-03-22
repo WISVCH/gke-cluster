@@ -40,6 +40,13 @@ spec:
             httpGet:
               path: /healthcheck
               port: 80
+          resources: # typical usage cpu: 0.002 with spikes to 0.0035, mem: 260MiB but grows when more pages are visited on the website #TODO: gather more data
+            limits:
+              cpu: 6m
+              memory: 1024Mi
+            requests:
+              cpu: 3m
+              memory: 512Mi
       volumes:
         - name: varnish-config
           configMap:
