@@ -60,7 +60,7 @@ spec:
                 secretKeyRef:
                   name: aoch
                   key: SECRET_KEY_BASE
-          resources:
+          resources: #TODO: Update resources when this is running again
             limits:
               memory: 512Mi
             requests:
