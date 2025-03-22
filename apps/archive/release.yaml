@@ -38,13 +38,13 @@ spec:
       tag: 20250107-de4fefd # {"$imagepolicy": "flux-system:archived-static:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
-  resources: # typical usage cpu: 0.00026, mem: 36MiB
-    limits:
-      cpu: 2m
-      memory: 128Mi
-    requests:
-      cpu: 1m
-      memory: 64Mi
+    resources: # typical usage cpu: 0.00026, mem: 36MiB
+      limits:
+        cpu: 2m
+        memory: 128Mi
+      requests:
+        cpu: 1m
+        memory: 64Mi
 ---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy
