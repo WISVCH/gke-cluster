@@ -47,11 +47,10 @@ spec:
               value: /projects/966138216790/global/backendServices/2044437052005738173
           resources: # typical usage cpu: 0.04, mem: 110MiB
             limits:
-              cpu: 120m
-              memory: 300Mi
+              cpu: 100m
+              memory: 200Mi
             requests:
-              cpu: 60m
-              memory: 150Mi
+              memory: 100Mi
           volumeMounts:
             - mountPath: /var/www/dokuwiki/data
               name: wiki-data

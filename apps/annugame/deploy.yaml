@@ -47,11 +47,8 @@ spec:
             timeoutSeconds: 5
           resources: # typical usage cpu: 0.0006, mem: 3.2MiB
             limits:
-              cpu: 2m
+              cpu: 5m
               memory: 16Mi
-            requests:
-              cpu: 1m
-              memory: 8Mi
         - name: annugame-leaderboard
           image: ghcr.io/wisvch/annugame-leaderboard:20250305-60ba14c # {"$imagepolicy": "flux-system:annugame-leaderboard"}
           imagePullPolicy: IfNotPresent
@@ -77,11 +74,8 @@ spec:
             timeoutSeconds: 5
           resources: # typical usage cpu: 0.0005, mem: 24MiB
             limits:
-              cpu: 2m
-              memory: 64Mi
-            requests:
-              cpu: 1m
-              memory: 32Mi
+              cpu: 5m
+              memory: 48Mi
           env:
             - name: "BASE"
               value: "/api"

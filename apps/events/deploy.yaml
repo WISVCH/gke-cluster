@@ -175,10 +175,10 @@ spec:
               readOnly: true
           resources: # typical usage cpu: 0.015 with spikes to 0.08, mem: 500MiB
             limits:
-              cpu: 100m
+              cpu: 50m
               memory: 1024Mi
             requests:
-              cpu: 30m
+              cpu: 20m
               memory: 512Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
@@ -194,9 +194,6 @@ spec:
             limits:
               cpu: 30m
               memory: 48Mi
-            requests:
-              cpu: 15m
-              memory: 24Mi
       volumes:
         - name: events
           secret:
