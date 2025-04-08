@@ -9,6 +9,7 @@ resources:
   # - ../../areafiftylan-legacy
   - ../../adminer
   - ../../bt-website
+  - ../../chipcie-bapc-2025
   - ../../chipcie-legacy
   - ../../chipcie-nwerc-2022
   - ../../chipcie-nwerc-2023

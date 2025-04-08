@@ -1,0 +1,21 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: redirect-bapc
+  namespace: default
+spec:
+  parentRefs:
+    - kind: Gateway
+      namespace: gateway-infra
+      name: gateway
+  hostnames: 
+    - bapc.eu
+    - www.bapc.eu
+  rules:
+    - filters:
+        - type: URLRewrite
+          urlRewrite:
+            hostname: 2025.bapc.eu
+      backendRefs:
+        - name: bapc-2025
+          port: 80

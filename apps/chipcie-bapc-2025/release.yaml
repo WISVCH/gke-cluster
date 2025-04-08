@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: bapc-2025
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./static-site
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    nameOverride: bapc-2025
+    fullnameOverride: bapc-2025
+    domains:
+      - 2025.bapc.eu
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: ClusterIP
+      port: 80
+    image:
+      repository: ghcr.io/wisvch/bapc-2025
+      tag: 20250408-c0b3dae # {"$imagepolicy": "flux-system:bapc-2025:tag"}
+      pullPolicy: IfNotPresent
+      pullSecrets: {}
