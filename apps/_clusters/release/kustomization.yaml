@@ -11,9 +11,9 @@ resources:
   - ../../bt-website
   - ../../chipcie-bapc-2025
   - ../../chipcie-legacy
-  - ../../chipcie-nwerc-2022
-  - ../../chipcie-nwerc-2023
-  - ../../chipcie-nwerc-2024
+  # - ../../chipcie-nwerc-2022
+  # - ../../chipcie-nwerc-2023
+  # - ../../chipcie-nwerc-2024
   - ../../chipcie-website
   - ../../chipcie-static-scoreboard
   - ../../choice

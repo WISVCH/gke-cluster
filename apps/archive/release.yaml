@@ -38,6 +38,9 @@ spec:
       - 2018.hackdelft.com
       - 2017.hackdelft.nl
       - 2017.hackdelft.com
+      - 2022.nwerc.eu
+      - 2023.nwerc.eu
+      - 2024.nwerc.eu
     replicaCount: 1
     containerPort: 8080
     service:
