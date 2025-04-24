@@ -10,7 +10,7 @@ resources:
   - ../../adminer
   # - ../../bt-website
   - ../../chipcie-bapc-2025
-  - ../../chipcie-legacy
+  # - ../../chipcie-legacy
   # - ../../chipcie-nwerc-2022
   # - ../../chipcie-nwerc-2023
   # - ../../chipcie-nwerc-2024

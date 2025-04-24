@@ -43,6 +43,14 @@ spec:
       - 2024.nwerc.eu
       - businesstour.ch.tudelft.nl
       - businesstour.wisv.ch
+      - 2001.bapc.eu
+      - 2002.nwerc.eu
+      - 2005.bapc.eu
+      - 2008.bapc.eu
+      - 2012.nwerc.eu
+      - 2013.nwerc.eu
+      - 2016.bapc.eu
+      - 2020.bapc.eu
     replicaCount: 1
     containerPort: 8080
     service:
