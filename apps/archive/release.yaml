@@ -28,6 +28,16 @@ spec:
       - eerstejaarsweekend.nl
       - lustrum.ch
       - symposium.ch.tudelft.nl
+      - hackdelft.nl
+      - hackdelft.com
+      - 2022.hackdelft.nl
+      - 2022.hackdelft.com
+      - 2019.hackdelft.nl
+      - 2019.hackdelft.com
+      - 2018.hackdelft.nl
+      - 2018.hackdelft.com
+      - 2017.hackdelft.nl
+      - 2017.hackdelft.com
     replicaCount: 1
     containerPort: 8080
     service:

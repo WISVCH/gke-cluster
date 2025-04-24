@@ -22,7 +22,7 @@ resources:
   - ../../dienst2
   - ../../events
   # - ../../flitcie
-  - ../../hackdelft
+  # - ../../hackdelft
   - ../../listmonk
   - ../../narrowcast-content
   - ../../passes
