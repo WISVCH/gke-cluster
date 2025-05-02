@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: annugame24
-          image: ghcr.io/wisvch/annugame24:20250402-2b8afc6 # {"$imagepolicy": "flux-system:annugame"}
+          image: ghcr.io/wisvch/annugame24:20250502-2b8afc6 # {"$imagepolicy": "flux-system:annugame"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -52,7 +52,7 @@ spec:
               cpu: 50m
               memory: 150Mi
         - name: annugame-leaderboard
-          image: ghcr.io/wisvch/annugame-leaderboard:20250402-60ba14c # {"$imagepolicy": "flux-system:annugame-leaderboard"}
+          image: ghcr.io/wisvch/annugame-leaderboard:20250502-60ba14c # {"$imagepolicy": "flux-system:annugame-leaderboard"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: backend
