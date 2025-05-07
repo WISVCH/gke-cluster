@@ -55,13 +55,13 @@ spec:
               value: disable-comments,disable-search,post-types-order,daggerhart-openid-connect-generic,https://github.com/WISVCH/wisvch-wordpress-plugin/archive/master.zip,depublish-posts,redirection,ewww-image-optimizer,photo-gallery,https://github.com/WISVCH/zettle-stock/archive/master.zip,varnish-http-purge
             - name: APACHE_LOG_DIR
               value: /var/log/apache/
-          resources:
+          resources: # typical usage cpu: 0.01 with spikes to 0.08, mem: 330MiB. High limits for example for when importing pictures
             limits:
               cpu: "2"
-              memory: 2Gi
+              memory: 1Gi
             requests:
-              cpu: 50m
-              memory: 500Mi
+              cpu: 15m
+              memory: 400Mi
           securityContext:
             runAsNonRoot: false # FIXME: run as an unprivileged user
           volumeMounts:
@@ -77,12 +77,13 @@ spec:
             - "wisvch:europe-west4:cees"
           securityContext:
             runAsNonRoot: true
-          resources:
+          resources: # typical usage cpu: 0.003, mem: 13MiB
             limits:
-              memory: 200Mi
+              cpu: 10m
+              memory: 32Mi
             requests:
-              cpu: 20m
-              memory: 100Mi
+              cpu: 5m
+              memory: 16Mi
       volumes:
         - name: website-storage
           persistentVolumeClaim:
