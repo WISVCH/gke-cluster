@@ -27,7 +27,7 @@ spec:
             defaultMode: 420
       containers:
         - name: passes
-          image: ghcr.io/wisvch/passes:20250512-91d0393 # {"$imagepolicy": "flux-system:passes"}
+          image: ghcr.io/wisvch/passes:20250526-9b69b1c # {"$imagepolicy": "flux-system:passes"}
           imagePullPolicy: IfNotPresent
           env:
             - name: APPLE_PASS_TYPE_IDENTIFIER
