@@ -52,12 +52,12 @@ spec:
             successThreshold: 1
             timeoutSeconds: 5
           resources:
-            limits:
-              cpu: 300m
-              memory: 500Mi
+            limits: # typical usage cpu: 0.005 with regular spikes 0.04, mem: 500MiB
+              cpu: 60m
+              memory: 1000Mi
             requests:
               cpu: 30m
-              memory: 50Mi
+              memory: 500Mi
           volumeMounts:
             - mountPath: /connect
               name: connect

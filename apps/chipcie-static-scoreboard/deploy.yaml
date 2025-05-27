@@ -48,7 +48,7 @@ spec:
           env:
             - name: DOMJUDGE_URL
               value: https://dj.chipcie.ch.tudelft.nl/
-          resources:
+          resources: #TODO set request and limits after a contest
             limits:
               memory: 512Mi
             requests:

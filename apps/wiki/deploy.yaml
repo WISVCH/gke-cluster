@@ -45,10 +45,12 @@ spec:
           env:
             - name: IAP_EXPECTED_AUDIENCE
               value: /projects/966138216790/global/backendServices/2044437052005738173
-          resources:
+          resources: # typical usage cpu: 0.04, mem: 110MiB
             limits:
               cpu: 100m
-              memory: 300Mi
+              memory: 200Mi
+            requests:
+              memory: 100Mi
           volumeMounts:
             - mountPath: /var/www/dokuwiki/data
               name: wiki-data

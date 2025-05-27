@@ -173,12 +173,13 @@ spec:
             - mountPath: /events
               name: events
               readOnly: true
-          resources:
+          resources: # typical usage cpu: 0.015 with spikes to 0.08, mem: 500MiB
             limits:
-              memory: 512Mi
-            requests:
               cpu: 50m
-              memory: 150Mi
+              memory: 1024Mi
+            requests:
+              cpu: 20m
+              memory: 512Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
@@ -189,12 +190,10 @@ spec:
             - "wisvch:europe-west4:geurt"
           securityContext:
             runAsNonRoot: true
-          resources:
+          resources: # typical usage cpu: 0.01, mem: 12MiB
             limits:
-              memory: 200Mi
-            requests:
-              cpu: 20m
-              memory: 100Mi
+              cpu: 30m
+              memory: 48Mi
       volumes:
         - name: events
           secret:
