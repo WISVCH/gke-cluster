@@ -175,7 +175,6 @@ spec:
               readOnly: true
           resources:
             limits:
-              cpu: 512m
               memory: 512Mi
             requests:
               cpu: 100m
