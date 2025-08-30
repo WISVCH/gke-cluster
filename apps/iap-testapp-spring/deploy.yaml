@@ -24,7 +24,7 @@ spec:
       # serviceAccountName: iap-testapp-spring
       containers:
         - name: iap-testapp-spring
-          image: ghcr.io/wisvch/iap-testapp-spring:20250830-9af6d5d # {"$imagepolicy": "flux-system:iap-testapp-spring"}
+          image: ghcr.io/wisvch/iap-testapp-spring:20250830-7a32e58 # {"$imagepolicy": "flux-system:iap-testapp-spring"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
