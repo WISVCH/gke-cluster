@@ -1,0 +1,16 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: iap-testapp-spring
+  namespace: default
+spec:
+  parentRefs:
+  - kind: Gateway
+    namespace: gateway-infra
+    name: gateway
+  hostnames:
+  - iap-testapp-spring.wisv.ch
+  rules:
+  - backendRefs:
+    - name: iap-testapp-spring
+      port: 80

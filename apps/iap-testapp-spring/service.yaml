@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: iap-testapp-spring
+  namespace: default
+  labels:
+    app: iap-testapp-spring
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
+  selector:
+    app: iap-testapp-spring

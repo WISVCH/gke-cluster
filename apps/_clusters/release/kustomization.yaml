@@ -23,6 +23,7 @@ resources:
   - ../../events
   # - ../../flitcie
   # - ../../hackdelft
+  - ../../iap-testapp-spring
   - ../../listmonk
   - ../../narrowcast-content
   - ../../passes

@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iap-testapp-spring
+  namespace: default
+  labels:
+    app: iap-testapp-spring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iap-testapp-spring
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: iap-testapp-spring
+      labels:
+        app: iap-testapp-spring
+    spec:
+      serviceAccountName: iap-testapp-spring
+      containers:
+        - name: iap-testapp-spring
+          image: ghcr.io/wisvch/iap-testapp-spring:20250830-9af6d5d # {"$imagepolicy": "flux-system:iap-testapp-spring"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SERVER_FORWARD_HEADERS_STRATEGY
+              value: "FRAMEWORK"
+            - name: SERVER_ADDRESS
+              value: "0.0.0.0"
+            - name: SPRING_PROFILES_ACTIVE
+              value: production
+            - name: JAVA_OPTS
+              value: -Xms128m -Xmx192m
+            - name: TZ
+              value: Europe/Amsterdam
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 20m
+              memory: 100Mi

@@ -1,0 +1,19 @@
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  namespace: default
+  name: iap-testapp-spring
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 8080
+        requestPath: /
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: iap-testapp-spring
