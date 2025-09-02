@@ -9,8 +9,8 @@ spec:
     config:
       type: HTTP
       httpHealthCheck:
-        port: 8080
-        requestPath: /health/live # TODO health endpoint?
+        port: 9000
+        requestPath: /health/ready # TODO health endpoint?
     logConfig:
       enabled: true
   targetRef:
