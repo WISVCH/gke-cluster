@@ -41,7 +41,7 @@ spec:
               cpu: 20m
               memory: 100Mi
         - name: keycloak
-          image: quay.io/keycloak/keycloak:26.3.3
+          image: ghcr.io/wisvch/keycloak-build:20250902-a29b21c
           args: ["start"]
           volumeMounts:
             - name: keycloak-data
