@@ -41,7 +41,7 @@ spec:
               cpu: 20m
               memory: 100Mi
         - name: keycloak
-          image: ghcr.io/wisvch/keycloak-build:20250902-a29b21c
+          image: ghcr.io/wisvch/keycloak-build:20250902-0dd2586
           args: ["start"]
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
