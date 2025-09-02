@@ -4,7 +4,7 @@ metadata:
   name: keycloak
   namespace: flux-system
 spec:
-  image: quay.io/keycloak/keycloak
+  image: ghcr.io/wisvch/keycloak-build
   interval: 5m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -19,5 +19,5 @@ spec:
     pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
     extract: "$ts"
   policy:
-    semver:
-      range: '>=21.0.0'
+    numerical:
+      order: asc
