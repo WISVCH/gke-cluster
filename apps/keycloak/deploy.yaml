@@ -43,9 +43,6 @@ spec:
         - name: keycloak
           image: ghcr.io/wisvch/keycloak-build:20250902-a29b21c
           args: ["start"]
-          volumeMounts:
-            - name: keycloak-data
-              mountPath: /opt/keycloak/providers
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
@@ -130,8 +127,4 @@ spec:
             requests:
               cpu: 500m
               memory: 1700Mi
-      volumes:
-        - name: keycloak-data
-          persistentVolumeClaim:
-            claimName: keycloak-disk
 

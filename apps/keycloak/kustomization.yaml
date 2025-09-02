@@ -7,4 +7,3 @@ resources:
   - healthcheck.yaml
   - httproute.yaml
   - serviceaccount.yaml
-  - pv.yaml
