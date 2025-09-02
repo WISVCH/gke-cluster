@@ -43,6 +43,9 @@ spec:
         - name: keycloak
           image: quay.io/keycloak/keycloak:26.3.3
           args: ["start"]
+          volumeMounts:
+            - name: keycloak-data
+              mountPath: /opt/keycloak/providers
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
@@ -127,3 +130,8 @@ spec:
             requests:
               cpu: 500m
               memory: 1700Mi
+      volumes:
+        - name: keycloak-data
+          persistentVolumeClaim:
+            claimName: keycloak-disk
+
