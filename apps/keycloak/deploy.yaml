@@ -26,7 +26,7 @@ spec:
       containers:
         - name: test-pod
           image: google/cloud-sdk:slim
-          command: ["sleep","infinity"]
+          command: ["sleep", "infinity"]
           resources:
             requests:
               cpu: 100m
@@ -48,7 +48,7 @@ spec:
               cpu: 20m
               memory: 100Mi
         - name: keycloak
-          image: ghcr.io/wisvch/keycloak-build:20250903-93f275a # {"$imagepolicy": "flux-system:keycloak"}
+          image: ghcr.io/wisvch/keycloak-build:20250903-7b9823b # {"$imagepolicy": "flux-system:keycloak"}
           args: ["start"]
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
