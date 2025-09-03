@@ -41,7 +41,7 @@ spec:
               cpu: 20m
               memory: 100Mi
         - name: keycloak
-          image: ghcr.io/wisvch/keycloak-build:20250903-fca491d # {"$imagepolicy": "flux-system:keycloak"}
+          image: ghcr.io/wisvch/keycloak-build:20250903-84b13c9 # {"$imagepolicy": "flux-system:keycloak"}
           args: ["start"]
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
