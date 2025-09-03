@@ -54,6 +54,11 @@ spec:
                 secretKeyRef:
                   name: keycloak
                   key: admin_password
+            - name: GCLOUD_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak
+                  key: gcloud_api_key
             # In a production environment, add a TLS certificate to Keycloak to either end-to-end encrypt the traffic between
             # the client or Keycloak, or to encrypt the traffic between your proxy and Keycloak.
             # Respect the proxy headers forwarded by the reverse proxy
