@@ -24,6 +24,13 @@ spec:
     spec:
       serviceAccountName: keycloak
       containers:
+        - name: test-pod
+          image: google/cloud-sdk:slim
+          command: ["sleep","infinity"]
+          resources:
+            requests:
+              cpu: 100m
+              memory: 300Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
@@ -128,7 +135,7 @@ spec:
           resources:
             limits:
               cpu: 2000m
-              memory: 2000Mi
+              memory: 1500Mi
             requests:
               cpu: 500m
-              memory: 1700Mi
+              memory: 1000Mi
