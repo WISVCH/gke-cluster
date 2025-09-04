@@ -53,3 +53,16 @@ spec:
         - type: RequestRedirect
           requestRedirect:
             scheme: https
+---
+apiVersion: networking.gke.io/v1
+kind: GCPGatewayPolicy
+metadata:
+  name: disallow-old-tls-versions-policy
+  namespace: gateway-infra
+spec:
+  default:
+    sslPolicy: disallow-old-tls-versions
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: gateway
