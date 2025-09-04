@@ -10,6 +10,7 @@ spec:
     name: gateway
   hostnames:
   - login.wisv.ch
+  - login.ch.tudelft.nl
   rules:
   - backendRefs:
     - name: keycloak
