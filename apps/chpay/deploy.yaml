@@ -51,7 +51,7 @@ spec:
               value: production
             - name: SPRING_APPLICATION_NAME
               value: chpay
-            - name: SPRING_APPLICATION_BASE_URL
+            - name: SPRING_APPLICATION_BASEURL
               value: https://chpay.wisv.ch
             - name: SPRING_MAIL_HOST
               value: null
@@ -155,7 +155,7 @@ spec:
               value: "1"
             - name: CHPAY_PAYMENTREQUESTS_EXPIRE_EVERY_MONTHS
               value: "1"
-            - name: CHPAY_SETTINGS_MIN_TOP_UP
+            - name: CHPAY_SETTINGS_MINTOPUP
               value: "2"
             - name: CHPAY_API_KEY
               valueFrom:
