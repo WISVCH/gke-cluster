@@ -137,7 +137,7 @@ spec:
               value: https://chpay.wisv.ch/payment/complete/
             - name: MOLLIE_WEBHOOK_URL
               value: https://chpay.wisv.ch/balance/status
-            - name: MOLLIE_APIKEY
+            - name: MOLLIE_API_KEY
               value: null
               valueFrom:
                 secretKeyRef:
