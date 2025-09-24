@@ -24,7 +24,7 @@ spec:
       serviceAccountName: chpay
       containers:
         - name: chpay
-          image: ghcr.io/wisvch/chpay:20250924-1a14360 # {"$imagepolicy": "flux-system:events"}
+          image: ghcr.io/wisvch/events:20250915-38f583a # {"$imagepolicy": "flux-system:events"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -53,7 +53,6 @@ spec:
               value: chpay
             - name: SPRING_APPLICATION_BASE_URL
               value: https://chpay.wisv.ch
-
             - name: SPRING_MAIL_HOST
               value: null
               valueFrom:
@@ -82,12 +81,10 @@ spec:
               value: "true"
             - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
               value: "true"
-
             - name: SPRING_CACHE_CACHE_NAMES
               value: systemFrozen, maxBalance, minTopUp
             - name: SPRING_CACHE_CAFFEINE_SPEC
               value: recordStats,maximumSize=10,expireAfterWrite=5m
-
             - name: SPRING_DATASOURCE_USERNAME
               value: null
               valueFrom:
@@ -106,7 +103,6 @@ spec:
               value: validate
             - name: SPRING_JPA_GENERATE_DDL
               value: "false"
-
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
               value: https://login.wisv.ch/realms/wisvch
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
@@ -125,24 +121,18 @@ spec:
               value: openid, profile, email, auth, student
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_REDIRECT_URI
               value: "https://chpay.wisv.ch/login/oauth2/code/wisvchlogin"
-
             - name: SPRING_THYMELEAF_PREFIX
               value: classpath:/templates/
-
-
             - name: SERVER_ADDRESS
               value: "0.0.0.0"
             - name: SERVER_PORT
               value: "8080"
             - name: SERVER_FORWARD_HEADERS_STRATEGY
               value: "FRAMEWORK"
-
             - name: JAVA_OPTS
               value: -Xms128m -Xmx192m
-
             - name: TZ
               value: Europe/Amsterdam
-
             - name: MOLLIE_REDIRECT_URL
               value: https://chpay.wisv.ch/payment/complete/
             - name: MOLLIE_WEBHOOK_URL
@@ -155,12 +145,10 @@ spec:
                   key: mollie-key
             - name: MOLLIE_TRANSACTION_FEE
               value: "0.35"
-        
             - name: WISVCH_CHPAY_ADMIN_GROUPS
               value: beheer,epa,vc,bestuur
             - name: WISVCH_CHPAY_CLAIM_NAME
               value: google_groups
-
             - name: CHPAY_TRANSACTIONS_EXPIRE_EVERY_MINUTES
               value: "20"
             - name: CHPAY_TRANSACTIONS_EXPIRATION_FIXED_RATE
@@ -174,7 +162,6 @@ spec:
                 secretKeyRef:
                   name: chpay
                   key: events-api-key
-
           resources:
             limits:
               memory: 200Mi
