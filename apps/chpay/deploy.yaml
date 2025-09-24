@@ -24,7 +24,7 @@ spec:
       serviceAccountName: chpay
       containers:
         - name: chpay
-          image: ghcr.io/wisvch/chpay:20250924-1a14360 # {"$imagepolicy": "flux-system:chpay"}
+          image: ghcr.io/wisvch/chpay:20250924-9804e3c # {"$imagepolicy": "flux-system:chpay"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -101,7 +101,6 @@ spec:
               value: jdbc:postgresql://127.0.0.1:5432/chpay
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
               value: update
-
             - name: SPRING_JPA_GENERATE_DDL
               value: "true"
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
