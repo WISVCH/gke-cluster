@@ -1,0 +1,199 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chpay
+  namespace: default
+  labels:
+    app: chpay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chpay
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: chpay
+      labels:
+        app: chpay
+    spec:
+      serviceAccountName: chpay
+      containers:
+        - name: chpay
+          image: ghcr.io/wisvch/chpay:20250924-1a14360 # {"$imagepolicy": "flux-system:events"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: production
+            - name: SPRING_APPLICATION_NAME
+              value: chpay
+            - name: SPRING_APPLICATION_BASE_URL
+              value: https://chpay.wisv.ch
+
+            - name: SPRING_MAIL_HOST
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: host
+            - name: SPRING_MAIL_PORT
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: port
+            - name: SPRING_MAIL_USERNAME
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: username
+            - name: SPRING_MAIL_PASSWORD
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: mail
+                  key: password
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
+              value: "true"
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
+              value: "true"
+
+            - name: SPRING_CACHE_CACHE_NAMES
+              value: systemFrozen, maxBalance, minTopUp
+            - name: SPRING_CACHE_CAFFEINE_SPEC
+              value: recordStats,maximumSize=10,expireAfterWrite=5m
+
+            - name: SPRING_DATASOURCE_USERNAME
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: username
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: password
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://127.0.0.1:5432/chpay
+            - name: SPRING_JPA_HIBERNATE_HB2MDDL_AUTO
+              value: validate
+            - name: SPRING_JPA_GENERATE_DDL
+              value: "false"
+
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
+              value: https://login.wisv.ch/realms/wisvch
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: login-client-id
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_SECRET
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: login-client-secret
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_SCOPE
+              value: openid, profile, email, auth, student
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_REDIRECT_URI
+              value: "https://chpay.wisv.ch/login/oauth2/code/wisvchlogin"
+
+            - name: SPRING_THYMELEAF_PREFIX
+              value: classpath:/templates/
+
+
+            - name: SERVER_ADDRESS
+              value: "0.0.0.0"
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SERVER_FORWARD_HEADERS_STRATEGY
+              value: "FRAMEWORK"
+
+            - name: JAVA_OPTS
+              value: -Xms128m -Xmx192m
+
+            - name: TZ
+              value: Europe/Amsterdam
+
+            - name: MOLLIE_REDIRECT_URL
+              value: https://chpay.wisv.ch/payment/complete/
+            - name: MOLLIE_WEBHOOK_URL
+              value: https://chpay.wisv.ch/balance/status
+            - name: MOLLIE_APIKEY
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: mollie-key
+            - name: MOLLIE_TRANSACTION_FEE
+              value: "0.35"
+        
+            - name: WISVCH_CHPAY_ADMIN_GROUPS
+              value: beheer,epa,vc,bestuur
+            - name: WISVCH_CHPAY_CLAIM_NAME
+              value: google_groups
+
+            - name: CHPAY_TRANSACTIONS_EXPIRE_EVERY_MINUTES
+              value: "20"
+            - name: CHPAY_TRANSACTIONS_EXPIRATION_FIXED_RATE
+              value: "1"
+            - name: CHPAY_PAYMENTREQUESTS_EXPIRE_EVERY_MONTHS
+              value: "1"
+            - name: CHPAY_SETTINGS_MIN_TOP_UP
+              value: "2"
+            - name: CHPAY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: events-api-key
+
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
+          args:
+            - "--structured-logs"
+            - "--private-ip"
+            - "--port=5432"
+            - "-i" # Enables automatic authentication through the serviceaccount
+            - "wisvch:europe-west4:geurt"
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 20m
+              memory: 100Mi
