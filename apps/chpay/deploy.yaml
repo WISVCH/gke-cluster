@@ -134,9 +134,9 @@ spec:
             - name: TZ
               value: Europe/Amsterdam
             - name: MOLLIE_REDIRECT_URL
-              value: https://chpay.wisv.ch/payment/complete/
+              value: https://chpay.wisv.ch/topup/complete/
             - name: MOLLIE_WEBHOOK_URL
-              value: https://chpay.wisv.ch/balance/status
+              value: https://chpay.wisv.ch/topup/status
             - name: MOLLIE_API_KEY
               value: null
               valueFrom:
