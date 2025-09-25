@@ -53,8 +53,10 @@ spec:
               value: chpay
             - name: SPRING_APPLICATION_BASEURL
               value: https://chpay.wisv.ch
+            - name: MANAGEMENT_HEALTH_MAIL_ENABLED
+              value: "false"
             - name: SPRING_MAIL_DISABLE
-              value: "true"
+              value: "false"
             - name: SPRING_MAIL_HOST
               value: null
               valueFrom:
