@@ -57,26 +57,26 @@ spec:
               value: null
               valueFrom:
                 secretKeyRef:
-                  name: mail
-                  key: host
+                  name: chpay-mail
+                  key: mail-host
             - name: SPRING_MAIL_PORT
               value: null
               valueFrom:
                 secretKeyRef:
-                  name: mail
-                  key: port
+                  name: chpay-mail
+                  key: mail-port
             - name: SPRING_MAIL_USERNAME
               value: null
               valueFrom:
                 secretKeyRef:
-                  name: mail
-                  key: username
+                  name: chpay-mail
+                  key: mail-username
             - name: SPRING_MAIL_PASSWORD
               value: null
               valueFrom:
                 secretKeyRef:
-                  name: mail
-                  key: password
+                  name: chpay-mail
+                  key: mail-password
             - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
               value: "true"
             - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
