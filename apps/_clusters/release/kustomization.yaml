@@ -17,7 +17,7 @@ resources:
   - ../../chipcie-website
   - ../../chipcie-static-scoreboard
   - ../../choice
-  # - ../../chpay
+  - ../../chpay
   - ../../cod
   - ../../connect
   - ../../dienst2
