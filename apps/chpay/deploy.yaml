@@ -54,7 +54,7 @@ spec:
             - name: SPRING_APPLICATION_BASEURL
               value: https://chpay.wisv.ch
             - name: SPRING_MAIL_DISABLE
-              value: "false"
+              value: "true"
             - name: SPRING_MAIL_HOST
               value: null
               valueFrom:
