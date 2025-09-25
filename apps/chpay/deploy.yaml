@@ -145,9 +145,9 @@ spec:
                   key: mollie-key
             - name: MOLLIE_TRANSACTION_FEE
               value: "0.35"
-            - name: WISVCH_CHPAY_ADMIN_GROUPS
+            - name: CHPAY_ADMIN_GROUPS
               value: beheer,epa,vc,bestuur
-            - name: WISVCH_CHPAY_CLAIM_NAME
+            - name: CHPAY_CLAIM_NAME
               value: google_groups
             - name: CHPAY_TRANSACTIONS_EXPIRE_EVERY_MINUTES
               value: "20"
