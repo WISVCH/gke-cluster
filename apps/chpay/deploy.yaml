@@ -58,19 +58,16 @@ spec:
             - name: SPRING_MAIL_DISABLE
               value: "false"
             - name: SPRING_MAIL_HOST
-              value: null
               valueFrom:
                 secretKeyRef:
                   name: chpay-mail
                   key: mail-host
             - name: SPRING_MAIL_PORT
-              value: null
               valueFrom:
                 secretKeyRef:
                   name: chpay-mail
                   key: mail-port
             - name: SPRING_MAIL_USERNAME
-              value: null
               valueFrom:
                 secretKeyRef:
                   name: chpay-mail
