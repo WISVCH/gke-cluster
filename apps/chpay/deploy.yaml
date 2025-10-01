@@ -145,7 +145,7 @@ spec:
                   name: chpay
                   key: mollie-key
             - name: MOLLIE_TRANSACTION_FEE
-              value: "0.35"
+              value: "0.39"
             - name: CHPAY_ADMIN_GROUPS
               value: beheer,epa,vc,bestuur
             - name: CHPAY_CLAIM_NAME
