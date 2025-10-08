@@ -52,7 +52,7 @@ spec:
             - name: SPRING_APPLICATION_NAME
               value: chpay
             - name: SPRING_APPLICATION_BASEURL
-              value: https://chpay.wisv.ch
+              value: https://chpay.ch.tudelft.nl
             - name: MANAGEMENT_HEALTH_MAIL_ENABLED
               value: "false"
             - name: SPRING_MAIL_DISABLE
@@ -121,7 +121,7 @@ spec:
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_SCOPE
               value: openid, profile, email, auth, student
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_REDIRECT_URI
-              value: "https://chpay.wisv.ch/login/oauth2/code/wisvchlogin"
+              value: https://chpay.ch.tudelft.nl/login/oauth2/code/wisvchlogin
             - name: SPRING_THYMELEAF_PREFIX
               value: classpath:/templates/
             - name: SERVER_ADDRESS
@@ -135,9 +135,9 @@ spec:
             - name: TZ
               value: Europe/Amsterdam
             - name: MOLLIE_REDIRECT_URL
-              value: https://chpay.wisv.ch/topup/complete/
+              value: https://chpay.ch.tudelft.nl/topup/complete/
             - name: MOLLIE_WEBHOOK_URL
-              value: https://chpay.wisv.ch/topup/status
+              value: https://chpay.ch.tudelft.nl/topup/status
             - name: MOLLIE_API_KEY
               value: null
               valueFrom:

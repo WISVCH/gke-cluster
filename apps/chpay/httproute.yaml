@@ -9,8 +9,7 @@ spec:
     namespace: gateway-infra
     name: gateway
   hostnames:
-  - chpay.wisv.ch
-  # - chpay.ch.tudelft.nl
+  - chpay.ch.tudelft.nl
   rules:
   - backendRefs:
     - name: chpay
