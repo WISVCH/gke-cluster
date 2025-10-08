@@ -7,3 +7,4 @@ resources:
   - healthcheck.yaml
   - httproute.yaml
   - serviceaccount.yaml
+  - redirect.yaml
