@@ -27,6 +27,6 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/bapc-2025
-      tag: 20251022-6bd2e24 # {"$imagepolicy": "flux-system:bapc-2025:tag"}
+      tag: 20251022-e47e3bd # {"$imagepolicy": "flux-system:bapc-2025:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
