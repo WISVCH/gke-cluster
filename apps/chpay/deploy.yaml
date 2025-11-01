@@ -105,7 +105,7 @@ spec:
             - name: SPRING_JPA_GENERATE_DDL
               value: "true"
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
-              value: https://login.wisv.ch/realms/wisvch
+              value: https://login.ch.tudelft.nl/realms/wisvch
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
               value: null
               valueFrom:
@@ -119,7 +119,7 @@ spec:
                   name: chpay
                   key: login-client-secret
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_SCOPE
-              value: openid, profile, email, auth, student
+              value: openid, profile, email
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_REDIRECT_URI
               value: https://chpay.ch.tudelft.nl/login/oauth2/code/wisvchlogin
             - name: SPRING_THYMELEAF_PREFIX
@@ -149,7 +149,7 @@ spec:
             - name: CHPAY_ADMIN_GROUPS
               value: beheer,epa,vc,bestuur
             - name: CHPAY_CLAIM_NAME
-              value: google_groups
+              value: groups
             - name: CHPAY_TRANSACTIONS_EXPIRE_EVERY_MINUTES
               value: "20"
             - name: CHPAY_TRANSACTIONS_EXPIRATION_FIXED_RATE
