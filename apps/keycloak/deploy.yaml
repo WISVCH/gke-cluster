@@ -42,7 +42,9 @@ spec:
               memory: 100Mi
         - name: keycloak
           image: ghcr.io/wisvch/keycloak-build:20251101-6fff587 # {"$imagepolicy": "flux-system:keycloak"}
-          args: ["start"]
+          args:
+            - "start"
+            - "--log-level=info,org.keycloak.broker.oidc:TRACE,org.keycloak.events:DEBUG,nl.tudelft.ch.login:TRACE"
           env:
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
