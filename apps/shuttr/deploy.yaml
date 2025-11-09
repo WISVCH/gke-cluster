@@ -58,6 +58,8 @@ spec:
               value: "5432"
             - name: DATABASE_USER
               value: shuttr@wisvch.iam
+            - name: DATABASE_PASSWORD
+              value: ""
             - name: DATABASE_DB
               value: shuttr
             - name: NUXT_OAUTH_KEYCLOAK_DISPLAY_NAME
