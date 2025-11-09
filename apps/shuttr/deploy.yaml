@@ -101,10 +101,11 @@ spec:
               value: "europe-west4"
           resources:
             limits:
-              memory: 256Mi
+              cpu: 4
+              memory: 1024Mi
             requests:
-              cpu: 200m
-              memory: 128Mi
+              cpu: 1
+              memory: 256Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
