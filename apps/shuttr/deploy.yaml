@@ -53,7 +53,7 @@ spec:
                   name: shuttr
                   key: sessionPassword
             - name: DATABASE_URL
-              value: "postgres://shuttr:shuttr@localhost:5432/shuttr"
+              value: "postgres://shuttr%40wisvch.iam@localhost:5432/shuttr"
             - name: NUXT_OAUTH_KEYCLOAK_DISPLAY_NAME
               value: "Connect"
             - name: NUXT_OAUTH_KEYCLOAK_SERVER_URL
@@ -104,7 +104,6 @@ spec:
             - "--structured-logs"
             - "--private-ip"
             - "--port=5432"
-            - "-i" # Enables automatic authentication through the serviceaccount
             - "wisvch:europe-west4:geurt"
           securityContext:
             runAsNonRoot: true
