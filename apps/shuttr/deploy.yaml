@@ -52,8 +52,14 @@ spec:
                 secretKeyRef:
                   name: shuttr
                   key: sessionPassword
-            - name: DATABASE_URL
-              value: "postgres://shuttr%40wisvch.iam@localhost:5432/shuttr"
+            - name: DATABASE_HOST
+              value: localhost
+            - name: DATABASE_PORT
+              value: 5432
+            - name: DATABASE_USER
+              value: shuttr@wisvch.iam
+            - name: DATABASE_DB
+              value: shuttr
             - name: NUXT_OAUTH_KEYCLOAK_DISPLAY_NAME
               value: "Connect"
             - name: NUXT_OAUTH_KEYCLOAK_SERVER_URL
