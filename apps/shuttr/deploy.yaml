@@ -55,7 +55,7 @@ spec:
             - name: DATABASE_HOST
               value: localhost
             - name: DATABASE_PORT
-              value: 5432
+              value: "5432"
             - name: DATABASE_USER
               value: shuttr@wisvch.iam
             - name: DATABASE_DB
