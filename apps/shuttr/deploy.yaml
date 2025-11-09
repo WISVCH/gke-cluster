@@ -100,6 +100,7 @@ spec:
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
+            - "--auto-iam-authn"
             - "--structured-logs"
             - "--private-ip"
             - "--port=5432"
