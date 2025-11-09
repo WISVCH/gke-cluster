@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shuttr
+  namespace: default
+  labels:
+    app: shuttr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shuttr
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: shuttr
+      labels:
+        app: shuttr
+    spec:
+      serviceAccountName: shuttr
+      containers:
+        - name: shuttr
+          image: ghcr.io/dsluijk/shuttr:20251109-18dc058 # {"$imagepolicy": "flux-system:shuttr"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: NUXT_SESSION_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: shuttr
+                  key: sessionPassword
+            - name: DATABASE_URL
+              value: "postgres://shuttr:shuttr@localhost:5432/shuttr"
+            - name: NUXT_OAUTH_KEYCLOAK_DISPLAY_NAME
+              value: "Connect"
+            - name: NUXT_OAUTH_KEYCLOAK_SERVER_URL
+              value: "https://login.ch.tudelft.nl"
+            - name: NUXT_OAUTH_KEYCLOAK_GROUPS_ADMIN
+              value: "staff"
+            - name: NUXT_OAUTH_KEYCLOAK_GROUPS_PUBLISHER
+              value: "flitcie"
+            - name: NUXT_OAUTH_KEYCLOAK_CLIENT_ID
+              value: "shuttr"
+            - name: NUXT_OAUTH_KEYCLOAK_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: shuttr
+                  key: keycloakSecret
+            - name: NUXT_OAUTH_KEYCLOAK_REALM
+              value: "wisvch"
+            - name: NUXT_STORAGE_TYPE
+              value: "s3"
+            - name: NUXT_STORAGE_THUMB_CACHE_MAX
+              value: "500"
+            - name: NUXT_STORAGE_S3_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shuttr
+                  key: storageAccessKey
+            - name: NUXT_STORAGE_S3_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: shuttr
+                  key: storageSecretKey
+            - name: NUXT_STORAGE_S3_BUCKET
+              value: "shuttr"
+            - name: NUXT_STORAGE_S3_ENDPOINT
+              value: "https://storage.googleapis.com"
+            - name: NUXT_STORAGE_S3_REGION
+              value: "europe-west4"
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              cpu: 200m
+              memory: 128Mi
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
+          args:
+            - "--structured-logs"
+            - "--private-ip"
+            - "--port=5432"
+            - "-i" # Enables automatic authentication through the serviceaccount
+            - "wisvch:europe-west4:geurt"
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 20m
+              memory: 100Mi
