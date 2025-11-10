@@ -100,11 +100,8 @@ spec:
             - name: NUXT_STORAGE_S3_REGION
               value: "europe-west4"
           resources:
-            limits:
-              cpu: 4
-              memory: 1024Mi
             requests:
-              cpu: 1
+              cpu: 500m
               memory: 256Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
