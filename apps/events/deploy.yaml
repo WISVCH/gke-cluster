@@ -114,9 +114,9 @@ spec:
             - name: SPRING_JPA_GENERATE_DDL
               value: "false"
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
-              value: https://connect.ch.tudelft.nl
+              value: https://login.ch.tudelft.nl/realms/wisvch
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_CLIENTURI
-              value: https://ch.tudelft.nl/events
+              value: https://ch.tudelft.nl/events/login/oauth2/code/wisvchconnect
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
               value: null
               valueFrom:
@@ -130,7 +130,7 @@ spec:
                   name: events
                   key: connect-client-secret
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_SCOPE
-              value: openid, profile, email, auth
+              value: openid, profile, email
             - name: SPRING_FLYWAY_ENABLED
               value: "true"
             - name: SPRING_FLYWAY_SCHEMAS
@@ -144,7 +144,7 @@ spec:
             - name: WISVCH_CONNECT_BETA_USERS
               value: joepj,juliand,danys
             - name: WISVCH_CONNECT_CLAIM_NAME
-              value: google_groups
+              value: groups
             - name: WISVCH_EVENTS_IMAGE_PATH
               value: https://ch.tudelft.nl/events/api/v1/documents/
             - name: MOLLIE_CLIENTURI
