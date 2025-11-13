@@ -19,7 +19,7 @@ resources:
   - ../../choice
   - ../../chpay
   - ../../cod
-  - ../../connect
+  # - ../../connect
   - ../../dienst2
   - ../../events
   # - ../../flitcie
