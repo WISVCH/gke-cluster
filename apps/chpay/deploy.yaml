@@ -101,9 +101,9 @@ spec:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://127.0.0.1:5432/chpay
             - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-              value: update
+              value: validate
             - name: SPRING_JPA_GENERATE_DDL
-              value: "true"
+              value: "false"
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
               value: https://login.ch.tudelft.nl/realms/wisvch
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
@@ -124,6 +124,16 @@ spec:
               value: https://chpay.ch.tudelft.nl/login/oauth2/code/wisvchlogin
             - name: SPRING_THYMELEAF_PREFIX
               value: classpath:/templates/
+            - name: SPRING_FLYWAY_ENABLED
+              value: "true"
+            - name: SPRING_FLYWAY_LOCATIONS
+              value: classpath:db/migration
+            - name: SPRING_FLYWAY_BASELINE_ON_MIGRATE
+              value: "true"
+            - name: SPRING_FLYWAY_TABLE
+              value: flyway_schema_history
+            - name: SPRING_FLYWAY_SCHEMAS
+              value: public
             - name: SERVER_ADDRESS
               value: "0.0.0.0"
             - name: SERVER_PORT
