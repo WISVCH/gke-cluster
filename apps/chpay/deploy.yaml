@@ -24,7 +24,7 @@ spec:
       serviceAccountName: chpay
       containers:
         - name: chpay
-          image: ghcr.io/wisvch/chpay:20251127-936459b # {"$imagepolicy": "flux-system:chpay"}
+          image: ghcr.io/wisvch/chpay:20251127-39d7a97 # {"$imagepolicy": "flux-system:chpay"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
