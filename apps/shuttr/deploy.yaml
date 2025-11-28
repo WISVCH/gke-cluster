@@ -99,6 +99,14 @@ spec:
               value: "https://storage.googleapis.com"
             - name: NUXT_STORAGE_S3_REGION
               value: "europe-west4"
+            - name: NUXT_PUBLIC_TITLE
+              value: "Christiaan Huygens"
+            - name: NUXT_PUBLIC_HEADER
+              value: "W.I.S.V. 'Christiaan Huygens'"
+            - name: NUXT_PUBLIC_DESCRIPTION
+              value: "Event photos of the study association for Applied Mathematics and Computer Science at the TU Delft."
+            - name: NUXT_PUBLIC_LINKS
+              value: '[ { "icon": "i-lucide-house", "to": "https://ch.tudelft.nl" }, { "icon": "i-simple-icons-instagram", "to": "https://www.instagram.com/wisvch/" }, { "icon": "i-simple-icons-github", "to": "https://github.com/wisvch" }, { "icon": "i-simple-icons-linkedin", "to": "https://www.linkedin.com/in/w-i-s-v-christiaan-huygens-0957a910/"} ]'
           resources:
             requests:
               cpu: 100m
