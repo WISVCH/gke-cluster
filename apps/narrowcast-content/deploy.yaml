@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: narrowcast-content
-          image: ghcr.io/wisvch/narrowcast-content:20251202-d36df1e # {"$imagepolicy": "flux-system:narrowcast-content"}
+          image: ghcr.io/wisvch/narrowcast-content:20251202-36858ba # {"$imagepolicy": "flux-system:narrowcast-content"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
