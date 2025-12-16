@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: aoch
-          image: ghcr.io/wisvch/aoch:20251201-260420d # {"$imagepolicy": "flux-system:aoch"}
+          image: ghcr.io/wisvch/aoch:20251216-89a1266 # {"$imagepolicy": "flux-system:aoch"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
