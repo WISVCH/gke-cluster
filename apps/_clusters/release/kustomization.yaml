@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   # - ../../annugame
   # - ../../aocbot
-  - ../../aoch
+  # - ../../aoch
   - ../../archive
   # - ../../areafiftylan
   # - ../../areafiftylan-legacy
