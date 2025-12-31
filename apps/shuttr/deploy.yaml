@@ -24,7 +24,7 @@ spec:
       serviceAccountName: shuttr
       containers:
         - name: shuttr
-          image: ghcr.io/dsluijk/shuttr:20251231-70501b2 # {"$imagepolicy": "flux-system:shuttr"}
+          image: ghcr.io/dsluijk/shuttr:20251231-2220632 # {"$imagepolicy": "flux-system:shuttr"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
