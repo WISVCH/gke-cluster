@@ -23,7 +23,7 @@ spec:
     allowedHosts: "dienst2.ch.tudelft.nl,dienst2.default.svc.cluster.local,dienst2.wisvch.internal"
     image:
       repository: ghcr.io/wisvch/dienst2
-      tag: 20250905-89ce359 # {"$imagepolicy": "flux-system:dienst2:tag"}
+      tag: 20260108-e96685c # {"$imagepolicy": "flux-system:dienst2:tag"}
     postgres:
       database: dienst2
       host: 127.0.0.1
