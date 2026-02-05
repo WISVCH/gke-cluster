@@ -1,4 +1,31 @@
+# 2025
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: hackdelft-2025
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/hackdelft-2025
+  interval: 15m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: hackdelft-2025
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: hackdelft-2025
+  filterTags:
+    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc
+
+
 # 2024
+---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
@@ -22,6 +49,7 @@ spec:
   policy:
     numerical:
       order: asc
+
 
 # 2022
 ---
@@ -49,6 +77,7 @@ spec:
     numerical:
       order: asc
 
+
 # 2019
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -72,6 +101,7 @@ spec:
     numerical:
       order: asc
 
+
 # 2018
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
@@ -94,6 +124,7 @@ spec:
   policy:
     numerical:
       order: asc
+
 
 # 2017
 ---
