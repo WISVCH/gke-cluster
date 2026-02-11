@@ -147,6 +147,15 @@ spec:
               value: groups
             - name: WISVCH_EVENTS_IMAGE_PATH
               value: https://ch.tudelft.nl/events/api/v1/documents/
+            - name: WISVCH_CHPAY_URI
+              value: https://chpay.ch.tudelft.nl/api/events
+            - name: WISVCH_CHPAY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: events
+                  key: chpay-api-key
+            - name: WISVCH_CHPAY_CLIENTURI
+              value: https://ch.tudelft.nl/events
             - name: MOLLIE_CLIENTURI
               value: https://ch.tudelft.nl/events
             - name: MOLLIE_APIKEY
@@ -168,7 +177,7 @@ spec:
             - name: GOOGLEWALLET_BASEURL
               value: "https://ch.tudelft.nl/events"
             - name: ADMINISTRATIONCOSTS
-              value: "0.35"
+              value: "0.00"
           volumeMounts:
             - mountPath: /events
               name: events
