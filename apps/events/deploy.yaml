@@ -24,7 +24,7 @@ spec:
       serviceAccountName: events
       containers:
         - name: events
-          image: ghcr.io/wisvch/events:20251117-28c9d8f # {"$imagepolicy": "flux-system:events"}
+          image: ghcr.io/wisvch/events:20260211-11887a2 # {"$imagepolicy": "flux-system:events"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
