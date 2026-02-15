@@ -1,8 +1,8 @@
-# 2025
+# 2026
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImageRepository
 metadata:
-  name: hackdelft-2025
+  name: hackdelft-2026
   namespace: flux-system
 spec:
   image: ghcr.io/wisvch/hackdelft-2025
@@ -11,11 +11,11 @@ spec:
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
 metadata:
-  name: hackdelft-2025
+  name: hackdelft-2026
   namespace: flux-system
 spec:
   imageRepositoryRef:
-    name: hackdelft-2025
+    name: hackdelft-2026
   filterTags:
     pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
     extract: "$ts"
