@@ -29,7 +29,7 @@ spec:
           type: ClusterIP
           port: 80
         image:
-          repository: ghcr.io/wisvch/hackdelft-2026
+          repository: ghcr.io/wisvch/hack-delft-2026
           tag: 20260220-e75e0b0 # {"$imagepolicy": "flux-system:hackdelft-2026:tag"}
           pullPolicy: IfNotPresent
           pullSecrets: {}

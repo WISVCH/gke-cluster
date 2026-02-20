@@ -5,7 +5,7 @@ metadata:
   name: hackdelft-2026
   namespace: flux-system
 spec:
-  image: ghcr.io/wisvch/hackdelft-2026
+  image: ghcr.io/wisvch/hack-delft-2026
   interval: 15m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
