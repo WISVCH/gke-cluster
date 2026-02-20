@@ -16,12 +16,23 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    defaultEdition: "2024"
+    defaultEdition: "2026"
     tlsSecret: hackdelft-tls
     domains:
       - hackdelft.nl
       - hackdelft.com
     editions:
+      "2026":
+        replicaCount: 1
+        containerPort: 8080
+        service:
+          type: ClusterIP
+          port: 80
+        image:
+          repository: ghcr.io/wisvch/hack-delft-2026
+          tag: 20260220-e75e0b0 # {"$imagepolicy": "flux-system:hackdelft-2026:tag"}
+          pullPolicy: IfNotPresent
+          pullSecrets: {}
       "2024":
         replicaCount: 1
         containerPort: 8080
