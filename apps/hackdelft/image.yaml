@@ -24,127 +24,127 @@ spec:
       order: asc
 
 
-# 2024
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: hackdelft-2024
-  namespace: flux-system
-spec:
-  image: ghcr.io/wisvch/hackdelft-2024
-  interval: 15m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImagePolicy
-metadata:
-  name: hackdelft-2024
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hackdelft-2024
-  filterTags:
-    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
-    extract: "$ts"
-  policy:
-    numerical:
-      order: asc
-
-
-# 2022
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: hackdelft-2022
-  namespace: flux-system
-spec:
-  image: ghcr.io/wisvch/hackdelft-2022
-  interval: 15m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImagePolicy
-metadata:
-  name: hackdelft-2022
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hackdelft-2022
-  filterTags:
-    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
-    extract: "$ts"
-  policy:
-    numerical:
-      order: asc
-
-
-# 2019
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: hackdelft-2019
-  namespace: flux-system
-spec:
-  image: ghcr.io/wisvch/hackdelft-2019
-  interval: 15m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImagePolicy
-metadata:
-  name: hackdelft-2019
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hackdelft-2019
-  policy:
-    numerical:
-      order: asc
-
-
-# 2018
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: hackdelft-2018
-  namespace: flux-system
-spec:
-  image: ghcr.io/wisvch/hackdelft-2018
-  interval: 15m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImagePolicy
-metadata:
-  name: hackdelft-2018
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hackdelft-2018
-  policy:
-    numerical:
-      order: asc
-
-
-# 2017
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: hackdelft-2017
-  namespace: flux-system
-spec:
-  image: ghcr.io/wisvch/hackdelft-2017
-  interval: 15m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImagePolicy
-metadata:
-  name: hackdelft-2017
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: hackdelft-2017
-  policy:
-    numerical:
-      order: asc
+# # 2024
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImageRepository
+# metadata:
+#   name: hackdelft-2024
+#   namespace: flux-system
+# spec:
+#   image: ghcr.io/wisvch/hackdelft-2024
+#   interval: 15m0s
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImagePolicy
+# metadata:
+#   name: hackdelft-2024
+#   namespace: flux-system
+# spec:
+#   imageRepositoryRef:
+#     name: hackdelft-2024
+#   filterTags:
+#     pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+#     extract: "$ts"
+#   policy:
+#     numerical:
+#       order: asc
+# 
+# 
+# # 2022
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImageRepository
+# metadata:
+#   name: hackdelft-2022
+#   namespace: flux-system
+# spec:
+#   image: ghcr.io/wisvch/hackdelft-2022
+#   interval: 15m0s
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImagePolicy
+# metadata:
+#   name: hackdelft-2022
+#   namespace: flux-system
+# spec:
+#   imageRepositoryRef:
+#     name: hackdelft-2022
+#   filterTags:
+#     pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+#     extract: "$ts"
+#   policy:
+#     numerical:
+#       order: asc
+# 
+# 
+# # 2019
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImageRepository
+# metadata:
+#   name: hackdelft-2019
+#   namespace: flux-system
+# spec:
+#   image: ghcr.io/wisvch/hackdelft-2019
+#   interval: 15m0s
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImagePolicy
+# metadata:
+#   name: hackdelft-2019
+#   namespace: flux-system
+# spec:
+#   imageRepositoryRef:
+#     name: hackdelft-2019
+#   policy:
+#     numerical:
+#       order: asc
+# 
+# 
+# # 2018
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImageRepository
+# metadata:
+#   name: hackdelft-2018
+#   namespace: flux-system
+# spec:
+#   image: ghcr.io/wisvch/hackdelft-2018
+#   interval: 15m0s
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImagePolicy
+# metadata:
+#   name: hackdelft-2018
+#   namespace: flux-system
+# spec:
+#   imageRepositoryRef:
+#     name: hackdelft-2018
+#   policy:
+#     numerical:
+#       order: asc
+# 
+# 
+# # 2017
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImageRepository
+# metadata:
+#   name: hackdelft-2017
+#   namespace: flux-system
+# spec:
+#   image: ghcr.io/wisvch/hackdelft-2017
+#   interval: 15m0s
+# ---
+# apiVersion: image.toolkit.fluxcd.io/v1beta1
+# kind: ImagePolicy
+# metadata:
+#   name: hackdelft-2017
+#   namespace: flux-system
+# spec:
+#   imageRepositoryRef:
+#     name: hackdelft-2017
+#   policy:
+#     numerical:
+#       order: asc
