@@ -23,7 +23,7 @@ resources:
   - ../../dienst2
   - ../../events
   # - ../../flitcie
-  # - ../../hackdelft
+  - ../../hackdelft
   - ../../iap-testapp-spring
   - ../../keycloak
   - ../../listmonk
