@@ -22,8 +22,8 @@ spec:
         app: annugame
     spec:
       containers:
-        - name: annugame24
-          image: ghcr.io/wisvch/annugame24:20250602-2b8afc6 # {"$imagepolicy": "flux-system:annugame"}
+        - name: annugame69
+          image: ghcr.io/wisvch/annu-game-69:20260310-a8e22e3 # {"$imagepolicy": "flux-system:annugame"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
