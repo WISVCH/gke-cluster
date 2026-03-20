@@ -173,6 +173,8 @@ spec:
                 secretKeyRef:
                   name: chpay
                   key: events-api-key
+            - name: VITE_VITE_ENTRIES_PREFIX
+              value: src
           resources:
             limits:
               memory: 512Mi
