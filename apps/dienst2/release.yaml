@@ -28,16 +28,10 @@ spec:
       database: dienst2
       host: 127.0.0.1
       port: 5432
+      username: dienst2@wisvch.iam
+      password: dienst2
       cloudSQL: true
   valuesFrom:
-    - kind: Secret
-      name: dienst2
-      valuesKey: pg-username
-      targetPath: postgres.username
-    - kind: Secret
-      name: dienst2
-      valuesKey: pg-password
-      targetPath: postgres.password
     - kind: Secret
       name: dienst2
       valuesKey: secret_key
