@@ -96,17 +96,9 @@ spec:
             - name: JAVA_OPTS
               value: -Xms128m -Xmx192m
             - name: SPRING_DATASOURCE_USERNAME
-              value: null
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: username
+              value: events@wisvch.iam
             - name: SPRING_DATASOURCE_PASSWORD
-              value: null
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: password
+              value: events
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://127.0.0.1:5432/events
             - name: SPRING_JPA_HIBERNATE_HB2MDDL_AUTO
@@ -191,10 +183,10 @@ spec:
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
+            - "--auto-iam-authn"
             - "--structured-logs"
             - "--private-ip"
             - "--port=5432"
-            - "-i" # Enables automatic authentication through the serviceaccount
             - "wisvch:europe-west4:geurt"
           securityContext:
             runAsNonRoot: true
