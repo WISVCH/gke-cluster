@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - image.yaml
   - release.yaml
+  - serviceaccount.yaml
   - healthcheck.yaml

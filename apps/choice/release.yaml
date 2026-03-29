@@ -17,31 +17,20 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
+    serviceAccountName: choice
     image:
       repository: ghcr.io/wisvch/choice
       tag: 20240802-5c0c8f5 # {"$imagepolicy": "flux-system:choice:tag"}
     postgres:
       database: choice
+      host: 127.0.0.1
+      port: 5432
+      username: choice@wisvch.iam
+      password: choice
+      cloudSQL: true
     hibernate:
       generateDdl: true
       hb2mddl:
         auto: validate
     flyway:
       enable: false
-  valuesFrom:
-    - kind: Secret
-      name: postgres
-      valuesKey: host
-      targetPath: postgres.host
-    - kind: Secret
-      name: postgres
-      valuesKey: port
-      targetPath: postgres.port
-    - kind: Secret
-      name: postgres
-      valuesKey: username
-      targetPath: postgres.username
-    - kind: Secret
-      name: postgres
-      valuesKey: password
-      targetPath: postgres.password
