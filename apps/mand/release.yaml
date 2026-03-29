@@ -28,6 +28,7 @@ spec:
       name: mand
       host: 127.0.0.1
       port: 5432
+      sslmode: disable
       username: mand-sa@wisvch.iam
       password: mand
       cloudSQL: true
