@@ -28,6 +28,8 @@ spec:
       username: choice@wisvch.iam
       password: choice
       cloudSQL: true
+      cloudSQLProxy:
+        instanceConnectionName: wisvch:europe-west4:geurt
     hibernate:
       generateDdl: true
       hb2mddl:

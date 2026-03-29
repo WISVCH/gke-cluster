@@ -31,6 +31,8 @@ spec:
       username: dienst2@wisvch.iam
       password: dienst2
       cloudSQL: true
+      cloudSQLProxy:
+        instanceConnectionName: wisvch:europe-west4:geurt
   valuesFrom:
     - kind: Secret
       name: dienst2
