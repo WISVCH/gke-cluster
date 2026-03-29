@@ -16,24 +16,22 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
+    serviceAccountName: listmonk
     image:
       repository: listmonk/listmonk
       # tag: v5.0.1 # {"$imagepolicy": "flux-system:listmonk:tag"}
       tag: v5.0.0
     domain: list.wisv.ch
+    postgres:
+      host: 127.0.0.1
+      port: 5432
+      name: listmonk
+      user: listmonk@wisvch.iam
+      password: listmonk
+      cloudSQL: true
+      cloudSQLProxy:
+        instanceConnectionName: wisvch:europe-west4:geurt
   valuesFrom:
-    - kind: Secret
-      name: postgres
-      valuesKey: host
-      targetPath: postgres.host
-    - kind: Secret
-      name: postgres
-      valuesKey: username
-      targetPath: postgres.user
-    - kind: Secret
-      name: postgres
-      valuesKey: password
-      targetPath: postgres.password
     - kind: Secret
       name: listmonk
       valuesKey: adminUser
