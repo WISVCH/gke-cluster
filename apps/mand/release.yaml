@@ -17,6 +17,7 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
+    serviceAccountName: mand
     image:
       repository: ghcr.io/wisvch/mand
       tag: 20250702-cbdcf74 # {"$imagepolicy": "flux-system:mand:tag"}
@@ -25,27 +26,16 @@ spec:
       clientId: mand
     postgres:
       name: mand
+      host: 127.0.0.1
+      port: 5432
+      username: mand-sa@wisvch.iam
+      password: mand
+      cloudSQL: true
     mand:
       allowedGroup: staff
     domains:
       - wisv.ch
   valuesFrom:
-    - kind: Secret
-      name: postgres
-      valuesKey: host
-      targetPath: postgres.host
-    - kind: Secret
-      name: postgres
-      valuesKey: port
-      targetPath: postgres.port
-    - kind: Secret
-      name: postgres
-      valuesKey: username
-      targetPath: postgres.username
-    - kind: Secret
-      name: postgres
-      valuesKey: password
-      targetPath: postgres.password
     - kind: Secret
       name: mand
       valuesKey: clientSecret
