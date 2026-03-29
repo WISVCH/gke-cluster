@@ -24,7 +24,6 @@ resources:
   - ../../events
   # - ../../flitcie
   - ../../hackdelft
-  - ../../iap-testapp-spring
   - ../../keycloak
   - ../../listmonk
   - ../../narrowcast-content
