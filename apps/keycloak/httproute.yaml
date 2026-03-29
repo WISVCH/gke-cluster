@@ -9,6 +9,7 @@ spec:
     namespace: gateway-infra
     name: gateway
   hostnames:
+  - login.wisv.ch
   - login.ch.tudelft.nl
   rules:
   - backendRefs:
