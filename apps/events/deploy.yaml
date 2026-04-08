@@ -157,7 +157,7 @@ spec:
                   name: events
                   key: mollie-key
             - name: LINKS_GTC
-              value: "https://ch.tudelft.nl/wp-content/uploads/Deelnemersvoorwaarden_versie_12_06_2023.pdf"
+              value: "https://ch.tudelft.nl/wp-content/uploads/General_terms_and_conditions-4.pdf"
             - name: LINKS_PASSES
               value: "http://passes.default.svc.cluster.local./passes"
             - name: GOOGLEWALLET_SERVICEKEYPATH
