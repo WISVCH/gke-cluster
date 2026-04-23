@@ -149,7 +149,9 @@ spec:
             - name: MOLLIE_TRANSACTION_FEE
               value: "0.39"
             - name: CHPAY_ADMIN_GROUPS
-              value: beheer,epa,vc,bestuur
+              value: epa,vc,bestuur
+            - name: CHPAY_SUPER_ADMIN_GROUPS
+              value: beheer,pccom
             - name: CHPAY_CLAIM_NAME
               value: groups
             - name: CHPAY_TRANSACTIONS_EXPIRE_EVERY_MINUTES
