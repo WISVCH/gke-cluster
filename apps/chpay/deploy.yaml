@@ -162,6 +162,11 @@ spec:
               value: "1"
             - name: CHPAY_SETTINGS_MINTOPUP
               value: "2"
+            - name: CHPAY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: events-api-key
             - name: VITE_VITE_ENTRIES_PREFIX
               value: src
           resources:
