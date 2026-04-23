@@ -140,7 +140,7 @@ spec:
             - name: WISVCH_EVENTS_IMAGE_PATH
               value: https://ch.tudelft.nl/events/api/v1/documents/
             - name: WISVCH_CHPAY_URI
-              value: https://chpay.ch.tudelft.nl/api/events
+              value: https://chpay.ch.tudelft.nl/api/v1
             - name: WISVCH_CHPAY_API_KEY
               valueFrom:
                 secretKeyRef:
