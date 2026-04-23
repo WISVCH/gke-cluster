@@ -151,7 +151,7 @@ spec:
             - name: CHPAY_ADMIN_GROUPS
               value: epa,vc,bestuur
             - name: CHPAY_SUPER_ADMIN_GROUPS
-              value: beheer,pccom
+              value: beheer
             - name: CHPAY_CLAIM_NAME
               value: groups
             - name: CHPAY_TRANSACTIONS_EXPIRE_EVERY_MINUTES
@@ -162,11 +162,6 @@ spec:
               value: "1"
             - name: CHPAY_SETTINGS_MINTOPUP
               value: "2"
-            - name: CHPAY_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: chpay
-                  key: events-api-key
             - name: VITE_VITE_ENTRIES_PREFIX
               value: src
           resources:
