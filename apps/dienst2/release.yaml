@@ -93,6 +93,37 @@ spec:
     run: dienst2
   type: ClusterIP
 ---
+# POD-level network policy to protect the service from internal traffic.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: dienst2-allow-internal-labels
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: dienst2
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          access-dienst2: "true" # Allow access from e.g. website by adding access-dienst2 to the labels.
+    ports:
+    - protocol: TCP
+      port: 8000
+  
+  - from:
+    # Allow all traffic that comes through the load balancer. External access is gated by IAP see GCPBackendPolicy.
+    - ipBlock:
+        cidr: 35.191.0.0/16
+    - ipBlock:
+        cidr: 130.211.0.0/22
+    ports:
+    - protocol: TCP
+      port: 8000
+---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy
 metadata:
