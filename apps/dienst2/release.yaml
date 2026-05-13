@@ -123,6 +123,14 @@ spec:
     ports:
     - protocol: TCP
       port: 8000
+
+  - from:
+    # Allow IAP Cloud Function, which reaches dienst2 via the 'wisvch-connect' VPC and internal LB (dienst2.wisvch.internal).
+    - ipBlock:
+        cidr: 10.8.0.0/28
+    ports:
+    - protocol: TCP
+      port: 8000
 ---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy
