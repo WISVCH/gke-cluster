@@ -21,6 +21,7 @@ spec:
     metadata:
       labels:
         app: keycloak
+        access-dienst2: "true"
     spec:
       serviceAccountName: keycloak
       containers:
