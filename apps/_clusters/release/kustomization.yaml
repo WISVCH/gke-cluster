@@ -26,6 +26,7 @@ resources:
   - ../../hackdelft
   - ../../keycloak
   - ../../listmonk
+  - ../../match-rally
   - ../../narrowcast-content
   - ../../passes
   - ../../mand

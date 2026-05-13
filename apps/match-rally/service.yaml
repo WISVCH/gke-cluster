@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: match-rally
+  name: match-rally
+  namespace: default
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: backend
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: match-rally
+  sessionAffinity: None
+  type: ClusterIP

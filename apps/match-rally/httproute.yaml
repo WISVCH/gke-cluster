@@ -1,0 +1,23 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: match-rally
+  namespace: default
+spec:
+  parentRefs:
+  - kind: Gateway
+    namespace: gateway-infra
+    name: gateway
+  hostnames:
+  - match-rally.wisv.ch
+  rules:
+  - backendRefs:
+    - name: match-rally
+      port: 80
+  - matches:
+    - path:
+        type: PathPrefix
+        value: "/api"
+    backendRefs:
+    - name: match-rally
+      port: 5000
