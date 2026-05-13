@@ -21,6 +21,7 @@ spec:
       name: website
       labels:
         app: website
+        access-dienst2: "true"
     spec:
       serviceAccountName: website
       containers:
