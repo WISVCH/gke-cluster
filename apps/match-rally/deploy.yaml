@@ -22,8 +22,8 @@ spec:
         app: match-rally
     spec:
       containers:
-        - name: match-rally69
-          image: ghcr.io/wisvch/annu-game-69:20260502-a57018e # {"$imagepolicy": "flux-system:match-rally"}
+        - name: match-rally
+          image: ghcr.io/wisvch/match-rally:latest # {"$imagepolicy": "flux-system:match-rally"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -48,41 +48,11 @@ spec:
           resources:
             limits:
               memory: 512Mi
-            requests:
-              cpu: 50m
-              memory: 150Mi
-        - name: match-rally-leaderboard
-          image: ghcr.io/wisvch/annugame-leaderboard:20260502-a60beb7 # {"$imagepolicy": "flux-system:match-rally-leaderboard"}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - name: backend
-              containerPort: 5000
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /api/
-              port: backend
-            initialDelaySeconds: 15
-            periodSeconds: 20
-            successThreshold: 1
-            timeoutSeconds: 5
-          readinessProbe:
-            httpGet:
-              path: /api/
-              port: backend
-            initialDelaySeconds: 15
-            periodSeconds: 20
-            successThreshold: 1
-            timeoutSeconds: 5
-          resources:
-            limits:
-              memory: 512Mi
+              cpu: 200m
             requests:
               cpu: 50m
               memory: 150Mi
           env:
-            - name: "BASE"
-              value: "/api"
             - name: "DB_BASE"
               value: "/db"
           volumeMounts:
