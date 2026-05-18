@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: match-rally
-          image: ghcr.io/wisvch/match-rally:20260518-8e329cb # {"$imagepolicy": "flux-system:match-rally"}
+          image: ghcr.io/wisvch/match-rally:20260518-9ba9cdf # {"$imagepolicy": "flux-system:match-rally"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
