@@ -21,27 +21,3 @@ spec:
   policy:
     numerical:
       order: asc
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImageRepository
-metadata:
-  name: match-rally-leaderboard
-  namespace: flux-system
-spec:
-  image: ghcr.io/wisvch/match-rally-leaderboard
-  interval: 15m0s
----
-apiVersion: image.toolkit.fluxcd.io/v1beta1
-kind: ImagePolicy
-metadata:
-  name: match-rally-leaderboard
-  namespace: flux-system
-spec:
-  imageRepositoryRef:
-    name: match-rally-leaderboard
-  filterTags:
-    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
-    extract: "$ts"
-  policy:
-    numerical:
-      order: asc

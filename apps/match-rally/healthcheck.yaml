@@ -17,22 +17,3 @@ spec:
     group: ""
     kind: Service
     name: match-rally
----
-apiVersion: networking.gke.io/v1
-kind: HealthCheckPolicy
-metadata:
-  namespace: default
-  name: match-rally-leaderboard
-spec:
-  default:
-    config:
-      type: HTTP
-      httpHealthCheck:
-        port: 5000
-        requestPath: /
-    logConfig:
-      enabled: true
-  targetRef:
-    group: ""
-    kind: Service
-    name: match-rally

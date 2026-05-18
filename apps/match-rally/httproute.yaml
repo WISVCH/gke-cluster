@@ -14,10 +14,3 @@ spec:
   - backendRefs:
     - name: match-rally
       port: 80
-  - matches:
-    - path:
-        type: PathPrefix
-        value: "/api"
-    backendRefs:
-    - name: match-rally
-      port: 5000
