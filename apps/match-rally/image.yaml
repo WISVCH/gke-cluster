@@ -4,7 +4,7 @@ metadata:
   name: match-rally
   namespace: flux-system
 spec:
-  image: ghcr.io/wisvch/annu-game-69
+  image: ghcr.io/wisvch/match-rally
   interval: 15m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1

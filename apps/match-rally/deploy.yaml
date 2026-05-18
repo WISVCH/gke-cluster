@@ -23,11 +23,11 @@ spec:
     spec:
       containers:
         - name: match-rally
-          image: ghcr.io/wisvch/annu-game-69:20260502-a57018e # {"$imagepolicy": "flux-system:match-rally"}
+          image: ghcr.io/wisvch/match-rally:latest # {"$imagepolicy": "flux-system:match-rally"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 3000
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -53,12 +53,12 @@ spec:
               cpu: 50m
               memory: 150Mi
           env:
-            - name: "DB_BASE"
-              value: "/db"
+            - name: "STORAGE_PATH"
+              value: "/storage"
           volumeMounts:
-            - mountPath: /db
-              name: match-rally-data
+            - mountPath: /storage
+              name: match-rally-storage
       volumes:
-        - name: match-rally-data
+        - name: match-rally-storage
           persistentVolumeClaim:
             claimName: match-rally-disk
