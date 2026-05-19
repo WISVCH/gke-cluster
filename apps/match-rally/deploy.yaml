@@ -21,6 +21,8 @@ spec:
       labels:
         app: match-rally
     spec:
+      securityContext:
+            runAsNonRoot: true
       containers:
         - name: match-rally
           image: ghcr.io/wisvch/match-rally:20260519-fffa14d # {"$imagepolicy": "flux-system:match-rally"}
