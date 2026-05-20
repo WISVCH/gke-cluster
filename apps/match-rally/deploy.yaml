@@ -21,6 +21,9 @@ spec:
       labels:
         app: match-rally
     spec:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: match-rally
           image: ghcr.io/wisvch/match-rally:20260520-d8bb803 # {"$imagepolicy": "flux-system:match-rally"}
