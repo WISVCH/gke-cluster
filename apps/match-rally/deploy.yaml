@@ -26,7 +26,7 @@ spec:
         fsGroupChangePolicy: OnRootMismatch
       containers:
         - name: match-rally
-          image: ghcr.io/wisvch/match-rally:20260521-84d5a13 # {"$imagepolicy": "flux-system:match-rally"}
+          image: ghcr.io/wisvch/match-rally:20260522-0a9bbf7 # {"$imagepolicy": "flux-system:match-rally"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
