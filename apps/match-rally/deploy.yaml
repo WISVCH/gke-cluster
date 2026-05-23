@@ -50,11 +50,11 @@ spec:
             timeoutSeconds: 5
           resources:
             limits:
-              memory: 5Gi
-              cpu: 1000m
+              memory: 2Gi
+              cpu: 500m
             requests:
-              cpu: 200m
-              memory: 500Mi
+              cpu: 100m
+              memory: 250Mi
           env:
             - name: "STORAGE_PATH"
               value: "/storage"
