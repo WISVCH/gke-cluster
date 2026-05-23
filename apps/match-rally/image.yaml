@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   image: ghcr.io/wisvch/match-rally
-  interval: 15m0s
+  interval: 1m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
