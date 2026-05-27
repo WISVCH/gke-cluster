@@ -111,6 +111,9 @@ spec:
             requests:
               cpu: 100m
               memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
@@ -123,6 +126,7 @@ spec:
             runAsNonRoot: true
           resources:
             limits:
+              cpu: 50m
               memory: 200Mi
             requests:
               cpu: 20m
