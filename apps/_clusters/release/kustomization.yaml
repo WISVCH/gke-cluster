@@ -16,7 +16,7 @@ resources:
   # - ../../chipcie-nwerc-2024
   - ../../chipcie-website
   - ../../chipcie-static-scoreboard
-  - ../../choice
+  # - ../../choice
   - ../../chpay
   - ../../cod
   # - ../../connect
