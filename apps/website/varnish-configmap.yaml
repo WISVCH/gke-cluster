@@ -10,7 +10,7 @@ data:
     import std;
 
     backend default {
-        .host = "website";
+        .host = "127.0.0.1";
         .port = "80";
     }
 
@@ -22,7 +22,7 @@ data:
         "10.20.0.0/16";
     }
 
-    sub vcl_recv {   
+    sub vcl_recv {
         # Remove empty query string parameters
         # e.g.: www.example.com/index.html?
         if (req.url ~ "\?$") {
@@ -40,7 +40,7 @@ data:
         unset req.http.proxy;
 
         # Only a single backend
-        set req.backend_hint= default;
+        set req.backend_hint = default;
 
         # Setting http headers for backend
         set req.http.X-Forwarded-For = client.ip;
@@ -49,27 +49,27 @@ data:
         # Unset headers that might cause us to cache duplicate infos
         unset req.http.Accept-Language;
         unset req.http.User-Agent;
-      
+
         # Healthcheck
-        if(req.url == "/healthcheck") {
-          return(synth(200,"OK"));
+        if (req.url == "/healthcheck") {
+          return(synth(200, "OK"));
         }
-        
+
         # Add X-Forwarded-Proto header when using https
         if (!req.http.X-Forwarded-Proto) {
-            if(std.port(server.ip) == 443 || std.port(server.ip) == 8443) {
+            if (std.port(server.ip) == 443 || std.port(server.ip) == 8443) {
                 set req.http.X-Forwarded-Proto = "https";
             } else {
                 set req.http.X-Forwarded-Proto = "http";
             }
         }
 
-        # Purge logic to remove objects from the cache. 
+        # Purge logic to remove objects from the cache.
         # Tailored to the Proxy Cache Purge WordPress plugin
         # See https://wordpress.org/plugins/varnish-http-purge/
-        if(req.method == "PURGE") {
-            if(!client.ip ~ purge) {
-                return(synth(405,"PURGE not allowed for this IP address"));
+        if (req.method == "PURGE") {
+            if (!client.ip ~ purge) {
+                return(synth(405, "PURGE not allowed for this IP address"));
             }
             if (req.http.X-Purge-Method == "regex") {
                 ban("obj.http.x-url ~ " + req.url + " && obj.http.x-host == " + req.http.host);
@@ -154,7 +154,7 @@ data:
             req.url ~ "^/\.well-known/acme-challenge/"
         ) {
           set req.http.X-Cacheable = "NO:Logged in/Got Sessions";
-          if(req.http.X-Requested-With == "XMLHttpRequest") {
+          if (req.http.X-Requested-With == "XMLHttpRequest") {
             set req.http.X-Cacheable = "NO:Ajax";
           }
             return(pass);
@@ -166,8 +166,8 @@ data:
     }
 
     sub vcl_hash {
-        if(req.http.X-Forwarded-Proto) {
-            # Create cache variations depending on the request protocol       
+        if (req.http.X-Forwarded-Proto) {
+            # Create cache variations depending on the request protocol
             hash_data(req.http.X-Forwarded-Proto);
         }
     }
@@ -191,37 +191,37 @@ data:
             set beresp.ttl = 1d;
         }
 
-      # Remove the Set-Cookie header when a specific Wordfence cookie is set
+        # Remove the Set-Cookie header when a specific Wordfence cookie is set
         if (beresp.http.Set-Cookie ~ "wfvt_|wordfence_verifiedHuman") {
           unset beresp.http.Set-Cookie;
-      }
-      
+        }
+
         if (beresp.http.Set-Cookie) {
             set beresp.http.X-Cacheable = "NO:Got Cookies";
-        } elseif(beresp.http.Cache-Control ~ "private") {
+        } elseif (beresp.http.Cache-Control ~ "private") {
             set beresp.http.X-Cacheable = "NO:Cache-Control=private";
-        }	
+        }
     }
 
     sub vcl_deliver {
         # Debug header
-        if(req.http.X-Cacheable) {
-            set resp.http.X-Cacheable = req.http.X-Cacheable;    
-        } elseif(obj.uncacheable) {
-            if(!resp.http.X-Cacheable) {
-                set resp.http.X-Cacheable = "NO:UNCACHEABLE";        
+        if (req.http.X-Cacheable) {
+            set resp.http.X-Cacheable = req.http.X-Cacheable;
+        } elseif (obj.uncacheable) {
+            if (!resp.http.X-Cacheable) {
+                set resp.http.X-Cacheable = "NO:UNCACHEABLE";
             }
-        } elseif(!resp.http.X-Cacheable) {
+        } elseif (!resp.http.X-Cacheable) {
             set resp.http.X-Cacheable = "YES";
         }
-        
+
         if (obj.hits > 0) {
             set resp.http.X-Cache = "HIT";
         } else {
             set resp.http.X-Cache = "MISS";
         }
-        
+
         # Cleanup of headers
         unset resp.http.x-url;
-        unset resp.http.x-host;    
+        unset resp.http.x-host;
     }

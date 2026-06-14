@@ -15,7 +15,7 @@ spec:
   - www.ch.tudelft.nl
   rules:
   - backendRefs:
-    - name: varnish-svc
+    - name: website
       port: 80
   - matches:
     - path:

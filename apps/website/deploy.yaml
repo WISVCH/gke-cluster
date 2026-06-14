@@ -24,12 +24,30 @@ spec:
         access-dienst2: "true"
     spec:
       serviceAccountName: website
+      initContainers:
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
+          restartPolicy: Always
+          args:
+            - "--structured-logs"
+            - "--private-ip"
+            - "--port=3306"
+            - "-i"
+            - "wisvch:europe-west4:cees"
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 20m
+              memory: 100Mi
       containers:
         - name: website
           image: ghcr.io/wisvch/website:20250502-7ecf625 # {"$imagepolicy": "flux-system:website"}
           imagePullPolicy: IfNotPresent
           ports:
-            - name: http
+            - name: backend-http
               containerPort: 80
               protocol: TCP
           env:
@@ -43,6 +61,8 @@ spec:
               value: chtud59_
             - name: HTTP_HOST
               value: ch.tudelft.nl
+            - name: VARNISH_SVC_SERVICE_HOST
+              value: 127.0.0.1:8080
             - name: DIENST2_API_URL
               value: http://dienst2.default.svc.cluster.local./ldb/api/v3/
             - name: DIENST2_API_TOKEN
@@ -65,29 +85,65 @@ spec:
               memory: 500Mi
           securityContext:
             runAsNonRoot: false # FIXME: run as an unprivileged user
+          startupProbe:
+            httpGet:
+              path: /wp-json/
+              port: backend-http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
+          readinessProbe:
+            httpGet:
+              path: /wp-json/
+              port: backend-http
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
           volumeMounts:
             - mountPath: /var/www/html/wp-content
               name: website-storage
-        - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
-          args:
-            - "--structured-logs"
-            - "--private-ip"
-            - "--port=3306"
-            - "-i"
-            - "wisvch:europe-west4:cees"
-          securityContext:
-            runAsNonRoot: true
+        - name: varnish
+          image: varnish:6.0.18
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: VARNISH_HTTP_PORT
+              value: "8080"
+            - name: VARNISH_SIZE
+              value: "128M"
           resources:
             limits:
-              memory: 200Mi
+              memory: 384Mi
             requests:
-              cpu: 20m
-              memory: 100Mi
+              cpu: 10m
+              memory: 128Mi
+          volumeMounts:
+            - name: varnish-config
+              mountPath: /etc/varnish/
+            - name: varnish-storage
+              mountPath: /var/lib/varnish
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 8080
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3
       volumes:
         - name: website-storage
           persistentVolumeClaim:
             claimName: website-storage
+        - name: varnish-config
+          configMap:
+            name: varnish-vcl
+            items:
+              - key: default.vcl
+                path: default.vcl
+        - name: varnish-storage
+          emptyDir: {}
 ---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy
@@ -101,8 +157,8 @@ spec:
     config:
       type: HTTP
       httpHealthCheck:
-        port: 80
-        requestPath: /wp-json/
+        port: 8080
+        requestPath: /healthcheck
     logConfig:
       enabled: true
   targetRef:
