@@ -36,6 +36,13 @@ spec:
         instanceConnectionName: wisvch:europe-west4:geurt
     mand:
       allowedGroup: staff
+    resources: # 7d peak: ~22Mi non-evictable memory and 14m CPU; retain startup and request headroom.
+      requests:
+        cpu: 25m
+        memory: 64Mi
+      limits:
+        cpu: 200m
+        memory: 128Mi
     domains:
       - wisv.ch
   valuesFrom:

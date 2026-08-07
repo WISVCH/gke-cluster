@@ -45,10 +45,13 @@ spec:
           env:
             - name: IAP_EXPECTED_AUDIENCE
               value: /projects/966138216790/global/backendServices/2044437052005738173
-          resources:
+          resources: # 7d peak: ~109Mi non-evictable memory and 77m CPU; leave headroom for page rendering.
             limits:
+              cpu: 250m
+              memory: 256Mi
+            requests:
               cpu: 100m
-              memory: 300Mi
+              memory: 128Mi
           volumeMounts:
             - mountPath: /var/www/dokuwiki/data
               name: wiki-data

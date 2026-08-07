@@ -78,9 +78,13 @@ spec:
               value: AIzaSyBuaSuYTLnUyOrBcV6OOXEjZXP96qB3Aes
             - name: FLASK_DATA_PATH
               value: /data
-          resources:
+          resources: # 7d peak: ~41Mi non-evictable memory; reserve normal work and leave HTTP burst headroom.
             limits:
-              memory: 512Mi
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 25m
+              memory: 64Mi
           volumeMounts:
             - mountPath: /data
               name: narrowcast-content-data

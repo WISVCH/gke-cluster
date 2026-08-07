@@ -61,6 +61,13 @@ spec:
       tag: 20260803-158b63c # {"$imagepolicy": "flux-system:archived-static:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
+    resources: # 7d peak: 404Mi non-evictable + 428Mi reclaimable cache; keep cache headroom.
+      limits:
+        cpu: 200m
+        memory: 1Gi
+      requests:
+        cpu: 25m
+        memory: 512Mi
 ---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy

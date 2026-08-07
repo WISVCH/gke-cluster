@@ -164,12 +164,13 @@ spec:
               value: "2"
             - name: VITE_VITE_ENTRIES_PREFIX
               value: src
-          resources:
+          resources: # 7d peak: 512Mi non-evictable memory; OOMKilled at 512Mi. CPU bursts reached ~807m.
             limits:
-              memory: 512Mi
+              cpu: "1"
+              memory: 1Gi
             requests:
-              cpu: 100m
-              memory: 150Mi
+              cpu: 200m
+              memory: 768Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
@@ -182,7 +183,8 @@ spec:
             runAsNonRoot: true
           resources:
             limits:
-              memory: 200Mi
+              cpu: 250m
+              memory: 128Mi
             requests:
-              cpu: 20m
-              memory: 100Mi
+              cpu: 50m
+              memory: 64Mi

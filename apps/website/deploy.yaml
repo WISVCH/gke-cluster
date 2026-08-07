@@ -38,10 +38,11 @@ spec:
             runAsNonRoot: true
           resources:
             limits:
-              memory: 200Mi
+              cpu: 250m
+              memory: 128Mi
             requests:
-              cpu: 20m
-              memory: 100Mi
+              cpu: 50m
+              memory: 64Mi
       containers:
         - name: website
           image: ghcr.io/wisvch/website:20260802-93250dc # {"$imagepolicy": "flux-system:website"}
@@ -76,13 +77,13 @@ spec:
               value: disable-comments,disable-search,post-types-order,daggerhart-openid-connect-generic,https://github.com/WISVCH/wisvch-wordpress-plugin/archive/master.zip,depublish-posts,redirection,ewww-image-optimizer,photo-gallery,https://github.com/WISVCH/zettle-stock/archive/master.zip,varnish-http-purge
             - name: APACHE_LOG_DIR
               value: /var/log/apache/
-          resources:
+          resources: # 7d peak: 946Mi non-evictable + ~305Mi cache; retain import headroom and allow ~384m CPU bursts.
             limits:
               cpu: "2"
               memory: 2Gi
             requests:
-              cpu: 50m
-              memory: 500Mi
+              cpu: 200m
+              memory: 1Gi
           securityContext:
             runAsNonRoot: false # FIXME: run as an unprivileged user
           startupProbe:
@@ -114,12 +115,13 @@ spec:
               value: "8080"
             - name: VARNISH_SIZE
               value: "128M"
-          resources:
+          resources: # 7d peak: ~341Mi non-evictable memory; cache needs a little more than the former 384Mi cap.
             limits:
-              memory: 384Mi
+              cpu: 250m
+              memory: 512Mi
             requests:
-              cpu: 10m
-              memory: 128Mi
+              cpu: 30m
+              memory: 384Mi
           volumeMounts:
             - name: varnish-config
               mountPath: /etc/varnish/
