@@ -28,6 +28,29 @@ spec:
       - eerstejaarsweekend.nl
       - lustrum.ch
       - symposium.ch.tudelft.nl
+      - 2024.hackdelft.nl
+      - 2024.hackdelft.com
+      - 2022.hackdelft.nl
+      - 2022.hackdelft.com
+      - 2019.hackdelft.nl
+      - 2019.hackdelft.com
+      - 2018.hackdelft.nl
+      - 2018.hackdelft.com
+      - 2017.hackdelft.nl
+      - 2017.hackdelft.com
+      - 2022.nwerc.eu
+      - 2023.nwerc.eu
+      - 2024.nwerc.eu
+      - businesstour.ch.tudelft.nl
+      - businesstour.wisv.ch
+      - 2001.bapc.eu
+      - 2002.nwerc.eu
+      - 2005.bapc.eu
+      - 2008.bapc.eu
+      - 2012.nwerc.eu
+      - 2013.nwerc.eu
+      - 2016.bapc.eu
+      - 2020.bapc.eu
     replicaCount: 1
     containerPort: 8080
     service:
@@ -35,7 +58,7 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/archived-static
-      tag: 20250107-de4fefd # {"$imagepolicy": "flux-system:archived-static:tag"}
+      tag: 20260803-158b63c # {"$imagepolicy": "flux-system:archived-static:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
     resources: # typical usage cpu: 0.00026, mem: 36MiB

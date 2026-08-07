@@ -1,0 +1,188 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chpay
+  namespace: default
+  labels:
+    app: chpay
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chpay
+  # strategy:
+  #   type: RollingUpdate
+  #   rollingUpdate:
+  #     maxSurge: 1
+  #     maxUnavailable: 0
+  template:
+    metadata:
+      name: chpay
+      labels:
+        app: chpay
+    spec:
+      serviceAccountName: chpay
+      containers:
+        - name: chpay
+          image: ghcr.io/wisvch/chpay:20260802-d5483e0 # {"$imagepolicy": "flux-system:chpay"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: production
+            - name: SPRING_APPLICATION_NAME
+              value: chpay
+            - name: SPRING_APPLICATION_BASEURL
+              value: https://chpay.ch.tudelft.nl
+            - name: MANAGEMENT_HEALTH_MAIL_ENABLED
+              value: "false"
+            - name: SPRING_MAIL_DISABLE
+              value: "false"
+            - name: SPRING_MAIL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: chpay-mail
+                  key: mail-host
+            - name: SPRING_MAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: chpay-mail
+                  key: mail-port
+            - name: SPRING_MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: chpay-mail
+                  key: mail-username
+            - name: SPRING_MAIL_PASSWORD
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: chpay-mail
+                  key: mail-password
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
+              value: "true"
+            - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
+              value: "true"
+            - name: SPRING_CACHE_CACHE_NAMES
+              value: systemFrozen, maxBalance, minTopUp
+            - name: SPRING_CACHE_CAFFEINE_SPEC
+              value: recordStats,maximumSize=10,expireAfterWrite=5m
+            - name: SPRING_DATASOURCE_USERNAME
+              value: chpay-sa@wisvch.iam
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: chpay-sa
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://127.0.0.1:5432/chpay
+            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+              value: validate
+            - name: SPRING_JPA_GENERATE_DDL
+              value: "false"
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
+              value: https://login.ch.tudelft.nl/realms/wisvch
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: login-client-id
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_SECRET
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: login-client-secret
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_SCOPE
+              value: openid, profile, email
+            - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_REDIRECT_URI
+              value: https://chpay.ch.tudelft.nl/login/oauth2/code/wisvchlogin
+            - name: SPRING_THYMELEAF_PREFIX
+              value: classpath:/templates/
+            - name: SPRING_FLYWAY_ENABLED
+              value: "true"
+            - name: SPRING_FLYWAY_LOCATIONS
+              value: classpath:db/migration
+            - name: SPRING_FLYWAY_BASELINE_ON_MIGRATE
+              value: "true"
+            - name: SPRING_FLYWAY_TABLE
+              value: flyway_schema_history
+            - name: SPRING_FLYWAY_SCHEMAS
+              value: public
+            - name: SERVER_ADDRESS
+              value: "0.0.0.0"
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SERVER_FORWARD_HEADERS_STRATEGY
+              value: "FRAMEWORK"
+            - name: JAVA_OPTS
+              value: -Xms128m -Xmx192m
+            - name: TZ
+              value: Europe/Amsterdam
+            - name: MOLLIE_REDIRECT_URL
+              value: https://chpay.ch.tudelft.nl/topup/complete/
+            - name: MOLLIE_WEBHOOK_URL
+              value: https://chpay.ch.tudelft.nl/topup/status
+            - name: MOLLIE_API_KEY
+              value: null
+              valueFrom:
+                secretKeyRef:
+                  name: chpay
+                  key: mollie-key
+            - name: MOLLIE_TRANSACTION_FEE
+              value: "0.39"
+            - name: CHPAY_ADMIN_GROUPS
+              value: epa,vc,bestuur
+            - name: CHPAY_SUPER_ADMIN_GROUPS
+              value: beheer
+            - name: CHPAY_CLAIM_NAME
+              value: groups
+            - name: CHPAY_TRANSACTIONS_EXPIRE_EVERY_MINUTES
+              value: "20"
+            - name: CHPAY_TRANSACTIONS_EXPIRATION_FIXED_RATE
+              value: "1"
+            - name: CHPAY_PAYMENTREQUESTS_EXPIRE_EVERY_MONTHS
+              value: "1"
+            - name: CHPAY_SETTINGS_MINTOPUP
+              value: "2"
+            - name: VITE_VITE_ENTRIES_PREFIX
+              value: src
+          resources:
+            limits:
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 150Mi
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
+          args:
+            - "--auto-iam-authn"
+            - "--structured-logs"
+            - "--private-ip"
+            - "--port=5432"
+            - "wisvch:europe-west4:geurt"
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            limits:
+              memory: 200Mi
+            requests:
+              cpu: 20m
+              memory: 100Mi

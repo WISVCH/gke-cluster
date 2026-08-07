@@ -24,7 +24,7 @@ spec:
       serviceAccountName: events
       containers:
         - name: events
-          image: ghcr.io/wisvch/events:20241212-38f583a # {"$imagepolicy": "flux-system:events"}
+          image: ghcr.io/wisvch/events:20260802-4bbbda0 # {"$imagepolicy": "flux-system:events"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
@@ -96,17 +96,9 @@ spec:
             - name: JAVA_OPTS
               value: -Xms128m -Xmx192m
             - name: SPRING_DATASOURCE_USERNAME
-              value: null
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: username
+              value: events@wisvch.iam
             - name: SPRING_DATASOURCE_PASSWORD
-              value: null
-              valueFrom:
-                secretKeyRef:
-                  name: postgres
-                  key: password
+              value: events
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://127.0.0.1:5432/events
             - name: SPRING_JPA_HIBERNATE_HB2MDDL_AUTO
@@ -114,9 +106,9 @@ spec:
             - name: SPRING_JPA_GENERATE_DDL
               value: "false"
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_ISSUER_URI
-              value: https://connect.ch.tudelft.nl
+              value: https://login.ch.tudelft.nl/realms/wisvch
             - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_WISVCHCONNECT_CLIENTURI
-              value: https://ch.tudelft.nl/events
+              value: https://ch.tudelft.nl/events/login/oauth2/code/wisvchconnect
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_CLIENT_ID
               value: null
               valueFrom:
@@ -130,7 +122,7 @@ spec:
                   name: events
                   key: connect-client-secret
             - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_WISVCHCONNECT_SCOPE
-              value: openid, profile, email, auth
+              value: openid, profile, email
             - name: SPRING_FLYWAY_ENABLED
               value: "true"
             - name: SPRING_FLYWAY_SCHEMAS
@@ -144,9 +136,18 @@ spec:
             - name: WISVCH_CONNECT_BETA_USERS
               value: joepj,juliand,danys
             - name: WISVCH_CONNECT_CLAIM_NAME
-              value: google_groups
+              value: groups
             - name: WISVCH_EVENTS_IMAGE_PATH
               value: https://ch.tudelft.nl/events/api/v1/documents/
+            - name: WISVCH_CHPAY_URI
+              value: https://chpay.ch.tudelft.nl/api/v1
+            - name: WISVCH_CHPAY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: events
+                  key: chpay-api-key
+            - name: WISVCH_CHPAY_CLIENTURI
+              value: https://ch.tudelft.nl/events
             - name: MOLLIE_CLIENTURI
               value: https://ch.tudelft.nl/events
             - name: MOLLIE_APIKEY
@@ -156,7 +157,7 @@ spec:
                   name: events
                   key: mollie-key
             - name: LINKS_GTC
-              value: "https://ch.tudelft.nl/wp-content/uploads/Deelnemersvoorwaarden_versie_12_06_2023.pdf"
+              value: "https://ch.tudelft.nl/wp-content/uploads/General_terms_and_conditions-4.pdf"
             - name: LINKS_PASSES
               value: "http://passes.default.svc.cluster.local./passes"
             - name: GOOGLEWALLET_SERVICEKEYPATH
@@ -168,7 +169,7 @@ spec:
             - name: GOOGLEWALLET_BASEURL
               value: "https://ch.tudelft.nl/events"
             - name: ADMINISTRATIONCOSTS
-              value: "0.35"
+              value: "0.00"
           volumeMounts:
             - mountPath: /events
               name: events
@@ -183,10 +184,10 @@ spec:
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
           args:
+            - "--auto-iam-authn"
             - "--structured-logs"
             - "--private-ip"
             - "--port=5432"
-            - "-i" # Enables automatic authentication through the serviceaccount
             - "wisvch:europe-west4:geurt"
           securityContext:
             runAsNonRoot: true

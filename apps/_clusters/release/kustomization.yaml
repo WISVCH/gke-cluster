@@ -1,31 +1,35 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ../../annugame
+  # - ../../annugame
   # - ../../aocbot
   # - ../../aoch
   - ../../archive
   # - ../../areafiftylan
   # - ../../areafiftylan-legacy
-  - ../../adminer
-  - ../../bt-website
-  - ../../chipcie-legacy
-  - ../../chipcie-nwerc-2022
-  - ../../chipcie-nwerc-2023
-  - ../../chipcie-nwerc-2024
+  # - ../../adminer
+  # - ../../bt-website
+  - ../../chipcie-bapc-2025
+  # - ../../chipcie-legacy
+  # - ../../chipcie-nwerc-2022
+  # - ../../chipcie-nwerc-2023
+  # - ../../chipcie-nwerc-2024
   - ../../chipcie-website
   - ../../chipcie-static-scoreboard
   - ../../choice
+  - ../../chpay
   - ../../cod
-  - ../../connect
+  # - ../../connect
   - ../../dienst2
   - ../../events
   # - ../../flitcie
   - ../../hackdelft
+  - ../../keycloak
   - ../../listmonk
+  # - ../../match-rally
   - ../../narrowcast-content
   - ../../passes
   - ../../mand
-  - ../../varnish-proxy
+  - ../../shuttr
   - ../../website
   - ../../wiki

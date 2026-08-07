@@ -10,7 +10,7 @@ spec:
     name: gateway
   hostnames:
   - scoreboard.chipcie.ch.tudelft.nl
-  - scoreboard.nwerc.eu
+  - scoreboard.bapc.eu
   rules:
   - backendRefs:
     - name: chipcie-static-scoreboard

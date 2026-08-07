@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: match-rally
+  namespace: default
+  labels:
+    app: match-rally
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: match-rally
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: match-rally
+      labels:
+        app: match-rally
+    spec:
+      securityContext:
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+      containers:
+        - name: match-rally
+          image: ghcr.io/wisvch/match-rally:20260523-0d00dfb # {"$imagepolicy": "flux-system:match-rally"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          resources:
+            limits:
+              memory: 500Mi
+              cpu: 100m
+            requests:
+              cpu: 25m
+              memory: 100Mi
+          env:
+            - name: "STORAGE_PATH"
+              value: "/storage"
+          volumeMounts:
+            - mountPath: /storage
+              name: match-rally-storage
+      volumes:
+        - name: match-rally-storage
+          persistentVolumeClaim:
+            claimName: match-rally-disk

@@ -23,21 +23,17 @@ spec:
     allowedHosts: "dienst2.ch.tudelft.nl,dienst2.default.svc.cluster.local,dienst2.wisvch.internal"
     image:
       repository: ghcr.io/wisvch/dienst2
-      tag: 20250322-5ed77fb # {"$imagepolicy": "flux-system:dienst2:tag"}
+      tag: 20260108-e96685c # {"$imagepolicy": "flux-system:dienst2:tag"}
     postgres:
       database: dienst2
       host: 127.0.0.1
       port: 5432
+      username: dienst2@wisvch.iam
+      password: dienst2
       cloudSQL: true
+      cloudSQLProxy:
+        instanceConnectionName: wisvch:europe-west4:geurt
   valuesFrom:
-    - kind: Secret
-      name: dienst2
-      valuesKey: pg-username
-      targetPath: postgres.username
-    - kind: Secret
-      name: dienst2
-      valuesKey: pg-password
-      targetPath: postgres.password
     - kind: Secret
       name: dienst2
       valuesKey: secret_key
@@ -96,6 +92,45 @@ spec:
   selector:
     run: dienst2
   type: ClusterIP
+---
+# POD-level network policy to protect the service from internal traffic.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: dienst2-allow-internal-labels
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: dienst2
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          access-dienst2: "true" # Allow access from e.g. website by adding access-dienst2 to the labels.
+    ports:
+    - protocol: TCP
+      port: 8000
+  
+  - from:
+    # Allow all traffic that comes through the load balancer. External access is gated by IAP see GCPBackendPolicy.
+    - ipBlock:
+        cidr: 35.191.0.0/16
+    - ipBlock:
+        cidr: 130.211.0.0/22
+    ports:
+    - protocol: TCP
+      port: 8000
+
+  - from:
+    # Allow IAP Cloud Function, which reaches dienst2 via the 'wisvch-connect' VPC and internal LB (dienst2.wisvch.internal).
+    - ipBlock:
+        cidr: 10.8.0.0/28
+    ports:
+    - protocol: TCP
+      port: 8000
 ---
 apiVersion: networking.gke.io/v1
 kind: HealthCheckPolicy

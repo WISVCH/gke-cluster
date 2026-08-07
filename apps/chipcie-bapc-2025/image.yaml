@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: bapc-2025
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/bapc-2025
+  interval: 15m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: bapc-2025
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: bapc-2025
+  filterTags:
+    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc

@@ -1,0 +1,19 @@
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  namespace: default
+  name: shuttr
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 80
+        requestPath: /api/health
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: chpayshuttr
