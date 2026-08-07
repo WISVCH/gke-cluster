@@ -29,3 +29,10 @@ spec:
       tag: 20260724-900536c # {"$imagepolicy": "flux-system:chipcie-website:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
+    resources: # 7d peak: 907Mi non-evictable + 1052Mi cache; reserve a small floor and allow cache/traffic bursts.
+      requests:
+        cpu: 25m
+        memory: 256Mi
+      limits:
+        cpu: 750m
+        memory: 3Gi

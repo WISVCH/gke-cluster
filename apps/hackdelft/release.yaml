@@ -33,6 +33,13 @@ spec:
           tag: 20260802-014a5db # {"$imagepolicy": "flux-system:hackdelft-2026:tag"}
           pullPolicy: IfNotPresent
           pullSecrets: {}
+        resources: # 7d peak: 26Mi non-evictable memory and negligible CPU; reserve idle use and allow traffic bursts.
+          requests:
+            cpu: 10m
+            memory: 32Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
 #       "2024":
 #         replicaCount: 1
 #         containerPort: 8080

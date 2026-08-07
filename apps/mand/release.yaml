@@ -34,6 +34,13 @@ spec:
       cloudSQL: true
       cloudSQLProxy:
         instanceConnectionName: wisvch:europe-west4:geurt
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
     mand:
       allowedGroup: staff
     resources: # 7d peak: ~22Mi non-evictable memory and 14m CPU; retain startup and request headroom.

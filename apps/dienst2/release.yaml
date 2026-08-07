@@ -24,6 +24,13 @@ spec:
     image:
       repository: ghcr.io/wisvch/dienst2
       tag: 20260108-e96685c # {"$imagepolicy": "flux-system:dienst2:tag"}
+    resources: # Quiet-week peak: 123Mi non-evictable and 9m CPU; exports need high burst headroom.
+      requests:
+        cpu: 50m
+        memory: 192Mi
+      limits:
+        cpu: "2"
+        memory: 1Gi
     postgres:
       database: dienst2
       host: 127.0.0.1
@@ -33,6 +40,13 @@ spec:
       cloudSQL: true
       cloudSQLProxy:
         instanceConnectionName: wisvch:europe-west4:geurt
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 250m
+            memory: 128Mi
   valuesFrom:
     - kind: Secret
       name: dienst2

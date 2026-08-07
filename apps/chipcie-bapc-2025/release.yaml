@@ -30,3 +30,10 @@ spec:
       tag: 20260302-aadb71b # {"$imagepolicy": "flux-system:bapc-2025:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
+    resources: # 7d peak: 99Mi non-evictable + 408Mi cache; reserve idle use and allow cache/traffic bursts.
+      requests:
+        cpu: 10m
+        memory: 64Mi
+      limits:
+        cpu: 500m
+        memory: 768Mi
