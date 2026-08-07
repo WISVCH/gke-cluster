@@ -37,10 +37,11 @@ spec:
             runAsNonRoot: true
           resources:
             limits:
-              memory: 200Mi
+              cpu: 250m
+              memory: 128Mi
             requests:
-              cpu: 20m
-              memory: 100Mi
+              cpu: 50m
+              memory: 64Mi
         - name: keycloak
           image: ghcr.io/wisvch/keycloak-build:20260729-73c291a # {"$imagepolicy": "flux-system:keycloak"}
           args:
@@ -116,10 +117,10 @@ spec:
               port: 9000
             periodSeconds: 10
             failureThreshold: 3
-          resources:
+          resources: # 7d peak: ~580Mi non-evictable memory and ~60m CPU; existing memory headroom is appropriate.
             limits:
-              cpu: 2000m
+              cpu: "1"
               memory: 1500Mi
             requests:
-              cpu: 500m
+              cpu: 100m
               memory: 1000Mi

@@ -59,7 +59,10 @@ spec:
             - name: http
               containerPort: 3000
               protocol: TCP
-          resources: # typical usage cpu: 0.00008, mem: 3.5MiB
+          resources: # 7d peak: ~13Mi memory and <1m CPU;
             limits:
-              cpu: 2m
-              memory: 16Mi
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 15m
+              memory: 25Mi

@@ -107,12 +107,12 @@ spec:
               value: "Event photos of the study association for Applied Mathematics and Computer Science at the TU Delft."
             - name: NUXT_PUBLIC_LINKS
               value: '[ { "icon": "i-lucide-house", "to": "https://ch.tudelft.nl" }, { "icon": "i-simple-icons-instagram", "to": "https://www.instagram.com/wisvch/" }, { "icon": "i-simple-icons-github", "to": "https://github.com/wisvch" }, { "icon": "i-simple-icons-linkedin", "to": "https://www.linkedin.com/in/w-i-s-v-christiaan-huygens-0957a910/"} ]'
-          resources:
+          resources: # 7d peak: ~197Mi non-evictable memory; CPU reached ~221m and exceeded the prior 200m limit.
             requests:
               cpu: 100m
               memory: 256Mi
             limits:
-              cpu: 200m
+              cpu: 500m
               memory: 512Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
@@ -126,8 +126,8 @@ spec:
             runAsNonRoot: true
           resources:
             limits:
-              cpu: 50m
-              memory: 200Mi
+              cpu: 250m
+              memory: 128Mi
             requests:
-              cpu: 20m
-              memory: 100Mi
+              cpu: 50m
+              memory: 64Mi
