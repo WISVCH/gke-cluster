@@ -23,6 +23,8 @@ spec:
         app: website
         access-dienst2: "true"
     spec:
+      # Required for varnish-exporter to run varnishstat against the Varnish process.
+      shareProcessNamespace: true
       serviceAccountName: website
       initContainers:
         - name: cloud-sql-proxy
@@ -134,6 +136,24 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
+        - name: varnish-exporter
+          image: ghcr.io/wisvch/varnish-exporter:20260809-8acdf20 # {"$imagepolicy": "flux-system:website-varnish-exporter"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: prometheus
+              containerPort: 9131
+              protocol: TCP
+          resources:
+            requests:
+              cpu: 10m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - name: varnish-storage
+              mountPath: /var/lib/varnish
+              readOnly: true
       volumes:
         - name: website-storage
           persistentVolumeClaim:

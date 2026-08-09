@@ -4,6 +4,7 @@ resources:
   - image.yaml
   - varnish-configmap.yaml
   - deploy.yaml
+  - varnish-metrics.yaml
   - service.yaml
   - pv.yaml
   - httproute.yaml

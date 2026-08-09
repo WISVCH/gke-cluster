@@ -21,3 +21,27 @@ spec:
   policy:
     numerical:
       order: asc
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: website-varnish-exporter
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/varnish-exporter
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: website-varnish-exporter
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: website-varnish-exporter
+  filterTags:
+    pattern: "^(?P<ts>[0-9]{8})-[a-fA-F0-9]+$"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc
