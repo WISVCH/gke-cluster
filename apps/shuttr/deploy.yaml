@@ -107,6 +107,8 @@ spec:
               value: "Event photos of the study association for Applied Mathematics and Computer Science at the TU Delft."
             - name: NUXT_PUBLIC_LINKS
               value: '[ { "icon": "i-lucide-house", "to": "https://ch.tudelft.nl" }, { "icon": "i-simple-icons-instagram", "to": "https://www.instagram.com/wisvch/" }, { "icon": "i-simple-icons-github", "to": "https://github.com/wisvch" }, { "icon": "i-simple-icons-linkedin", "to": "https://www.linkedin.com/in/w-i-s-v-christiaan-huygens-0957a910/"} ]'
+            - name: NUXT_DEBUG_TIMINGS
+              value: "true"
           resources: # 7d peak: ~197Mi non-evictable memory; CPU reached ~221m and exceeded the prior 200m limit.
             requests:
               cpu: 100m
