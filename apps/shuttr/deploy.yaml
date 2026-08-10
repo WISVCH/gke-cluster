@@ -111,10 +111,10 @@ spec:
               value: "true"
           resources: # 7d peak: ~197Mi non-evictable memory; CPU reached ~221m and exceeded the prior 200m limit.
             requests:
-              cpu: 100m
+              cpu: 250m
               memory: 256Mi
             limits:
-              cpu: 500m
+              cpu: 1
               memory: 512Mi
         - name: cloud-sql-proxy
           image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
