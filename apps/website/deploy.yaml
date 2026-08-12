@@ -47,7 +47,7 @@ spec:
               memory: 64Mi
       containers:
         - name: website
-          image: ghcr.io/wisvch/website:20260807-de94a08 # {"$imagepolicy": "flux-system:website"}
+          image: ghcr.io/wisvch/website:20260812-aa97d50 # {"$imagepolicy": "flux-system:website"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: backend-http
