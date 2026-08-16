@@ -43,7 +43,7 @@ spec:
               cpu: 50m
               memory: 64Mi
         - name: keycloak
-          image: ghcr.io/wisvch/keycloak-build:20260729-73c291a # {"$imagepolicy": "flux-system:keycloak"}
+          image: ghcr.io/wisvch/keycloak-build:20260816-8d7dc8b # {"$imagepolicy": "flux-system:keycloak"}
           args:
             - "start"
             - "--log-level=info,org.keycloak.broker.oidc:TRACE,org.keycloak.events:DEBUG,nl.tudelft.ch.login:TRACE"
