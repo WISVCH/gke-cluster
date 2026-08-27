@@ -117,7 +117,7 @@ spec:
               cpu: 1
               memory: 512Mi
         - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
           args:
             - "--auto-iam-authn"
             - "--structured-logs"

@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: cloud-sql-proxy
+  namespace: flux-system
+spec:
+  image: gcr.io/cloud-sql-connectors/cloud-sql-proxy
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: cloud-sql-proxy
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: cloud-sql-proxy
+  filterTags:
+    pattern: "^(?P<version>[0-9]+\\.[0-9]+\\.[0-9]+)$"
+    extract: "$version"
+  policy:
+    semver:
+      range: ">=2.0.0 <3.0.0"
