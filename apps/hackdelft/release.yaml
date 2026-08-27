@@ -7,7 +7,7 @@ spec:
   interval: 15m
   chart:
     spec:
-      chart: ./hackdelft
+      chart: ./static-site
       version: "0.1.x"
       interval: 15m
       reconcileStrategy: Revision
@@ -16,82 +16,24 @@ spec:
         name: wisvch
         namespace: flux-system
   values:
-    defaultEdition: "2026"
-    tlsSecret: hackdelft-tls
+    nameOverride: hackdelft
+    fullnameOverride: hackdelft
     domains:
       - hackdelft.nl
-      - hackdelft.com
-    editions:
-      "2026":
-        replicaCount: 1
-        containerPort: 8080
-        service:
-          type: ClusterIP
-          port: 80
-        image:
-          repository: ghcr.io/wisvch/hack-delft-2026
-          tag: 20260802-014a5db # {"$imagepolicy": "flux-system:hackdelft-2026:tag"}
-          pullPolicy: IfNotPresent
-          pullSecrets: {}
-        resources: # 7d peak: 26Mi non-evictable memory and negligible CPU; reserve idle use and allow traffic bursts.
-          requests:
-            cpu: 10m
-            memory: 32Mi
-          limits:
-            cpu: 250m
-            memory: 128Mi
-#       "2024":
-#         replicaCount: 1
-#         containerPort: 8080
-#         service:
-#           type: ClusterIP
-#           port: 80
-#         image:
-#           repository: ghcr.io/wisvch/hackdelft-2024
-#           tag: 20240802-c64e948 # {"$imagepolicy": "flux-system:hackdelft-2024:tag"}
-#           pullPolicy: IfNotPresent
-#           pullSecrets: {}
-#       "2022":
-#         replicaCount: 1
-#         containerPort: 8080
-#         service:
-#           type: ClusterIP
-#           port: 80
-#         image:
-#           repository: ghcr.io/wisvch/hackdelft-2022
-#           tag: 20220502-6dd5cd2 # {"$imagepolicy": "flux-system:hackdelft-2022:tag"}
-#           pullPolicy: IfNotPresent
-#           pullSecrets: {}
-#       "2019":
-#         replicaCount: 1
-#         containerPort: 8080
-#         service:
-#           type: ClusterIP
-#           port: 80
-#         image:
-#           repository: ghcr.io/wisvch/hackdelft-2019
-#           tag: "61" # {"$imagepolicy": "flux-system:hackdelft-2019:tag"}
-#           pullPolicy: IfNotPresent
-#           pullSecrets: {}
-#       "2018":
-#         replicaCount: 1
-#         containerPort: 8080
-#         service:
-#           type: ClusterIP
-#           port: 80
-#         image:
-#           repository: ghcr.io/wisvch/hackdelft-2018
-#           tag: "75" # {"$imagepolicy": "flux-system:hackdelft-2018:tag"}
-#           pullPolicy: IfNotPresent
-#           pullSecrets: {}
-#       "2017":
-#         replicaCount: 1
-#         containerPort: 3000
-#         service:
-#           type: ClusterIP
-#           port: 80
-#         image:
-#           repository: ghcr.io/wisvch/hackdelft-2017
-#           tag: "41" # {"$imagepolicy": "flux-system:hackdelft-2017:tag"}
-#           pullPolicy: IfNotPresent
-#           pullSecrets: {}
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: ClusterIP
+      port: 80
+    image:
+      repository: ghcr.io/wisvch/hack-delft-2026
+      tag: 20260802-014a5db # {"$imagepolicy": "flux-system:hackdelft-2026:tag"}
+      pullPolicy: IfNotPresent
+      pullSecrets: {}
+    resources: # 7d peak: 26Mi non-evictable memory and negligible CPU; reserve idle use and allow traffic bursts.
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 250m
+        memory: 128Mi

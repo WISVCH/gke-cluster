@@ -1,0 +1,20 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: HTTPRoute
+metadata:
+  name: hackdelft-2026-alias
+  namespace: default
+spec:
+  parentRefs:
+    - kind: Gateway
+      namespace: gateway-infra
+      name: gateway
+  hostnames:
+    - 2026.hackdelft.nl
+  rules:
+    - filters:
+        - type: URLRewrite
+          urlRewrite:
+            hostname: hackdelft.nl
+      backendRefs:
+        - name: hackdelft
+          port: 80
