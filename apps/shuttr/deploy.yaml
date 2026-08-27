@@ -22,6 +22,47 @@ spec:
         app: shuttr
     spec:
       serviceAccountName: shuttr
+      # The proxy starts before Shuttr and remains running for the Pod lifetime.
+      initContainers:
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          restartPolicy: Always
+          args:
+            - --auto-iam-authn
+            - --structured-logs
+            - --private-ip
+            - --port=5432
+            - --health-check
+            - --http-address=0.0.0.0
+            - --http-port=9801
+            - wisvch:europe-west4:geurt
+          ports:
+            - name: health
+              containerPort: 9801
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: health
+            failureThreshold: 60
+            periodSeconds: 1
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: health
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 10
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
       containers:
         - name: shuttr
           image: ghcr.io/dsluijk/shuttr:20260812-4c6e409 # {"$imagepolicy": "flux-system:shuttr"}
@@ -116,20 +157,3 @@ spec:
             limits:
               cpu: 1
               memory: 512Mi
-        - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
-          args:
-            - "--auto-iam-authn"
-            - "--structured-logs"
-            - "--private-ip"
-            - "--port=5432"
-            - "wisvch:europe-west4:geurt"
-          securityContext:
-            runAsNonRoot: true
-          resources:
-            limits:
-              cpu: 250m
-              memory: 128Mi
-            requests:
-              cpu: 50m
-              memory: 64Mi

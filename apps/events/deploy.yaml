@@ -22,6 +22,47 @@ spec:
         app: events
     spec:
       serviceAccountName: events
+      # The proxy starts before Events and remains running for the Pod lifetime.
+      initContainers:
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          restartPolicy: Always
+          args:
+            - --auto-iam-authn
+            - --structured-logs
+            - --private-ip
+            - --port=5432
+            - --health-check
+            - --http-address=0.0.0.0
+            - --http-port=9801
+            - wisvch:europe-west4:geurt
+          ports:
+            - name: health
+              containerPort: 9801
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: health
+            failureThreshold: 60
+            periodSeconds: 1
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: health
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 10
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
       containers:
         - name: events
           image: ghcr.io/wisvch/events:20260802-4bbbda0 # {"$imagepolicy": "flux-system:events"}
@@ -181,23 +222,6 @@ spec:
             requests:
               cpu: 250m
               memory: 768Mi
-        - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
-          args:
-            - "--auto-iam-authn"
-            - "--structured-logs"
-            - "--private-ip"
-            - "--port=5432"
-            - "wisvch:europe-west4:geurt"
-          securityContext:
-            runAsNonRoot: true
-          resources:
-            limits:
-              cpu: 250m
-              memory: 128Mi
-            requests:
-              cpu: 50m
-              memory: 64Mi
       volumes:
         - name: events
           secret:
