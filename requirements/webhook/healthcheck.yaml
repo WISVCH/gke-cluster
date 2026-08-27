@@ -1,0 +1,18 @@
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: webhook-receiver
+  namespace: flux-system
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 9440
+        requestPath: /healthz
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: webhook-receiver
