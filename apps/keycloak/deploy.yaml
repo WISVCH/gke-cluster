@@ -26,7 +26,7 @@ spec:
       serviceAccountName: keycloak
       containers:
         - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
           args:
             - "--auto-iam-authn"
             - "--structured-logs"
