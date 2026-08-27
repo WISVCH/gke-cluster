@@ -1,0 +1,137 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dienst2
+  namespace: default
+  labels:
+    app: dienst2
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: dienst2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: dienst2
+        run: dienst2
+    spec:
+      serviceAccountName: dienst2
+      volumes:
+        - name: service-account-key
+          secret:
+            secretName: dienst2-service-account
+            items:
+              - key: service_account
+                path: google-service-account.json
+      # The proxy starts before Dienst2 and remains running for the Pod lifetime.
+      initContainers:
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          restartPolicy: Always
+          args:
+            - --auto-iam-authn
+            - --structured-logs
+            - --private-ip
+            - --port=5432
+            - --health-check
+            - --http-address=0.0.0.0
+            - --http-port=9801
+            - wisvch:europe-west4:geurt
+          ports:
+            - name: health
+              containerPort: 9801
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: health
+            failureThreshold: 60
+            periodSeconds: 1
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: health
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 10
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+      containers:
+        - name: dienst2
+          image: ghcr.io/wisvch/dienst2:20260108-e96685c # {"$imagepolicy": "flux-system:dienst2:tag"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: dienst2.ch.tudelft.nl
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+              httpHeaders:
+                - name: Host
+                  value: dienst2.ch.tudelft.nl
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: ALLOWED_HOSTS
+              value: dienst2.ch.tudelft.nl,dienst2.default.svc.cluster.local,dienst2.wisvch.internal
+            - name: CACHE_URL
+              value: locmemcache://
+            - name: DATABASE_URL
+              value: postgresql://dienst2@wisvch.iam:dienst2@127.0.0.1:5432/dienst2
+            - name: INTERNAL_IPS
+              value: ""
+            - name: GOOGLE_IAP_AUDIENCE
+              valueFrom:
+                secretKeyRef:
+                  name: dienst2
+                  key: iap_expected_audience
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: dienst2
+                  key: secret_key
+            - name: GOOGLE_SERVICE_ACCOUNT_DELEGATED_USER
+              value: root@ch.tudelft.nl
+          resources: # Quiet-week peak: 123Mi non-evictable and 9m CPU; exports need high burst headroom.
+            requests:
+              cpu: 50m
+              memory: 192Mi
+            limits:
+              cpu: "2"
+              memory: 1Gi
+          volumeMounts:
+            - mountPath: /srv/google-service-account.json
+              name: service-account-key
+              subPath: google-service-account.json
+              readOnly: true

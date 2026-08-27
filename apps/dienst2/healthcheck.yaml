@@ -1,0 +1,19 @@
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: dienst2
+  namespace: default
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 8000
+        host: dienst2.ch.tudelft.nl
+        requestPath: /healthz
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: dienst2

@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: dienst2-allow-internal-labels
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: dienst2
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              access-dienst2: "true"
+      ports:
+        - protocol: TCP
+          port: 8000
+    # External access is gated by IAP through the GCPBackendPolicy.
+    - from:
+        - ipBlock:
+            cidr: 35.191.0.0/16
+        - ipBlock:
+            cidr: 130.211.0.0/22
+      ports:
+        - protocol: TCP
+          port: 8000
+    # Allow the IAP Cloud Function through the wisvch-connect VPC/internal LB.
+    - from:
+        - ipBlock:
+            cidr: 10.8.0.0/28
+      ports:
+        - protocol: TCP
+          port: 8000
