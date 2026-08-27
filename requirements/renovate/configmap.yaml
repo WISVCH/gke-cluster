@@ -16,6 +16,7 @@ data:
           'config:recommended',
           ':automergeStableNonMajor',
           ':configMigration',
+          ':rebaseStalePrs',
         ],
       },
       requireConfig: 'required',
