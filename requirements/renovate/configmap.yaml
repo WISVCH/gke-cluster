@@ -17,6 +17,8 @@ data:
           ':automergeStableNonMajor',
           ':configMigration',
           ':rebaseStalePrs',
+          ':prHourlyLimitNone',
+          ':prConcurrentLimitNone',
         ],
       },
       requireConfig: 'required',
