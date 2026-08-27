@@ -1,0 +1,136 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: choice
+  namespace: default
+  labels:
+    app: choice
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: choice
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: choice
+    spec:
+      serviceAccountName: choice
+      # The proxy starts before Choice and remains running for the Pod lifetime.
+      initContainers:
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          restartPolicy: Always
+          args:
+            - --auto-iam-authn
+            - --structured-logs
+            - --private-ip
+            - --port=5432
+            - --health-check
+            - --http-address=0.0.0.0
+            - --http-port=9801
+            - wisvch:europe-west4:geurt
+          ports:
+            - name: health
+              containerPort: 9801
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: health
+            failureThreshold: 60
+            periodSeconds: 1
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: health
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 10
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+      containers:
+        - name: choice
+          image: ghcr.io/wisvch/choice:20240802-5c0c8f5 # {"$imagepolicy": "flux-system:choice"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /choice2/actuator/health/liveness
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /choice2/actuator/health/readiness
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 30
+            successThreshold: 1
+            timeoutSeconds: 5
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+            - name: SERVER_ADDRESS
+              value: 0.0.0.0
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: /choice2/
+            - name: SERVER_FORWARD_HEADERS_STRATEGY
+              value: FRAMEWORK
+            - name: SPRING_PROFILES_ACTIVE
+              value: production
+            - name: SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE
+              value: 64MB
+            - name: SPRING_SERVLET_MULTIPART_MAX_fILE_SIZE
+              value: 64MB
+            - name: JAVA_OPTS
+              value: -Xms64m -Xmx128m -XX:+UseSerialGC -XX:MaxRAM=72m -Xss512k
+            - name: SPRING_DATASOURCE_USERNAME
+              value: choice@wisvch.iam
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: choice
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://127.0.0.1:5432/choice
+            - name: SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE
+              value: "5"
+            - name: SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE
+              value: "1"
+            - name: SPRING_DATASOURCE_TOMCAT_MAX_ACTIVE
+              value: "10"
+            - name: SPRING_DATASOURCE_TOMCAT_MIN_IDLE
+              value: "1"
+            - name: SPRING_DATASOURCE_TOMCAT_INITIAL_SIZE
+              value: "1"
+            - name: SPRING_JPA_HIBERNATE_HB2MDDL_AUTO
+              value: validate
+            - name: SPRING_JPA_GENERATE_DDL
+              value: "true"
+            - name: TZ
+              value: Europe/Amsterdam
+          resources: # 7d peak: 346Mi non-evictable memory and 13m CPU; retain JVM startup and request headroom.
+            requests:
+              cpu: 25m
+              memory: 384Mi
+            limits:
+              cpu: 500m
+              memory: 768Mi

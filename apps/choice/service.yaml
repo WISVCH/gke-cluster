@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: choice-internal
+  namespace: default
+  labels:
+    app: choice
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
+  selector:
+    app: choice
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: choice-external
+  namespace: default
+  labels:
+    app: choice
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
+  selector:
+    app: choice
