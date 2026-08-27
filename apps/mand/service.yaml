@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mand-internal
+  namespace: default
+  labels:
+    app: mand
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
+  selector:
+    app: mand
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mand-external
+  namespace: default
+  labels:
+    app: mand
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: http
+  selector:
+    app: mand

@@ -1,0 +1,119 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mand
+  namespace: default
+  labels:
+    app: mand
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: mand
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: mand
+    spec:
+      serviceAccountName: mand
+      initContainers:
+        - name: cloud-sql-proxy
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          restartPolicy: Always
+          args:
+            - --auto-iam-authn
+            - --structured-logs
+            - --private-ip
+            - --port=5432
+            - --health-check
+            - --http-address=0.0.0.0
+            - --http-port=9801
+            - wisvch:europe-west4:geurt
+          ports:
+            - name: health
+              containerPort: 9801
+              protocol: TCP
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: health
+            failureThreshold: 60
+            periodSeconds: 1
+            timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: health
+            failureThreshold: 3
+            periodSeconds: 10
+            timeoutSeconds: 10
+          securityContext:
+            runAsNonRoot: true
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 250m
+              memory: 128Mi
+      containers:
+        - name: mand
+          image: ghcr.io/wisvch/mand:20250702-cbdcf74 # {"$imagepolicy": "flux-system:mand"}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: DBUSER
+              value: mand-sa@wisvch.iam
+            - name: DBPASSWORD
+              value: mand
+            - name: DBNAME
+              value: mand
+            - name: DBHOST
+              value: 127.0.0.1
+            - name: DBPORT
+              value: "5432"
+            - name: PGSSLMODE
+              value: disable
+            - name: CONNECTURL
+              value: https://connect.ch.tudelft.nl
+            - name: CONNECTCLIENTID
+              value: mand
+            - name: CLIENTSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: mand
+                  key: clientSecret
+            - name: REDIRECTURL
+              value: https://wisv.ch/admin/
+            - name: ALLOWEDGROUP
+              value: staff
+            - name: EMPTYREDIRECT
+              value: https://ch.tudelft.nl/
+            - name: NOTFOUNDURL
+              value: https://ch.tudelft.nl/404
+            - name: GIN_MODE
+              value: release
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+          resources: # 7d peak: ~22Mi non-evictable memory and 14m CPU; retain startup and request headroom.
+            requests:
+              cpu: 25m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi

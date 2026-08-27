@@ -1,0 +1,39 @@
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: mand
+  namespace: default
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 8080
+        host: wisv.ch
+        requestPath: /healthz
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: mand-external
+---
+apiVersion: networking.gke.io/v1
+kind: HealthCheckPolicy
+metadata:
+  name: mand-internal
+  namespace: default
+spec:
+  default:
+    config:
+      type: HTTP
+      httpHealthCheck:
+        port: 8080
+        host: wisv.ch
+        requestPath: /healthz
+    logConfig:
+      enabled: true
+  targetRef:
+    group: ""
+    kind: Service
+    name: mand-internal
