@@ -1,0 +1,127 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: renovate
+  namespace: renovate
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 1
+      activeDeadlineSeconds: 3600
+      template:
+        spec:
+          serviceAccountName: renovate
+          automountServiceAccountToken: false
+          restartPolicy: Never
+          securityContext:
+            fsGroup: 65532
+            fsGroupChangePolicy: OnRootMismatch
+            seccompProfile:
+              type: RuntimeDefault
+          initContainers:
+            - name: github-app-token
+              image: ghcr.io/mshekow/github-app-installation-token:latest@sha256:cb8752da9c957f470b47abf07926bb4eb579b4e1d82a0f19b585a0474d1f1bd7 # {"$imagepolicy": "flux-system:github-app-installation-token"}
+              imagePullPolicy: IfNotPresent
+              command: ["/bin/sh", "-ec"]
+              args:
+                - |
+                  umask 027
+                  node /app/index.js "$RENOVATE_GITHUB_APP_ID" "$RENOVATE_GITHUB_APP_INSTALLATION_ID" /github-app/private-key.pem > /token/token
+                  test -s /token/token
+              env:
+                - name: RENOVATE_GITHUB_APP_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: renovate-github-app
+                      key: app-id
+                - name: RENOVATE_GITHUB_APP_INSTALLATION_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: renovate-github-app
+                      key: installation-id
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 64Mi
+                limits:
+                  cpu: 100m
+                  memory: 128Mi
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
+                readOnlyRootFilesystem: true
+                runAsGroup: 65532
+                runAsNonRoot: true
+                runAsUser: 1000
+              volumeMounts:
+                - name: github-app
+                  mountPath: /github-app
+                  readOnly: true
+                - name: token
+                  mountPath: /token
+          containers:
+            - name: renovate
+              image: renovate/renovate:44.48.0@sha256:330148e4ea9ea15f16e48f311d337da760ebec6fcf6e33ed5347afc2c5cf5c69 # {"$imagepolicy": "flux-system:renovate"}
+              imagePullPolicy: IfNotPresent
+              command: ["/bin/sh", "-ec"]
+              args:
+                - |
+                  export RENOVATE_TOKEN="$(cat /token/token)"
+                  mkdir -p /tmp/renovate/home /tmp/renovate/cache
+                  exec renovate
+              env:
+                - name: HOME
+                  value: /tmp/renovate/home
+                - name: LOG_FORMAT
+                  value: json
+                - name: LOG_LEVEL
+                  value: info
+                - name: RENOVATE_BASE_DIR
+                  value: /tmp/renovate
+                - name: RENOVATE_CACHE_DIR
+                  value: /tmp/renovate/cache
+                - name: RENOVATE_CONFIG_FILE
+                  value: /usr/src/app/config.js
+              resources:
+                requests:
+                  cpu: 100m
+                  memory: 256Mi
+                limits:
+                  cpu: 500m
+                  memory: 1Gi
+              securityContext:
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
+                readOnlyRootFilesystem: true
+                runAsGroup: 65532
+                runAsNonRoot: true
+                runAsUser: 12021
+              volumeMounts:
+                - name: renovate-config
+                  mountPath: /usr/src/app/config.js
+                  subPath: config.js
+                  readOnly: true
+                - name: token
+                  mountPath: /token
+                  readOnly: true
+                - name: work
+                  mountPath: /tmp/renovate
+          volumes:
+            - name: github-app
+              secret:
+                secretName: renovate-github-app
+                defaultMode: 0440
+            - name: renovate-config
+              configMap:
+                name: renovate-config
+            - name: token
+              emptyDir:
+                medium: Memory
+            - name: work
+              emptyDir: {}

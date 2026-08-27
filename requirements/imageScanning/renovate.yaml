@@ -1,0 +1,46 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: renovate
+  namespace: flux-system
+spec:
+  image: renovate/renovate
+  interval: 6h
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: renovate
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: renovate
+  policy:
+    semver:
+      range: ">=0.0.0"
+  digestReflectionPolicy: IfNotPresent
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: github-app-installation-token
+  namespace: flux-system
+spec:
+  image: ghcr.io/mshekow/github-app-installation-token
+  interval: 6h
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: github-app-installation-token
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: github-app-installation-token
+  filterTags:
+    pattern: "^latest$"
+  policy:
+    alphabetical:
+      order: asc
+  digestReflectionPolicy: Always
+  interval: 6h

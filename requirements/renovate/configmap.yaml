@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: renovate-config
+  namespace: renovate
+data:
+  config.js: |
+    module.exports = {
+      platform: 'github',
+      autodiscover: false,
+      repositories: ['WISVCH/chpay'],
+      onboarding: true,
+      onboardingConfig: {
+        $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+        extends: [
+          'config:recommended',
+          ':automergeStableNonMajor',
+          ':configMigration',
+        ],
+      },
+      requireConfig: 'required',
+      platformCommit: 'enabled',
+    };
