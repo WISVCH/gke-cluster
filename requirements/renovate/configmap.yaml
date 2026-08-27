@@ -8,7 +8,7 @@ data:
     module.exports = {
       platform: 'github',
       autodiscover: false,
-      repositories: ['WISVCH/chpay', 'WISVCH/keycloak-build', 'WISVCH/website', 'WISVCH/wiki', 'WISVCH/mand'],
+      repositories: ['WISVCH/chpay', 'WISVCH/keycloak-build', 'WISVCH/website', 'WISVCH/wiki', 'WISVCH/mand', 'WISVCH/narrowcast-content'],
       onboarding: true,
       onboardingConfig: {
         $schema: 'https://docs.renovatebot.com/renovate-schema.json',
