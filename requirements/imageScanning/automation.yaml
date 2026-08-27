@@ -1,10 +1,12 @@
-apiVersion: image.toolkit.fluxcd.io/v1beta1
+apiVersion: image.toolkit.fluxcd.io/v1beta2
 kind: ImageUpdateAutomation
 metadata:
   name: wisvch
   namespace: flux-system
 spec:
   interval: 5m0s
+  # Prevent commits while Flux image resources are migrated between API versions.
+  suspend: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -15,7 +17,17 @@ spec:
     push:
       branch: main
     commit:
-      messageTemplate: "{{range .Updated.Images}}{{println .}}{{end}}"
+      messageTemplate: |
+        Update images: {{ range $index, $change := .Changed.Changes }}{{ if $index }}, {{ end }}{{ $change.NewValue }}{{ end }}
+
+        Updated by Flux image automation.
+
+        {{ range $resource, $changes := .Changed.Objects -}}
+        {{ $resource.Kind }} {{ $resource.Name }}:
+        {{- range $_, $change := $changes }}
+        - {{ $change.OldValue }} -> {{ $change.NewValue }}
+        {{ end -}}
+        {{ end -}}
       author:
         email: 17965416+ChristiaanHuygens@users.noreply.github.com
         name: "W.I.S.V. 'Christiaan Huygens'"
