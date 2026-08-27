@@ -1,5 +1,5 @@
 # 2026
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
   name: hackdelft-2026
@@ -8,7 +8,7 @@ spec:
   image: ghcr.io/wisvch/hack-delft-2026
   interval: 15m0s
 ---
-apiVersion: image.toolkit.fluxcd.io/v1beta2
+apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImagePolicy
 metadata:
   name: hackdelft-2026
@@ -26,7 +26,7 @@ spec:
 
 # # 2024
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImageRepository
 # metadata:
 #   name: hackdelft-2024
@@ -35,7 +35,7 @@ spec:
 #   image: ghcr.io/wisvch/hackdelft-2024
 #   interval: 15m0s
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImagePolicy
 # metadata:
 #   name: hackdelft-2024
@@ -53,7 +53,7 @@ spec:
 # 
 # # 2022
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImageRepository
 # metadata:
 #   name: hackdelft-2022
@@ -62,7 +62,7 @@ spec:
 #   image: ghcr.io/wisvch/hackdelft-2022
 #   interval: 15m0s
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImagePolicy
 # metadata:
 #   name: hackdelft-2022
@@ -80,7 +80,7 @@ spec:
 # 
 # # 2019
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImageRepository
 # metadata:
 #   name: hackdelft-2019
@@ -89,7 +89,7 @@ spec:
 #   image: ghcr.io/wisvch/hackdelft-2019
 #   interval: 15m0s
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImagePolicy
 # metadata:
 #   name: hackdelft-2019
@@ -104,7 +104,7 @@ spec:
 # 
 # # 2018
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImageRepository
 # metadata:
 #   name: hackdelft-2018
@@ -113,7 +113,7 @@ spec:
 #   image: ghcr.io/wisvch/hackdelft-2018
 #   interval: 15m0s
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImagePolicy
 # metadata:
 #   name: hackdelft-2018
@@ -128,7 +128,7 @@ spec:
 # 
 # # 2017
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImageRepository
 # metadata:
 #   name: hackdelft-2017
@@ -137,7 +137,7 @@ spec:
 #   image: ghcr.io/wisvch/hackdelft-2017
 #   interval: 15m0s
 # ---
-# apiVersion: image.toolkit.fluxcd.io/v1beta2
+# apiVersion: image.toolkit.fluxcd.io/v1
 # kind: ImagePolicy
 # metadata:
 #   name: hackdelft-2017
