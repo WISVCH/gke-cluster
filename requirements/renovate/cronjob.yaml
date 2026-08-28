@@ -85,6 +85,10 @@ spec:
                   value: /tmp/renovate
                 - name: RENOVATE_CACHE_DIR
                   value: /tmp/renovate/cache
+                # Containerbase installs Go, Python, and other lockfile tools here.
+                # Keep it on the writable work volume; the image filesystem is read-only.
+                - name: RENOVATE_CONTAINERBASE_DIR
+                  value: /tmp/renovate/containerbase
                 - name: RENOVATE_CONFIG_FILE
                   value: /usr/src/app/config.js
               resources:
