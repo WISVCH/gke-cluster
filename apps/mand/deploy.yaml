@@ -64,7 +64,7 @@ spec:
               memory: 128Mi
       containers:
         - name: mand
-          image: ghcr.io/wisvch/mand:20260828-147-250a383 # {"$imagepolicy": "flux-system:mand"}
+          image: ghcr.io/wisvch/mand:20260828-154-5de226a # {"$imagepolicy": "flux-system:mand"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
