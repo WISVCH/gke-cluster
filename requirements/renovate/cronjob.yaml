@@ -72,11 +72,13 @@ spec:
               args:
                 - |
                   export RENOVATE_TOKEN="$(cat /token/token)"
-                  mkdir -p /tmp/renovate/home /tmp/renovate/cache
+                  mkdir -p /tmp/renovate/home /tmp/renovate/cache /tmp/renovate/tmp
                   exec renovate
               env:
                 - name: HOME
                   value: /tmp/renovate/home
+                - name: TMPDIR
+                  value: /tmp/renovate/tmp
                 - name: LOG_FORMAT
                   value: json
                 - name: LOG_LEVEL
