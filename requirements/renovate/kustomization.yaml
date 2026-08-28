@@ -5,3 +5,4 @@ resources:
   - serviceaccount.yaml
   - configmap.yaml
   - cronjob.yaml
+  - networkpolicy.yaml
