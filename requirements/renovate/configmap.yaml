@@ -7,17 +7,11 @@ data:
   config.js: |
     module.exports = {
       platform: 'github',
-      autodiscover: false,
-      repositories: ['WISVCH/chpay', 'WISVCH/keycloak-build', 'WISVCH/website', 'WISVCH/wiki', 'WISVCH/mand', 'WISVCH/narrowcast-content'],
+      autodiscover: true,
       onboarding: true,
       onboardingConfig: {
         $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-        extends: [
-          'config:recommended',
-          ':automergeStableNonMajor',
-          ':configMigration',
-          ':rebaseStalePrs',
-        ],
+        extends: ['github>WISVCH/renovate-config'],
       },
       requireConfig: 'required',
       platformCommit: 'enabled',
