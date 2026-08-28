@@ -26,7 +26,7 @@ spec:
       # The proxy starts before Choice and remains running for the Pod lifetime.
       initContainers:
         - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.4 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
           restartPolicy: Always
           args:
             - --auto-iam-authn

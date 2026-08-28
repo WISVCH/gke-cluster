@@ -63,7 +63,7 @@ spec:
               name: connect
               readOnly: true
         - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.3 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
+          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.25.4 # {"$imagepolicy": "flux-system:cloud-sql-proxy"}
           args:
             - "--structured-logs"
             - "--private-ip"
