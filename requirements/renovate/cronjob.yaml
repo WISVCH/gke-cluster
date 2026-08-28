@@ -72,13 +72,11 @@ spec:
               args:
                 - |
                   export RENOVATE_TOKEN="$(cat /token/token)"
-                  mkdir -p /tmp/renovate/home /tmp/renovate/cache /tmp/renovate/tmp
+                  mkdir -p /tmp/renovate/home /tmp/renovate/cache
                   exec renovate
               env:
                 - name: HOME
                   value: /tmp/renovate/home
-                - name: TMPDIR
-                  value: /tmp/renovate/tmp
                 - name: LOG_FORMAT
                   value: json
                 - name: LOG_LEVEL
@@ -100,7 +98,6 @@ spec:
                 allowPrivilegeEscalation: false
                 capabilities:
                   drop: ["ALL"]
-                readOnlyRootFilesystem: true
                 runAsGroup: 65532
                 runAsNonRoot: true
                 runAsUser: 12021
@@ -114,12 +111,6 @@ spec:
                   readOnly: true
                 - name: work
                   mountPath: /tmp
-                # Containerbase's runtime installer needs these two directories writable.
-                # The rest of the Renovate image remains read-only.
-                - name: containerbase-data
-                  mountPath: /opt/containerbase/data
-                - name: containerbase-tools
-                  mountPath: /opt/containerbase/tools
           volumes:
             - name: github-app
               secret:
@@ -132,8 +123,4 @@ spec:
               emptyDir:
                 medium: Memory
             - name: work
-              emptyDir: {}
-            - name: containerbase-data
-              emptyDir: {}
-            - name: containerbase-tools
               emptyDir: {}
