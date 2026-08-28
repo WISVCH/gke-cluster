@@ -67,7 +67,7 @@ spec:
               memory: 128Mi
       containers:
         - name: keycloak
-          image: ghcr.io/wisvch/keycloak-build:20260827-541660b # {"$imagepolicy": "flux-system:keycloak"}
+          image: ghcr.io/wisvch/keycloak-build:20260828-34001fc # {"$imagepolicy": "flux-system:keycloak"}
           args:
             - "start"
             - "--log-level=info,org.keycloak.broker.oidc:TRACE,org.keycloak.events:DEBUG,nl.tudelft.ch.login:TRACE"
