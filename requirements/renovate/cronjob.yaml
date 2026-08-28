@@ -118,6 +118,8 @@ spec:
                   mountPath: /opt/containerbase/data
                 - name: containerbase-tools
                   mountPath: /opt/containerbase/tools
+                - name: containerbase-tmp
+                  mountPath: /tmp/containerbase
           volumes:
             - name: github-app
               secret:
@@ -134,4 +136,6 @@ spec:
             - name: containerbase-data
               emptyDir: {}
             - name: containerbase-tools
+              emptyDir: {}
+            - name: containerbase-tmp
               emptyDir: {}
