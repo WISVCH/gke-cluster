@@ -13,8 +13,10 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
+      # The single replica mounts a ReadWriteOnce disk, so replacement must
+      # stop it before the new pod can mount that disk on another node.
+      maxSurge: 0
+      maxUnavailable: 1
   template:
     metadata:
       name: narrowcast-content
