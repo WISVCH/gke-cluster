@@ -16,8 +16,8 @@ spec:
   imageRepositoryRef:
     name: dienst2
   filterTags:
-    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
-    extract: "$ts"
+    pattern: "^[0-9]{8}-(?P<run>[0-9]+)-[a-fA-F0-9]+$"
+    extract: "$run"
   policy:
     numerical:
       order: asc
