@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: wiki
-          image: ghcr.io/wisvch/wiki:20260901-82-a5b6afd # {"$imagepolicy": "flux-system:wiki"}
+          image: ghcr.io/wisvch/wiki:20260902-83-a5b6afd # {"$imagepolicy": "flux-system:wiki"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
