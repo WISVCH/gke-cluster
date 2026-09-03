@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lucie
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: ./static-site
+      version: "0.1.x"
+      interval: 15m
+      reconcileStrategy: Revision
+      sourceRef:
+        kind: GitRepository
+        name: wisvch
+        namespace: flux-system
+  values:
+    fullnameOverride: lucie
+    domains:
+      - lustrum.ch
+    replicaCount: 1
+    containerPort: 8080
+    service:
+      type: ClusterIP
+      port: 80
+    image:
+      repository: ghcr.io/wisvch/lucie
+      tag: 20260409-039220e # {"$imagepolicy": "flux-system:cod22:tag"}
+      pullPolicy: IfNotPresent
+      pullSecrets: {}
+    resources: # 7d peak: 9Mi non-evictable memory and negligible CPU; retain small runtime headroom.
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi

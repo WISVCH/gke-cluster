@@ -1,0 +1,23 @@
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImageRepository
+metadata:
+  name: cod22
+  namespace: flux-system
+spec:
+  image: ghcr.io/wisvch/lucie
+  interval: 15m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1
+kind: ImagePolicy
+metadata:
+  name: lucie
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: lucie
+  filterTags:
+    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
+    extract: "$ts"
+  policy:
+    numerical:
+      order: asc
