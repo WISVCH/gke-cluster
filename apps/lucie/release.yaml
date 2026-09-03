@@ -26,7 +26,7 @@ spec:
       port: 80
     image:
       repository: ghcr.io/wisvch/lucie
-      tag: 20260409-039220e # {"$imagepolicy": "flux-system:lucie:tag"}
+      tag: 20260903-2-403f01e # {"$imagepolicy": "flux-system:lucie:tag"}
       pullPolicy: IfNotPresent
       pullSecrets: {}
     resources: # 7d peak: 9Mi non-evictable memory and negligible CPU; retain small runtime headroom.
