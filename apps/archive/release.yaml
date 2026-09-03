@@ -26,7 +26,6 @@ spec:
       - alumni.ch.tudelft.nl
       - commissies.ch.tudelft.nl
       - eerstejaarsweekend.nl
-      - lustrum.ch
       - symposium.ch.tudelft.nl
       - 2024.hackdelft.nl
       - 2024.hackdelft.com
@@ -80,7 +79,7 @@ spec:
       type: HTTP
       httpHealthCheck:
         port: 8080
-        host: lustrum.ch
+        host: eerstejaarsweekend.nl
         requestPath: /
     logConfig:
       enabled: true

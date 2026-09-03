@@ -1,7 +1,7 @@
 apiVersion: image.toolkit.fluxcd.io/v1
 kind: ImageRepository
 metadata:
-  name: cod22
+  name: lucie
   namespace: flux-system
 spec:
   image: ghcr.io/wisvch/lucie
@@ -16,8 +16,8 @@ spec:
   imageRepositoryRef:
     name: lucie
   filterTags:
-    pattern: "^(?P<ts>.*)-[a-fA-F0-9]+"
-    extract: "$ts"
+    pattern: "^[0-9]{8}-(?P<run>[0-9]+)-[a-fA-F0-9]+$"
+    extract: "$run"
   policy:
     numerical:
       order: asc
