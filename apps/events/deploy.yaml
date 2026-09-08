@@ -65,7 +65,7 @@ spec:
               memory: 128Mi
       containers:
         - name: events
-          image: ghcr.io/wisvch/events:20260907-778-f935c35 # {"$imagepolicy": "flux-system:events"}
+          image: ghcr.io/wisvch/events:20260908-780-93fd213 # {"$imagepolicy": "flux-system:events"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
