@@ -23,7 +23,7 @@ resources:
   - ../../dienst2
   - ../../events
   # - ../../flitcie
-  - ../../hackdelft
+  # - ../../hackdelft
   - ../../keycloak
   - ../../listmonk
   - ../../lucie
