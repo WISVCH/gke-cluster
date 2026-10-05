@@ -74,7 +74,7 @@ spec:
               memory: 128Mi
       containers:
         - name: dienst2
-          image: ghcr.io/wisvch/dienst2:20261004-95-a974ae0 # {"$imagepolicy": "flux-system:dienst2"}
+          image: ghcr.io/wisvch/dienst2:20261005-98-1493f11 # {"$imagepolicy": "flux-system:dienst2"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
