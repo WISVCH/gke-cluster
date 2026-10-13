@@ -173,7 +173,7 @@ spec:
             - name: TZ
               value: Europe/Amsterdam
             - name: WISVCH_CONNECT_ADMIN_GROUPS
-              value: beheer,epa,vc,bestuur
+              value: events
             - name: WISVCH_CONNECT_BETA_USERS
               value: joepj,juliand,danys
             - name: WISVCH_CONNECT_CLAIM_NAME
