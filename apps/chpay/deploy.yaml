@@ -65,7 +65,7 @@ spec:
               memory: 128Mi
       containers:
         - name: chpay
-          image: ghcr.io/wisvch/chpay:20261023-394-7502cfd # {"$imagepolicy": "flux-system:chpay"}
+          image: ghcr.io/wisvch/chpay:20261023-397-9381c1d # {"$imagepolicy": "flux-system:chpay"}
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
