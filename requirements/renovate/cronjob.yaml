@@ -24,7 +24,7 @@ spec:
               type: RuntimeDefault
           initContainers:
             - name: github-app-token
-              image: ghcr.io/mshekow/github-app-installation-token:latest@sha256:1f809260f4b392c737ba44887939178ee235e187ebe68194dcc22e8ffbaa0c81 # {"$imagepolicy": "flux-system:github-app-installation-token"}
+              image: ghcr.io/mshekow/github-app-installation-token:latest@sha256:0144479ef76e19dafdc64247bbfaa94f0c1f8c79205d2c6c91300dbcc00a3769 # {"$imagepolicy": "flux-system:github-app-installation-token"}
               imagePullPolicy: IfNotPresent
               command: ["/bin/sh", "-ec"]
               args:
