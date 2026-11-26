@@ -66,7 +66,7 @@ spec:
                   mountPath: /token
           containers:
             - name: renovate
-              image: renovate/renovate:44.262.0@sha256:4c5d7663f0d5e072d5e6066a64789b199fce2d592ae0d283609b5070d66b408b # {"$imagepolicy": "flux-system:renovate"}
+              image: renovate/renovate:44.263.5@sha256:9806d1b444f2b0b57d7c3b882d453b99c7494db07689c2e1abed8e6ae502b271 # {"$imagepolicy": "flux-system:renovate"}
               imagePullPolicy: IfNotPresent
               command: ["/bin/sh", "-ec"]
               args:
